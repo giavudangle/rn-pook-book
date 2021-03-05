@@ -1,32 +1,44 @@
 {
   "expo": {
-    "name": "rn-book",
-    "slug": "rn-book",
-    "version": "1.0.0",
+    "scheme": "bookap-vudang",
+    "name": "Book Book",
+    "slug": "book-app",
+    "platforms": ["ios", "android"],
+    "version": "1.0.1",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./src/assets/icon.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./src/assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["./src/assets/**/*"],
+
     "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+      "bundleIdentifier": "com.vudang.bookapp",
+      "buildNumber": "1.0.1",
+      "supportsTablet": true,
+      "infoPlist": {
+        "NSFaceIDUsageDescription": "We'll use Face ID or Touch ID to secure your login.",
+        "NSCameraUsageDescription": "This app uses the camera to upload user profile picture"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
-    }
+    "android": {
+      "package": "com.cattuong.ecommerce",
+      "versionCode": 2,
+      "useNextNotificationsApi": true,
+      "permissions": [
+        "CAMERA",
+        "WRITE_EXTERNAL_STORAGE",
+        "USE_BIOMETRIC",
+        "USE_FINGERPRINT"
+      ],
+      "softwareKeyboardLayoutMode": "pan"
+    },
+    "notification": { "icon": "./src/assets/icon.png" },
+    "description": "BOOK BOOK app contains all necessary features"
   }
 }
