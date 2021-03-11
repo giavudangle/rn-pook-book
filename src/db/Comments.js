@@ -31,4 +31,9 @@ export default comments = [
     username: "Khiêm",
     content: "Vòng đẹp, chất lượng đúng như quảng cảo",
   },
+  {
+    id: 7,
+    username: "Khiêm Khang",
+    content: "Vòng đẹp, chất lượng đúng như quảng cảo",
+  },
 ];
