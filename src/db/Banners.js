@@ -19,6 +19,11 @@ const banners = [
     id: "218716523",
     imageUrl: require("../assets/Images/banner4.jpg"),
   },
+  {
+    id: "218716523",
+    imageUrl: require("../assets/Images/banner4.jpg"),
+  },
+
 ];
 
 export default banners;
