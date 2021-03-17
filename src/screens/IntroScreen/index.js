@@ -1,24 +1,102 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View, Dimensions, SafeAreaView,  Image } from 'react-native';
+import React, {useRef} from 'react';
+import { 
+  StyleSheet, 
+  Text, 
+  View, 
+  Dimensions,
+  Animated,
+  Button
+} from 'react-native';
 
-import Header from './components/Header';
+import Slide from './components/Slide'
+import SubSlide from './components/SubSlide'
+import Pagination from './components/Pagination'
 
 const {width, height} = Dimensions.get('screen')
 
+const slides = [
+  {
+    name: 'slide 1',
+    des: 'Giúp tăng sự tự tin, đầu óc minh mẫn sáng suốt, giải quyết vấn đề cách linh hoạt nhất'
+  },
+  {
+    name: 'slide 2',
+    des: 'Giúp tăng sự tự tin, đầu óc minh mẫn sáng suốt, giải quyết vấn đề cách linh hoạt nhất'
+  },
+  {
+    name: 'slide 3',
+    des: 'Giúp tăng sự tự tin, đầu óc minh mẫn sáng suốt, giải quyết vấn đề cách linh hoạt nhất'
+  }
+]
+
+
 export default function IntroScreen() {
+
+  const scrollX = new Animated.Value(0);
+  const scrollClick = useRef(null)
+
+  const backgroundColor = scrollX.interpolate({
+    inputRange: [0, width, width * 2],
+    outputRange: ["#017fff", "#1ba8ff", "#45b3f7"],
+    extrapolate: 'clamp' 
+  })
+
+  const textTranslate = scrollX.interpolate({
+    inputRange: [0, width, width * 2],
+    outputRange: [0, width * -1, width * -2],
+    extrapolate: 'clamp'
+  })
+
   return (
     <View style={styles.container}>
-        <View style={styles.background}>
-          <View style={styles.wrapContent}>
-            <Header title='Mang tri thuc'/>
-            <Image style={{width: 300, height: 300, marginTop: 30}} source={{uri: 'https://scontent.fsgn2-5.fna.fbcdn.net/v/t1.0-9/17021649_2041022529457954_2850228655665691898_n.jpg?_nc_cat=104&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=AQyXHJC-86EAX_Rb8oe&_nc_ht=scontent.fsgn2-5.fna&oh=f6b14a8b7d658f99210890d001e609bb&oe=606F21C7'}}/>
-          </View>
-        </View>
-        <View style={styles.footer}>
-          <View style={styles.footerContent}>
-          </View>
-        </View>
+        <Animated.View style={{
+          backgroundColor: backgroundColor, 
+          flex: 6, 
+          borderBottomRightRadius: 75
+          }}
+        >
+          <Animated.ScrollView
+            ref={scrollClick}
+            horizontal
+            snapToInterval={width}
+            scrollTo={{ x: scrollClick, animated: true }}
+            decelerationRate='fast'
+            showsHorizontalScrollIndicator={false}
+            bounces={false}
+            onScroll={Animated.event(
+              [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+              {useNativeDriver: false}
+            )}
+          >
+            {
+              slides.map(item => {
+                return <Slide name={item.name}/>
+              })
+            }
+          </Animated.ScrollView>
+        </Animated.View>
+        <Animated.View style={[styles.footer, {backgroundColor}]}>
+          <Pagination slides={slides} scrollX={scrollX}/>
+          <Animated.View style={[styles.footerContent, {transform: [{translateX: textTranslate}]}]}>
+            {
+              slides.map((item, index) => {
+                return <SubSlide 
+                  title={item.name} 
+                  backgroundColor={backgroundColor}
+                  content={item.des}
+                  scrollX={scrollX}
+                  last={index === slides.length - 1}
+                  nextSlide={() => {
+                    if(scrollClick.current) {
+                      scrollClick.current.scrollTo({x: width * (index + 1)})
+                    }
+                  }}
+                />
+              })
+            }
+          </Animated.View>
+        </Animated.View>
+
     </View>
   );
 }
@@ -30,27 +108,17 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
-  background: {
-    flex: 6,
-    backgroundColor: 'red',
-    width: width,
-    borderBottomRightRadius: 60
-  },
-  wrapContent: {
-    alignItems: 'center',
-    paddingTop: 60
-  },
-
   footer: {
     flex: 4,
-    backgroundColor: 'red',
     width: width,
-    zIndex: 1
   },
   footerContent: {
     flex: 1,
     backgroundColor: 'white',
-    borderTopLeftRadius: 60
+    borderTopLeftRadius: 75,
+    alignItems: 'center',
+    paddingTop: 20,
+    flexDirection: 'row',
+    width: width * slides.length
   }
 });
