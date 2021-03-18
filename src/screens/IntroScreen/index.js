@@ -89,7 +89,6 @@ export default function IntroScreen() {
                   nextSlide={() => {
                     if(scrollClick.current) {
                       scrollClick.current.scrollTo({x: width * (index + 1)})
-                      console.log(scrollClick.current)
                     }
                   }}
                 />
