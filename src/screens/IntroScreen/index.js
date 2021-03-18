@@ -97,7 +97,6 @@ export default function IntroScreen() {
             }
           </Animated.View>
         </Animated.View>
-
     </View>
   );
 }
@@ -112,6 +111,22 @@ const styles = StyleSheet.create({
   footer: {
     flex: 4,
     width: width,
+  background: {
+    flex: 6,
+    backgroundColor: 'red',
+    width: width,
+    borderBottomRightRadius: 60
+  },
+  wrapContent: {
+    alignItems: 'center',
+    paddingTop: 60
+  },
+
+  footer: {
+    flex: 4,
+    backgroundColor: 'red',
+    width: width,
+    zIndex: 1
   },
   footerContent: {
     flex: 1,
@@ -120,6 +135,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 20,
     flexDirection: 'row',
-    width: width * slides.length
+    width: width * slides.length,
+    borderTopLeftRadius: 75
   }
 });
