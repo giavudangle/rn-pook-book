@@ -111,11 +111,11 @@ const styles = StyleSheet.create({
   footer: {
     flex: 4,
     width: width,
+  },
   background: {
     flex: 6,
     backgroundColor: 'red',
     width: width,
-    borderBottomRightRadius: 60
   },
   wrapContent: {
     alignItems: 'center',
@@ -138,4 +138,4 @@ const styles = StyleSheet.create({
     width: width * slides.length,
     borderTopLeftRadius: 75
   }
-});
+})

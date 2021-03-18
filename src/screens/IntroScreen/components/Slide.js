@@ -12,7 +12,7 @@ import Header from './Header';
 const {width, height} = Dimensions.get('screen');
 
 //const imageUri = 'httpsrt-book-cartoon-portable-network-graphics-co-5ba3401acb5459.2332714215374254348328.jpg'
-const imageUri = 'https://raw.githubusercontent.com/giavudangle/e-book-app-react-native-template/master/src/assets/Images/slide1.png?token=AMLJH7T2ZEM3MI2TA3FEPNLAKLYTO'
+const imageUri = 'https://prices.vn/photos/7/store/ma-giam-gia-tiki.png'
 export default function Slide({name}) {
     return (
     <View style={{flex: 1}}>
