@@ -1,10 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import {TextInput} from 'react-native-paper';
 
-export default function HomeScreen() {
+export default function TextInputCustom() {
     return (
         <View>
-            <Text>HomeScreen</Text>
+            <TextInput/>
         </View>
     )
 }
