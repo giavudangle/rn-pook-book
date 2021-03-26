@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,Text} from 'react-native'  
+import {View,Text,StyleSheet} from 'react-native'  
 import {MaterialCommunityIcons,MaterialIcons} from '@expo/vector-icons'
 import Colors from '../../../utils/Colors'
 
