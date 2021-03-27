@@ -34,11 +34,6 @@ export const ProfileScreen = (props) => {
           </View>
         </View>
       </View>
-
- 
-
-  return (
-    <Text>ProfileSCreen</Text>
   );
 };
 
