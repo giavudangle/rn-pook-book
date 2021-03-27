@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Text, View, StyleSheet, Dimensions, Alert } from "react-native";
+
+import { Text,View, StyleSheet, Dimensions, Alert } from "react-native";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 //Action
@@ -33,7 +34,11 @@ export const ProfileScreen = (props) => {
           </View>
         </View>
       </View>
-    
+
+ 
+
+  return (
+    <Text>ProfileSCreen</Text>
   );
 };
 
