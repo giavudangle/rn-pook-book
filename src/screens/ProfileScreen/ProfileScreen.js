@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Text,View, StyleSheet, Dimensions, Alert } from "react-native";
+import { Text, View, StyleSheet, Dimensions, Alert } from "react-native";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 //Action
@@ -12,10 +12,28 @@ import Loader from "../../components/Loaders/Loader";
 const { width, height } = Dimensions.get("window");
 
 export const ProfileScreen = (props) => {
- 
-
+  // const user = useSelector(state => state.auth.user);
+  // const loading = useSelector(state => state.auth.isLoading);
+  const loading = false;
+  const user = 'hehe';
   return (
-    <Text>ProfileSCreen</Text>
+    // Wrapp with Action Sheet Provider
+      <View style={styles.container}>
+        <View style={styles.header}></View>
+        {
+          loading ? <Loader/> : <></>
+        }
+        <View style={styles.profileContainer}>
+          <View style={styles.profileBox}>
+            <EditButton
+              navigation={props.navigation}
+              user={user}
+            />
+          
+          </View>
+        </View>
+      </View>
+    
   );
 };
 
