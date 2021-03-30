@@ -34,6 +34,26 @@ export const ProfileScreen = (props) => {
           </View>
         </View>
       </View>
+
+ 
+
+  return (
+    // Wrapp with Action Sheet Provider
+      <View style={styles.container}>
+        <View style={styles.header}></View>
+        {
+          loading ? <Loader/> : <></>
+        }
+        <View style={styles.profileContainer}>
+          <View style={styles.profileBox}>
+            <EditButton
+              navigation={props.navigation}
+              user={user}
+            />
+          
+          </View>
+        </View>
+      </View>
   );
 };
 
