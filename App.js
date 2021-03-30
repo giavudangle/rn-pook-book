@@ -23,7 +23,11 @@ import { reducer as formReducer } from "redux-form";
 import { StatusBar } from "expo-status-bar";
 //Notification
 import LocalNotication from "./src/components/Notification/LocalNotification";
+
+
+// TEST AREA
 import { SignUpScreen } from "./src/screens/SignupScreen";
+import {TouchIdScreen} from './src/screens/TouchIdScreen';
 
 const rootReducer = combineReducers({
   store: productReducer,
@@ -105,9 +109,21 @@ const LoadAssets = async () => {
 | Use this component to implement screen
 |--------------------------------------------------
 */
+
 const App = () => {
+  const [assetLoaded, setAssetLoaded] = useState(false);
+  if (!assetLoaded) {
+    return (
+      <AppLoading
+        startAsync={LoadAssets}
+        onFinish={() => setAssetLoaded(true)}
+      />
+    );
+  }
   return (
-    <SignUpScreen/>
+    <Provider store={store}>
+      <TouchIdScreen/>
+    </Provider>
   )
 }
 
