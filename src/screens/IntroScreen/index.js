@@ -89,6 +89,7 @@ export default function IntroScreen() {
                   nextSlide={() => {
                     if(scrollClick.current) {
                       scrollClick.current.scrollTo({x: width * (index + 1)})
+                      console.log(scrollClick.current)
                     }
                   }}
                 />
@@ -96,6 +97,7 @@ export default function IntroScreen() {
             }
           </Animated.View>
         </Animated.View>
+
     </View>
   );
 }
@@ -111,22 +113,6 @@ const styles = StyleSheet.create({
     flex: 4,
     width: width,
   },
-  background: {
-    flex: 6,
-    backgroundColor: 'red',
-    width: width,
-  },
-  wrapContent: {
-    alignItems: 'center',
-    paddingTop: 60
-  },
-
-  footer: {
-    flex: 4,
-    backgroundColor: 'red',
-    width: width,
-    zIndex: 1
-  },
   footerContent: {
     flex: 1,
     backgroundColor: 'white',
@@ -134,7 +120,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 20,
     flexDirection: 'row',
-    width: width * slides.length,
-    borderTopLeftRadius: 75
+    width: width * slides.length
   }
-})
+});
