@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import * as RootNavigation from "../navigation/RootNavigation";
+//import * as RootNavigation from "../navigation/RootNavigation";
 import { TouchableOpacity } from "react-native";
 import * as Linking from "expo-linking";
 import Colors from "./Colors";
@@ -36,7 +36,7 @@ export const urlRedirect = (url) => {
   //   )}`
   // );
   if (path) {
-    RootNavigation.navigate(path, queryParams);
+    //RootNavigation.navigate(path, queryParams);
   }
   return;
 };
