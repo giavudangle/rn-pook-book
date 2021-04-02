@@ -28,6 +28,9 @@ import { StatusBar } from "expo-status-bar";
 //Notification
 import LocalNotication from "./src/components/Notification/LocalNotification";
 
+//react-native-paper provider
+import {DefaultTheme ,Provider as PaperProvider} from 'react-native-paper'
+
 
 
 // TEST AREA
@@ -116,6 +119,15 @@ const LoadAssets = async () => {
 |--------------------------------------------------
 */
 
+//theme react-native-paper
+const theme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    primary: '#00806C'
+  }
+}
+
 
 const App = () => {
   const [assetLoaded, setAssetLoaded] = useState(false);
@@ -129,7 +141,9 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <ResetPasswordScreen/>
+      <PaperProvider theme={theme}>
+        <ResetPasswordScreen/>
+      </PaperProvider>
     </Provider>
   )
 }
