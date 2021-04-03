@@ -24,9 +24,6 @@ export default function Slide({name,imageUrl}) {
                 resizeMode='stretch'
                 style={{width:200,height:200,marginTop:40}}
                 source={imageUrl}/>
-                
-                
-
            </View>
         </View>
     </View>
