@@ -17,7 +17,7 @@ const {width, height} = Dimensions.get('screen')
 
 
 
-
+// Changed
 export const IntroScreen = () =>  {
 
   const scrollX = new Animated.Value(0);
