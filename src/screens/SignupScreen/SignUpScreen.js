@@ -8,7 +8,7 @@ export const SignUpScreen = ({ navigation }) => {
         <View style={styles.container}>
             <ImageBackground
                 style={{ flex: 1, position: 'absolute', height,width}}
-                source={require("../../assets/Forest.jpg")}
+                source={require("../../assets/Images/Forest.jpg")}
                 blurRadius={3}
             />
             <SignUpForm navigation={navigation} />
