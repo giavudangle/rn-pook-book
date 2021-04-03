@@ -2,26 +2,27 @@
 const slides = [
   {
     id: 1,
-    lable: "Mua may mắn",
-    subtitle: "Tìm loại đá yêu thích",
+    lable: "MUA KIẾN THỨC",
+    subtitle: "Tìm cuốn sách yêu thích",
     des:
-      "Việc lựa chọn một vòng đá phù hợp đem lại lợi ích rất lớn trong sự nghiệp, tình cảm, tiền tài",
-    imageUrl: require("../assets/Images/slide1.png"),
+      "Tất cả những gì con người làm, nghĩ hoặc trở thành, được bảo toàn một cách kỳ diệu trên những trang sách ...",
+    imageUrl: require("../assets/Images/book.png"),
   },
   {
     id: 2,
-    lable: "Cầu bình an",
-    subtitle: "Sản phẩm chất lượng",
+    lable: "VẼ TƯƠNG LAI",
+    subtitle: "Một tương lai sáng lạng",
     des:
-      "Giúp  tăng sự tự tin, đầu óc minh mẫn sáng suốt, giải quyết vấn đề cách linh hoạt thông suốt",
-    imageUrl: require("../assets/Images/slide2.png"),
+      "Người biết đọc nắm trong tay sức mạnh để khuếch đại bản thân mình ....",
+    imageUrl: require("../assets/Images/book1.png"),
   },
   {
     id: 3,
-    lable: "Mang hạnh phúc về",
-    subtitle: "Bạn còn chần chừ gì nữa?",
-    des: "Hãy tìm ngay cho mình sự may mắn, hạnh phúc tại CatTuong ",
-    imageUrl: require("../assets/Images/slide3.png"),
+    lable: "ĐỂ TRƯỞNG THÀNH",
+    subtitle: "Một cuốn sách thật sự",
+    des: "Nên đọc trong tuổi trẻ, rồi đọc lại khi đã trưởng thành, và một nữa lúc già ...",
+    imageUrl: require("../assets/Images/book3.png"),
   },
 ];
 export default slides;
+
