@@ -11,23 +11,11 @@ import {
 import Slide from './components/Slide'
 import SubSlide from './components/SubSlide'
 import Pagination from './components/Pagination'
+import slides from '../../db/IntroSlides'
 
 const {width, height} = Dimensions.get('screen')
 
-const slides = [
-  {
-    name: 'slide 1',
-    des: 'Giúp tăng sự tự tin, đầu óc minh mẫn sáng suốt, giải quyết vấn đề cách linh hoạt nhất'
-  },
-  {
-    name: 'slide 2',
-    des: 'Giúp tăng sự tự tin, đầu óc minh mẫn sáng suốt, giải quyết vấn đề cách linh hoạt nhất'
-  },
-  {
-    name: 'slide 3',
-    des: 'Giúp tăng sự tự tin, đầu óc minh mẫn sáng suốt, giải quyết vấn đề cách linh hoạt nhất'
-  }
-]
+
 
 
 export const IntroScreen = () =>  {
@@ -37,7 +25,7 @@ export const IntroScreen = () =>  {
 
   const backgroundColor = scrollX.interpolate({
     inputRange: [0, width, width * 2],
-    outputRange: ["#017fff", "#1ba8ff", "#45b3f7"],
+    outputRange: ["#7EFFB1", "#5BFF9C", "#4DFF94"],
     extrapolate: 'clamp' 
   })
 
@@ -70,18 +58,19 @@ export const IntroScreen = () =>  {
           >
             {
               slides.map(item => {
-                return <Slide name={item.name}/>
+                return <Slide key={item.id} name={item.lable} imageUrl={item.imageUrl}/>
               })
             }
           </Animated.ScrollView>
         </Animated.View>
-        <Animated.View style={[styles.footer, {backgroundColor}]}>
+        <Animated.View  style={[styles.footer, {backgroundColor}]}>
           <Pagination slides={slides} scrollX={scrollX}/>
           <Animated.View style={[styles.footerContent, {transform: [{translateX: textTranslate}]}]}>
             {
               slides.map((item, index) => {
                 return <SubSlide 
-                  title={item.name} 
+                  key={item.id}
+                  title={item.subtitle} 
                   backgroundColor={backgroundColor}
                   content={item.des}
                   scrollX={scrollX}

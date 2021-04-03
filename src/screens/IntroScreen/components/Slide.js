@@ -14,16 +14,16 @@ const {width, height} = Dimensions.get('screen');
 
 
 
-export default function Slide({name}) {
+export default function Slide({name,imageUrl}) {
     return (
     <View style={{flex: 1}}>
         <View style={styles.background}>
             <View style={styles.wrapContent}>
                 <Header title={name} titleColor='#00806C'/>
-
                 <Image
-                resizeMode='contain' 
-                source={require('../../../assets/book3.png')}/>
+                resizeMode='stretch'
+                style={{width:200,height:200,marginTop:40}}
+                source={imageUrl}/>
                 
                 
            </View>
