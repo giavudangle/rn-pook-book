@@ -10,8 +10,9 @@ export default function ForgetRenderField({
         secureTextEntry
     }) {
     return (
-        <View style={{marginTop:50}}> 
+        <View> 
             <TextInput
+                mode='outlined'
                 placeholder={label}
                 left={<TextInput.Icon 
                     name={iconLeft}

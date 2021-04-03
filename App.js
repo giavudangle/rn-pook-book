@@ -1,4 +1,5 @@
-mport React, { useState } from "react";
+import React, { useState } from "react";
+
 //Redux
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { Provider } from "react-redux";
@@ -24,11 +25,10 @@ import { StatusBar } from "expo-status-bar";
 //Notification
 import LocalNotication from "./src/components/Notification/LocalNotification";
 
+import {TouchIdScreen} from './src/screens/TouchIdScreen'
+import { SignUpScreen } from "./src/screens/SignUpScreen";
 
 
-// TEST AREA
-import { SignUpScreen } from "./src/screens/SignupScreen";
-import {TouchIdScreen} from './src/screens/TouchIdScreen';
 
 
 const rootReducer = combineReducers({
@@ -125,7 +125,7 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <TouchIdScreen/>
+      <SignUpScreen/>
     </Provider>
 
   )

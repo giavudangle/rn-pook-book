@@ -7,7 +7,7 @@ export default function SubSlide({title, content, last, nextSlide, scrollX}) {
 
     const backgroundColor = scrollX.interpolate({
         inputRange: [0, width, width * 2],
-        outputRange: ["#017fff", "#1ba8ff", "#45b3f7"],
+        outputRange: ["#7EFFB1", "#5BFF9C", "#4DFF94"],
         extrapolate: 'clamp' 
       })
     return (
@@ -17,8 +17,8 @@ export default function SubSlide({title, content, last, nextSlide, scrollX}) {
 
             <TouchableOpacity onPress={nextSlide}>
                 <Animated.View style={[styles.scrollButton,{backgroundColor: backgroundColor}]}>
-                    <Text>
-                        {last ? "let's start" : "Next"}
+                    <Text style={{color:'#00806C',fontSize:18,fontWeight:'bold'}}>
+                        {last ? "Bắt đầu" : "Tiếp theo"}
                     </Text>
                 </Animated.View>
             </TouchableOpacity>
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
         paddingLeft: 20,
         paddingRight: 20,
         borderRadius: 15,
-        marginTop: 20
+        marginTop: 40,
+        marginLeft:200,
     }
 })

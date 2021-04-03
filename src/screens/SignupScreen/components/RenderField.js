@@ -12,7 +12,6 @@ export default function RenderField({
      keyBoardType,
      autoCapitalize
      }) {
-export default function RenderField({ label, secureTextEntry, iconRight, iconLeft }) {
     return (
         <View>
             <TextInput
@@ -40,4 +39,4 @@ export default function RenderField({ label, secureTextEntry, iconRight, iconLef
             />
         </View>
     )
-}
+} 
