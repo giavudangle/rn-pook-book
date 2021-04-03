@@ -1,1 +1,1 @@
-export * from './ForgetPasswordScreen'
+export*from './ForgetPasswordScreen'

@@ -7,7 +7,8 @@ import {
     KeyboardAvoidingView,
     Platform,
     TouchableWithoutFeedback,
-    Text
+    Text,
+    Dimensions
 } from 'react-native';
 //Colors
 import Colors from '../../../utils/Colors';
@@ -15,6 +16,7 @@ import { Ionicons } from '@expo/vector-icons';
 import CustomText from '../../../components/UI/CustomText';
 import RenderField from './RenderField';
 
+const {width,height}=Dimensions.get('screen')
 export const SignUpForm = (props) => {
     const { handleSubmit, reset } = props;
 
@@ -24,7 +26,7 @@ export const SignUpForm = (props) => {
             keyboardVerticalOffset={40} //adjust the value here if you need more padding
             style={{ flex: 1 }}
         >
-            <View style={styles.header}></View>
+            <View style={styles.container}></View>
             <ScrollView>
                 <TouchableWithoutFeedback>
                     <View
@@ -41,10 +43,12 @@ export const SignUpForm = (props) => {
                             <RenderField
                                 label='Your name'
                                 iconLeft='id-card'
+                                autoCapitalize={true}
                             />
                             <RenderField
                                 label='Your email'
                                 iconLeft='email'
+                                keyBoardType='email-address'
                             />
                             <RenderField
                                 label='Password'
@@ -73,8 +77,8 @@ export const SignUpForm = (props) => {
 }
 
 const styles = StyleSheet.create({
-    header: {
-        marginTop:150,
+    container: {
+        marginTop:100,
         marginBottom: 50,
         paddingHorizontal: 20,
         zIndex: 1,
@@ -88,13 +92,14 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     signIn: {
-        width: "100%",
-        height: 50,
+        width: 151,
+        height: 52,
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 5,
         flexDirection: "row",
         backgroundColor: Colors.lighter_green,
         marginTop: 20,
+        alignSelf:'center',
     }
 })
