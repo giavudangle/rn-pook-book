@@ -33,7 +33,7 @@ import Colors from '../utils/Colors';
 //  Auth Screens
  import { AuthScreen } from '../screens/AuthScreen';
  import { IntroScreen } from '../screens/IntroScreen';
- import { SignUpScreen } from '../screens/SignUpScreen';
+ import { SignUpScreen } from '../screens/SignupScreen';
  import { LoginScreen } from '../screens/LoginScreen';
  import { TouchIdScreen } from '../screens/TouchIdScreen';
 
