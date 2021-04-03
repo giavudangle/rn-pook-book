@@ -26,6 +26,7 @@ export default function Slide({name,imageUrl}) {
                 source={imageUrl}/>
                 
                 
+
            </View>
         </View>
     </View>
