@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 //Redux
 import { createStore, combineReducers, applyMiddleware } from "redux";
@@ -18,21 +19,17 @@ import { AppLoading } from "expo";
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
 
-import {IntroScreen} from './src/screens/IntroScreen';
-import HomeScreen from './src/screens/HomeScreen/index';
-import LoginScreen from './src/screens/LoginScreen/index';
-import {ResetPasswordScreen} from './src/screens/ResetPasswordScreen';
 //redux form
 import { reducer as formReducer } from "redux-form";
 import { StatusBar } from "expo-status-bar";
 //Notification
 import LocalNotication from "./src/components/Notification/LocalNotification";
 
+import {TouchIdScreen} from './src/screens/TouchIdScreen'
+import { SignUpScreen } from "./src/screens/SignUpScreen";
+import {IntroScreen} from "./src/screens/IntroScreen";
+import {AuthScreen} from './src/screens/AuthScreen';
 
-
-// TEST AREA
-import { SignUpScreen } from "./src/screens/SignupScreen";
-import {TouchIdScreen} from './src/screens/TouchIdScreen';
 
 
 const rootReducer = combineReducers({
@@ -129,8 +126,9 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <ResetPasswordScreen/>
+      <AuthScreen/>
     </Provider>
+
   )
 }
 

@@ -4,9 +4,13 @@ import {StyleSheet} from 'react-native';
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#017fff'
+        marginTop: 30
+    },
+    title: {
+        fontSize: 24,
+        fontWeight: 'bold',
+        marginLeft: 18,
+        marginTop: 10
     }
 })
 
