@@ -16,16 +16,16 @@ const {width, height} = Dimensions.get('screen')
 
 const slides = [
   {
-    name: 'slide 1',
-    des: 'Giúp tăng sự tự tin, đầu óc minh mẫn sáng suốt, giải quyết vấn đề cách linh hoạt nhất'
+    name: 'Tìm cuốn sách yêu thích',
+    des: 'Tất cả những gì con người làm, nghĩ hoặc trở thành, được bảo toàn một cách kỳ diệu trên những trang sách ...'
   },
   {
-    name: 'slide 2',
-    des: 'Giúp tăng sự tự tin, đầu óc minh mẫn sáng suốt, giải quyết vấn đề cách linh hoạt nhất'
+    name: 'Một tương lai sáng lạng',
+    des: 'Người biết đọc nắm trong tay sức mạnh để khuếch đại bản thân mình ....'
   },
   {
-    name: 'slide 3',
-    des: 'Giúp tăng sự tự tin, đầu óc minh mẫn sáng suốt, giải quyết vấn đề cách linh hoạt nhất'
+    name: 'Một cuốn sách thực sự',
+    des: 'Nên đọc trong tuổi trẻ, rồi đọc lại khi đã trưởng thành, và một nữa lúc già ...'
   }
 ]
 
@@ -37,7 +37,7 @@ export default function IntroScreen() {
 
   const backgroundColor = scrollX.interpolate({
     inputRange: [0, width, width * 2],
-    outputRange: ["#017fff", "#1ba8ff", "#45b3f7"],
+    outputRange: ["#7EFFB1", "#5BFF9C", "#4DFF94"],
     extrapolate: 'clamp' 
   })
 

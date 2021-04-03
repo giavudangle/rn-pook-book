@@ -22,7 +22,7 @@ export default function Pagination({slides, scrollX}) {
                     position: 'absolute',
                     borderWidth: 2,
                     borderRadius: 10,
-                    borderColor: '#017fff',
+                    borderColor: '#5BFF9C',
                     top: 1,
                     transform: [{translateX}]
                 }}
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     dot: {
-        backgroundColor: '#017fff',
+        backgroundColor: '#5BFF9C',
         width: 10,
         height: 10,
         borderRadius: 100,
