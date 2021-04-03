@@ -36,11 +36,16 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 25,
-        marginBottom: 10
+        marginBottom: 10,
+        fontFamily:'Roboto-Medium'
+
     },
     content: {
-        fontSize: 18,
-        textAlign: 'center'
+        fontSize: 16,
+        textAlign: 'center',
+        fontWeight:'200',
+        fontFamily:'Roboto-LightItalic'
+
     },
     scrollButton: {
         paddingBottom: 10,
