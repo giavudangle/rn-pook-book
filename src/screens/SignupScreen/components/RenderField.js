@@ -4,14 +4,24 @@ import { TextInput } from 'react-native-paper';
 //Colors
 import Colors from '../../../utils/Colors';
 
-export default function RenderField({ label, secureTextEntry, iconRight, iconLeft }) {
+export default function RenderField({ 
+    label, 
+    secureTextEntry,
+     iconRight, 
+     iconLeft,
+     keyBoardType,
+     autoCapitalize
+     }) {
     return (
         <View>
             <TextInput
                 style={{ marginBottom: 10 }}
                 placeholder={label}
                 secureTextEntry={secureTextEntry}
+                keyboardType={keyBoardType}
+                autoCapitalize={autoCapitalize}
                 mode='outlined'
+                theme={{colors:{primary:Colors.leave_green}}}
                 right={<TextInput.Icon
 
                     name={iconRight}
