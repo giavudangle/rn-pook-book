@@ -13,15 +13,19 @@ const {width, height} = Dimensions.get('screen');
 
 
 
-const imageUri = 'https://prices.vn/photos/7/store/ma-giam-gia-tiki.png'
 
 export default function Slide({name}) {
     return (
     <View style={{flex: 1}}>
         <View style={styles.background}>
             <View style={styles.wrapContent}>
-                <Header title={name}/>
-                <Image resizeMode='center' style={{width: 200, height: 200, marginTop: 30}} source={{uri: imageUri}}/>
+                <Header title={name} titleColor='#00806C'/>
+
+                <Image
+                resizeMode='contain' 
+                source={require('../../../assets/book3.png')}/>
+                
+                
            </View>
         </View>
     </View>
@@ -34,7 +38,7 @@ const styles = StyleSheet.create({
       },
       wrapContent: {
         alignItems: 'center',
-        paddingTop: 60,
+        paddingTop: 50,
       },
      
 })
