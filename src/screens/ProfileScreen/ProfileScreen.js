@@ -17,7 +17,6 @@ export const ProfileScreen = (props) => {
   // const loading = useSelector(state => state.auth.isLoading);
   const loading = false;
   const user = 'hehe';
-
   return (
     // Wrapp with Action Sheet Provider
       <View style={styles.container}>
