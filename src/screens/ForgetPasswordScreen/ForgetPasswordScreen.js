@@ -1,3 +1,4 @@
+import { Ionicons } from '@expo/vector-icons';
 import React from 'react';
 import {
     View,
@@ -5,24 +6,35 @@ import {
     TouchableOpacity,
     StyleSheet
 
- } from 'react-native';
+} from 'react-native';
 import CustomText from '../../components/UI/CustomText';
 //Colors
 import Colors from '../../utils/Colors';
 import ForgetRenderField from './components/ForgetRenderField'
 
-export const ForgetPasswordScreen = (props) =>{
-    return(
+export const ForgetPasswordScreen = (props) => {
+    return (
         <View>
-            <View style={styles.header}/>
+            <View style={styles.container} />
             <View>
-                <CustomText style={styles.title}>Forget Password</CustomText>
-                <View>
-                    <ForgetRenderField 
+                <TouchableOpacity
+                    style={{
+                        position: 'absolute',
+                        zIndex:10,
+                        left:10,
+                        top:40,
+                    }}>
+                    <Ionicons name='ios-arrow-back' size={40} color={Colors.light_green} />
+                </TouchableOpacity>
+                
+                <View style={styles.content}>
+                    <CustomText style={styles.title}>Forget Password</CustomText>
+                    <ForgetRenderField
                         label='Your email'
                         iconLeft='email'
                     />
                 </View>
+
                 <TouchableOpacity>
                     <View style={styles.btn}>
                         <Text>NEXT</Text>
@@ -33,23 +45,23 @@ export const ForgetPasswordScreen = (props) =>{
     )
 }
 
-const styles=StyleSheet.create({
-    header:{
-        marginTop:100,
-        marginBottom: 50,
-        paddingHorizontal: 20,
-        zIndex: 1,
+const styles = StyleSheet.create({
+    container: {
+        flex:1,
+        backgroundColor:'#fff',
     },
-    title:{
+    content:{
+        paddingHorizontal:20,
+        marginTop:'20%',
+    },
+    title: {
         color: Colors.light_green,
         fontSize: 40,
-        letterSpacing: 5,
         fontWeight: 'bold',
-        marginBottom:30,
-        textAlign: 'center',
+        marginBottom:24,
     },
-    btn:{
-        width: "100%",
+    btn: {
+        width: "90%",
         height: 50,
         justifyContent: "center",
         alignItems: "center",
@@ -57,5 +69,6 @@ const styles=StyleSheet.create({
         flexDirection: "row",
         backgroundColor: Colors.lighter_green,
         marginTop: 20,
+        alignSelf:'center',
     }
 })

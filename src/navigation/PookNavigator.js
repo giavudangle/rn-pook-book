@@ -33,7 +33,7 @@ import Colors from '../utils/Colors';
 //  Auth Screens
  import { AuthScreen } from '../screens/AuthScreen';
  import { IntroScreen } from '../screens/IntroScreen';
- import { SignupScreen } from '../screens/SignupScreen';
+ import { SignUpScreen } from '../screens/SignupScreen';
  import { LoginScreen } from '../screens/LoginScreen';
  import { TouchIdScreen } from '../screens/TouchIdScreen';
 
@@ -98,7 +98,7 @@ export const AuthStackScreen = () => (
   <AuthStack.Navigator screenOptions={{ headerShown: false }}>
     <AuthStack.Screen name='AuthScreen' component={AuthScreen} />
     <AuthStack.Screen name='LoginScreen' component={LoginStackScreen} />
-    <AuthStack.Screen name='SignupScreen' component={SignupScreen} />
+    <AuthStack.Screen name='SignupScreen' component={SignUpScreen} />
     <AuthStack.Screen
       name='FinishResetScreen'
       component={FinishResetPwScreen}

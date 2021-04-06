@@ -1,10 +1,12 @@
 import React from 'react'
 import { View, Text } from 'react-native'
-
+import {AuthBody} from './components'
 export const AuthScreen = () => {
   return (
     <View>
-      <Text></Text>
+      <View>
+        <AuthBody />
+      </View>
     </View>
   )
 }
