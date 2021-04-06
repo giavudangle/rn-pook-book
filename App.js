@@ -25,13 +25,17 @@ import { StatusBar } from "expo-status-bar";
 //Notification
 import LocalNotication from "./src/components/Notification/LocalNotification";
 
+
+
+
+
 import {TouchIdScreen} from './src/screens/TouchIdScreen'
-import { SignUpScreen } from "./src/screens/SignupScreen"; // bugs here -> resolve later
+
+import { SignUpScreen } from "./src/screens/SignupScreen";
 import {IntroScreen} from "./src/screens/IntroScreen";
 import {AuthScreen} from './src/screens/AuthScreen';
-import { ProfileScreen } from "./src/screens/ProfileScreen";
-import {ResetPasswordScreen} from './src/screens/ResetPasswordScreen'
-
+import { ResetPasswordScreen } from "./src/screens/ResetPasswordScreen/ResetPasswordScreen";
+import {ProfileScreen} from './src/screens/ProfileScreen'
 
 
 const rootReducer = combineReducers({
@@ -136,7 +140,5 @@ const App = () => {
 
   )
 }
-
-
 
 export default App

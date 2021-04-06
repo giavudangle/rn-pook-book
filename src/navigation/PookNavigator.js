@@ -7,11 +7,11 @@ import React from 'react';
  * 3. Bottom Tab
  */
 
-import {createStackNavigator,CardStyleInterpolators,TransitionPreset}  
-from '@react-navigation/stack'
+import { createStackNavigator, CardStyleInterpolators, TransitionPreset }
+  from '@react-navigation/stack'
 
-import {createDrawerNavigator} from '@react-navigation/drawer'      
-import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+import { createDrawerNavigator } from '@react-navigation/drawer'
+import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 
 /**
  * Icons
@@ -31,12 +31,14 @@ import Colors from '../utils/Colors';
 // Do it later
 
 //  Auth Screens
- import { AuthScreen } from '../screens/AuthScreen';
- import { IntroScreen } from '../screens/IntroScreen';
- import { SignUpScreen } from '../screens/SignupScreen';
- import { LoginScreen } from '../screens/LoginScreen';
- import { TouchIdScreen } from '../screens/TouchIdScreen';
 
+import { AuthScreen } from '../screens/AuthScreen';
+import { IntroScreen } from '../screens/IntroScreen';
+import { SignUpScreen } from '../screens/SignupScreen';
+import { LoginScreen } from '../screens/LoginScreen';
+import { TouchIdScreen } from '../screens/TouchIdScreen';
+import {ForgetPasswordScreen} from '../screens/ForgetPasswordScreen'
+import {FinishResetPasswordScreen} from '../screens/FinishResetPasswordScreen'
 // Home Screens
 import { HomeScreen } from '../screens/HomeScreen';
 import { ContactScreen } from '../screens/ContactScreen';
@@ -56,6 +58,7 @@ import { ProfileScreen } from '../screens/ProfileScreen';
 import { EditProfileScreen } from '../screens/ProfileScreen';
 // redux
 import { useSelector } from 'react-redux';
+import { ResetPasswordScreen } from '../screens/ResetPasswordScreen/ResetPasswordScreen';
 
 /**
 |--------------------------------------------------
@@ -88,7 +91,7 @@ export const LoginStackScreen = () => (
     mode='modal'
   >
     <LoginStack.Screen name='LoginScreen' component={LoginScreen} />
-    <LoginStack.Screen name='ForgetPwScreen' component={ForgetPwScreen} />
+    <LoginStack.Screen name='ForgetPasswordScreen' component={ForgetPasswordScreen} />
   </LoginStack.Navigator>
 );
 
@@ -100,8 +103,8 @@ export const AuthStackScreen = () => (
     <AuthStack.Screen name='LoginScreen' component={LoginStackScreen} />
     <AuthStack.Screen name='SignupScreen' component={SignUpScreen} />
     <AuthStack.Screen
-      name='FinishResetScreen'
-      component={FinishResetPwScreen}
+      name='FinishResetPasswordScreen'
+      component={FinishResetPasswordScreen}
     />
   </AuthStack.Navigator>
 );
@@ -198,13 +201,13 @@ export const HomeStackScreen = () => (
     <HomeStack.Screen
       name='Home'
       component={HomeScreen}
-      //animationEnabled: false , nằm trong option
+    //animationEnabled: false , nằm trong option
     />
     <HomeStack.Screen name='Detail' component={DetailScreen} />
     <HomeStack.Screen name='Cart' component={CartStackScreen} />
     <HomeStack.Screen name='Product' component={ProductStackScreen} />
     <HomeStack.Screen name='FinishOrder' component={FinishOrderScreen} />
-    <HomeStack.Screen name='ResetPw' component={ResetPwScreen} />
+    <HomeStack.Screen name='ResetPassword' component={ResetPasswordScreen} />
   </HomeStack.Navigator>
 );
 
