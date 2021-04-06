@@ -25,8 +25,14 @@ export const ProfileScreen = (props) => {
     name:"Vudang",
     phone:"0967781273",
     email:"vudangdev@gmail.com",
-    address:"67 Huynh Thien Loc"
+    address:"67 Huynh Thien Loc",
+    profilePicture:"https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png"
   };
+  const [imageUri, setImageUri] = useState("https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png");
+  const [filename, setFilename] = useState("");
+  const [type, setType] = useState("");
+  const [uploadButton, setUploadButton] = useState(true);
+
 
   return (
     <ActionSheetProvider>
