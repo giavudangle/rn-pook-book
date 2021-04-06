@@ -27,10 +27,6 @@ export const ProfileScreen = (props) => {
     email:"vudangdev@gmail.com",
     address:"67 Huynh Thien Loc"
   };
-  const [imageUri, setImageUri] = useState("https://res.cloudinary.com/daktfdww5/image/upload/v1616166654/rr6wor6pihu4ddfhqdfi.png");
-  const [filename, setFilename] = useState("");
-  const [type, setType] = useState("");
-  const [uploadButton, setUploadButton] = useState(true);
 
   return (
     <ActionSheetProvider>
