@@ -26,9 +26,11 @@ import { StatusBar } from "expo-status-bar";
 import LocalNotication from "./src/components/Notification/LocalNotification";
 
 import {TouchIdScreen} from './src/screens/TouchIdScreen'
-import { SignUpScreen } from "./src/screens/SignUpScreen";
+import { SignUpScreen } from "./src/screens/SignupScreen"; // bugs here -> resolve later
 import {IntroScreen} from "./src/screens/IntroScreen";
 import {AuthScreen} from './src/screens/AuthScreen';
+import { ProfileScreen } from "./src/screens/ProfileScreen";
+import {ResetPasswordScreen} from './src/screens/ResetPasswordScreen'
 
 
 
@@ -101,6 +103,7 @@ const LoadAssets = async () => {
 // }
 
 /**
+ * ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 |--------------------------------------------------
 | Code above use for running all screens of app (real app)
 |--------------------------------------------------
@@ -110,8 +113,10 @@ const LoadAssets = async () => {
 /**
 |--------------------------------------------------
 | Use this component to implement screen
+| ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 |--------------------------------------------------
 */
+
 
 
 const App = () => {
@@ -126,7 +131,7 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <AuthScreen/>
+      <ResetPasswordScreen/>
     </Provider>
 
   )
