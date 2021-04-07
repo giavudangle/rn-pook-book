@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { View, Text } from 'react-native';
 import { TextInput } from 'react-native-paper';
 //Colors
@@ -6,30 +6,35 @@ import Colors from '../../../utils/Colors';
 
 export default function RenderField({ 
     label, 
-    secureTextEntry,
      iconRight, 
      iconLeft,
      keyBoardType,
-     autoCapitalize
+     autoCapitalize,
+     hide,
+     right,
      }) {
+         
     return (
         <View>
             <TextInput
-                style={{ marginBottom: 10 }}
+                style={{ marginBottom: 10,
+                    backgroundColor:'#fff',
+                 borderTopRightRadius:15,
+                    borderTopLeftRadius:15,
+                    borderBottomStartRadius:15,
+                    borderBottomEndRadius:15,
+                    width:340,
+                    height:61,
+                    alignSelf:'center',
+                    overflow:'hidden',
+                 }}
+                secureTextEntry={hide}
                 placeholder={label}
-                secureTextEntry={secureTextEntry}
                 keyboardType={keyBoardType}
                 autoCapitalize={autoCapitalize}
-                mode='outlined'
+                 mode='flat'
                 theme={{colors:{primary:Colors.leave_green}}}
-                mode='outlined'
-                right={<TextInput.Icon
-
-                    name={iconRight}
-                    size={24}
-                    color={Colors.lighter_green}
-                    style={{ paddingLeft: 10 }}
-                />}
+                right={right}
                 left={<TextInput.Icon
                     name={iconLeft}
                     size={24}

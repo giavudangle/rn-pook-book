@@ -12,7 +12,8 @@ export default function ForgetRenderField({
     return (
         <View> 
             <TextInput
-                mode='outlined'
+                style={{backgroundColor:'#fff'}}
+                mode='flat'
                 placeholder={label}
                 left={<TextInput.Icon 
                     name={iconLeft}
