@@ -19,5 +19,6 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 14,
         fontFamily: 'Roboto-Regular'
+
     },
 })

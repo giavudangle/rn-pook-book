@@ -6,16 +6,15 @@ import {
     StyleSheet,
     Dimensions 
 } from 'react-native'
+import Colors from '../../../utils/Colors'
 
 //react-native-paper hook
-import {useTheme} from 'react-native-paper';
 
 const {width, height} = Dimensions.get('screen');
 export default function ButtonSubmit() {
-    const {colors} = useTheme();
     return (
         <TouchableOpacity>
-            <View style={[styles.container, {backgroundColor: colors.primary}]}>
+            <View style={[styles.container, {backgroundColor: Colors.lighter_green}]}>
                 <Text style={styles.text}>Reset your password</Text>
             </View>
         </TouchableOpacity>
