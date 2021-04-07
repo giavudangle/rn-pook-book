@@ -154,6 +154,7 @@ export class SummaryOrder extends React.PureComponent {
               fontSize: 15,
               color: Colors.text,
               fontWeight: "500",
+              top:-10
             }}
           >
             Thành tiền
@@ -172,7 +173,7 @@ SummaryOrder.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: -5,
+    marginTop: -10,
   },
   total: {
     flexDirection: "row",
