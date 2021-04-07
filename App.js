@@ -44,6 +44,8 @@ import {ForgetPasswordScreen} from './src/screens/ForgetPasswordScreen'
 
 import {PaymentScreen} from './src/screens/PaymentScreen'
 import {AddCreditCardScreen} from './src/screens/PaymentScreen'
+import {FinishOrderScreen} from './src/screens/FinishOrderScreen'
+
 
 const rootReducer = combineReducers({
   store: productReducer,
@@ -147,7 +149,7 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <AddCreditCardScreen/>
+      <FinishOrderScreen/>
     </Provider>
 
   )
