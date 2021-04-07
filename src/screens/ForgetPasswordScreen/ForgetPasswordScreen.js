@@ -37,7 +37,10 @@ export const ForgetPasswordScreen = (props) => {
 
                 <TouchableOpacity>
                     <View style={styles.btn}>
-                        <Text>NEXT</Text>
+                        <Text style={{
+                            color:'#FFFFFF',
+                            fontWeight:'bold',                       
+                            }}>NEXT</Text>
                     </View>
                 </TouchableOpacity>
             </View>
@@ -67,7 +70,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 5,
         flexDirection: "row",
-        backgroundColor: Colors.lighter_green,
+        backgroundColor: '#00806C',
         marginTop: 20,
         alignSelf:'center',
     }

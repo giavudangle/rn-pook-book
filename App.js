@@ -30,7 +30,6 @@ import LocalNotication from "./src/components/Notification/LocalNotification";
 
 
 import {TouchIdScreen} from './src/screens/TouchIdScreen'
-
 import { SignUpScreen } from "./src/screens/SignupScreen";
 import {IntroScreen} from "./src/screens/IntroScreen";
 import {AuthScreen} from './src/screens/AuthScreen';

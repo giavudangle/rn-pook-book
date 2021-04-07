@@ -9,7 +9,7 @@ export default {
   bg: "#0f7e4a",
   yellow: "#fed922",
   light_bg: "#e0e0e2",
-  light_green: "#0f7e4a",
+  light_green: '#00AA88',
   // light_green: "#18945a",
   lighter_green: "#00806C",
   leave_green: "#18a561",
