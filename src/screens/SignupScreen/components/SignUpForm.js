@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {
     View,
     StyleSheet,
@@ -10,6 +10,7 @@ import {
     Text,
     Dimensions
 } from 'react-native';
+import {TextInput} from 'react-native-paper';
 //Colors
 import Colors from '../../../utils/Colors';
 import { Ionicons } from '@expo/vector-icons';
@@ -20,13 +21,17 @@ const {width,height}=Dimensions.get('screen')
 export const SignUpForm = (props) => {
     const { handleSubmit, reset } = props;
 
+    const [hidePass,setHidePass]=useState(true);
+    const [hideConfirm,setHideConfirm]=useState(true);
     return (
         <KeyboardAvoidingView
             behavior={Platform.OS == 'ios' ? 'position' : 'height'}
             keyboardVerticalOffset={40} //adjust the value here if you need more padding
             style={{ flex: 1 }}
         >
-            <View style={styles.container}></View>
+            <View style={styles.container}>
+            <CustomText style={styles.title}>REGISTER</CustomText>
+            </View>
             <ScrollView>
                 <TouchableWithoutFeedback>
                     <View
@@ -36,9 +41,6 @@ export const SignUpForm = (props) => {
                             zIndex: 0,
                         }}
                     >
-                        <View>
-                            <CustomText style={styles.title}>REGISTER</CustomText>
-                        </View>
                         <View>
                             <RenderField
                                 label='Your name'
@@ -53,19 +55,36 @@ export const SignUpForm = (props) => {
                             <RenderField
                                 label='Password'
                                 secureTextEntry={true}
-                                iconRight='eye'
-                                iconLeft='lock'
+                                right={<TextInput.Icon
+                                    name={hidePass ? 'eye-off' : 'eye' }
+                                    size={24}
+                                    color={Colors.lighter_green}
+                                    style={{ paddingLeft: 10 }}
+                                    onPress={()=>setHidePass(!hidePass)}
+                                    
+                                />}
+                                hide={hidePass}
+                                iconLeft='lock' 
                             />
+
                             <RenderField
-                                label='Confirm password'
+                                label='Confirm Password'
                                 secureTextEntry={true}
-                                iconRight='eye-off'
+                                right={<TextInput.Icon
+                                    name={hideConfirm ? 'eye-off' : 'eye' }
+                                    size={24}
+                                    color={Colors.lighter_green}
+                                    style={{ paddingLeft: 10 }}
+                                    onPress={()=>setHideConfirm(!hideConfirm)}  
+                                />}
+                                hide={hideConfirm}
                                 iconLeft='lock'
+                                
                             />
                         </View>
                         <TouchableOpacity>
                             <View style={styles.signIn}>
-                                <Text style={{ color: 'white' }}>REGISTER</Text>
+                                <Text style={{ color: 'white',fontWeight:'bold',fontSize:18 }}>REGISTER</Text>
                             </View>
                         </TouchableOpacity>
                         <View style={{ flex: 1 }} />
@@ -78,14 +97,14 @@ export const SignUpForm = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop:100,
-        marginBottom: 50,
+        marginTop:200,
+        marginBottom: 10,
         paddingHorizontal: 20,
         zIndex: 1,
     },
     title: {
-        color: Colors.light_green,
-        fontSize: 40,
+        color: '#00806C',
+        fontSize: 48,
         letterSpacing: 5,
         fontWeight: 'bold',
         marginBottom:30,
@@ -96,10 +115,11 @@ const styles = StyleSheet.create({
         height: 52,
         justifyContent: "center",
         alignItems: "center",
-        borderRadius: 5,
+        borderRadius: 10,
         flexDirection: "row",
-        backgroundColor: Colors.lighter_green,
+        backgroundColor: Colors.light_green,
         marginTop: 20,
         alignSelf:'center',
+        
     }
 })

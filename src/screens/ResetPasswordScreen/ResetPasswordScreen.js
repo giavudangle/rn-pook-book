@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import Colors from '../../utils/Colors'
 
 import styles from './styles'
 
@@ -13,12 +14,10 @@ import {useTheme} from 'react-native-paper';
 
 
 export const ResetPasswordScreen = () => {
-  const {colors} = useTheme();
-
   return (
     <View style={styles.container}>
       <Header/>
-      <Text style={[styles.title, {color: colors.primary}]}>Reset password</Text>
+      <Text style={[styles.title, {color: Colors.lighter_green}]}>Reset password</Text>
       <TextInputCustom label='Enter password'/>
       <TextInputCustom label='Confirm password'/>
       <ButtonSubmit/>
