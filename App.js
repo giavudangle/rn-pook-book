@@ -30,6 +30,7 @@ import LocalNotication from "./src/components/Notification/LocalNotification";
 
 
 import {TouchIdScreen} from './src/screens/TouchIdScreen'
+
 import { SignUpScreen } from "./src/screens/SignupScreen";
 import {IntroScreen} from "./src/screens/IntroScreen";
 import {AuthScreen} from './src/screens/AuthScreen';
@@ -106,6 +107,7 @@ const LoadAssets = async () => {
 // }
 
 /**
+ * ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 |--------------------------------------------------
 | Code above use for running all screens of app (real app)
 |--------------------------------------------------
@@ -115,8 +117,10 @@ const LoadAssets = async () => {
 /**
 |--------------------------------------------------
 | Use this component to implement screen
+| ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 |--------------------------------------------------
 */
+
 
 
 const App = () => {
@@ -131,8 +135,7 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <ProfileScreen/>
-
+      <ResetPasswordScreen/>
     </Provider>
 
   )

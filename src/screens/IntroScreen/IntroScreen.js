@@ -15,7 +15,8 @@ import slides from '../../db/IntroSlides'
 
 const {width, height} = Dimensions.get('screen')
 
-
+// Khi nao lam xong het thi moi merge vo
+// Code nho comment
 
 // Changed
 export const IntroScreen = () =>  {
