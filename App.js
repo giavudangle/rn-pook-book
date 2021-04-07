@@ -46,6 +46,7 @@ import {PaymentScreen} from './src/screens/PaymentScreen'
 import {AddCreditCardScreen} from './src/screens/PaymentScreen'
 import {FinishOrderScreen} from './src/screens/FinishOrderScreen'
 
+
 const rootReducer = combineReducers({
   store: productReducer,
   cart: cartReducer,
