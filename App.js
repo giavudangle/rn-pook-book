@@ -31,11 +31,19 @@ import LocalNotication from "./src/components/Notification/LocalNotification";
 
 import {TouchIdScreen} from './src/screens/TouchIdScreen'
 import { SignUpScreen } from "./src/screens/SignupScreen";
+import { LoginScreen } from "./src/screens/LoginScreen";
+
 import {IntroScreen} from "./src/screens/IntroScreen";
 import {AuthScreen} from './src/screens/AuthScreen';
-import { ResetPasswordScreen } from "./src/screens/ResetPasswordScreen/ResetPasswordScreen";
+import { ResetPasswordScreen } from "./src/screens/ResetPasswordScreen";
 import {ProfileScreen} from './src/screens/ProfileScreen'
+import {CartScreen} from './src/screens/CartScreen'
 
+import {PreOrderScreen} from './src/screens/PreOrderScreen'
+import {ForgetPasswordScreen} from './src/screens/ForgetPasswordScreen'
+
+import {PaymentScreen} from './src/screens/PaymentScreen'
+import {AddCreditCardScreen} from './src/screens/PaymentScreen'
 
 const rootReducer = combineReducers({
   store: productReducer,
@@ -113,6 +121,11 @@ const LoadAssets = async () => {
 */
 
 
+
+
+
+
+
 /**
 |--------------------------------------------------
 | Use this component to implement screen
@@ -134,7 +147,7 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <ResetPasswordScreen/>
+      <AddCreditCardScreen/>
     </Provider>
 
   )
