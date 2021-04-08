@@ -34,9 +34,13 @@ import { SignUpScreen } from "./src/screens/SignupScreen";
 import {IntroScreen} from "./src/screens/IntroScreen";
 import {AuthScreen} from './src/screens/AuthScreen';
 import { ResetPasswordScreen } from "./src/screens/ResetPasswordScreen/ResetPasswordScreen";
+<<<<<<< HEAD
 
 import {ProfileScreen} from './src/screens/ProfileScreen'
 
+=======
+import {ProfileScreen} from './src/screens/ProfileScreen'
+>>>>>>> f3359442e103e5e3836a90a41f7045ebab205336
 
 
 const rootReducer = combineReducers({
@@ -108,6 +112,7 @@ const LoadAssets = async () => {
 // }
 
 /**
+ * ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
 |--------------------------------------------------
 | Code above use for running all screens of app (real app)
 |--------------------------------------------------
@@ -117,8 +122,10 @@ const LoadAssets = async () => {
 /**
 |--------------------------------------------------
 | Use this component to implement screen
+| ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 |--------------------------------------------------
 */
+
 
 
 const App = () => {
@@ -133,8 +140,12 @@ const App = () => {
   }
   return (
     <Provider store={store}>
+<<<<<<< HEAD
       <SignUpScreen/>
 
+=======
+      <ResetPasswordScreen/>
+>>>>>>> f3359442e103e5e3836a90a41f7045ebab205336
     </Provider>
 
   )
