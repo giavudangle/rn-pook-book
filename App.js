@@ -30,6 +30,7 @@ import LocalNotication from "./src/components/Notification/LocalNotification";
 
 
 import {TouchIdScreen} from './src/screens/TouchIdScreen'
+
 import { SignUpScreen } from "./src/screens/SignupScreen";
 import { LoginScreen } from "./src/screens/LoginScreen";
 
@@ -149,7 +150,11 @@ const App = () => {
   }
   return (
     <Provider store={store}>
+<<<<<<< HEAD
+      <ResetPasswordScreen/>
+=======
       <FinishOrderScreen/>
+>>>>>>> 0a05b390c085875f316f9f02962838a7f58a19d6
     </Provider>
 
   )
