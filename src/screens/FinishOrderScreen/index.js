@@ -1,1 +1,1 @@
-export * from './FinishOrderScreen'
+export * from "./FinishOrderScreen";

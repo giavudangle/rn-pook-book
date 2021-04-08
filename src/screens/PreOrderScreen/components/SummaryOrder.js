@@ -1,12 +1,17 @@
-import React,{useState} from 'react'
-import { View, Text,ScrollView,StyleSheet,TouchableOpacity } from 'react-native'
+import React from "react";
+import { View, StyleSheet } from "react-native";
+//Number
+import NumberFormat from "../../../components/UI/NumberFormat";
+//PreOrderItem
+import PreOrderItem from "./PreOrderItem";
+//Text
+import CustomText from "../../../components/UI/CustomText";
+import Colors from "../../../utils/Colors";
+//PropTypes check
+import PropTypes from "prop-types";
 
-import {Header,PaymentBody,PaymentFormView} from './components'
-import Colors from '../../utils/Colors'
-import {SummaryOrder} from '../PreOrderScreen/components'
-import CustomText from '../../components/UI/CustomText';
 
-const carts = [
+const cartItems = [
   {
     item: {
       url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
@@ -123,60 +128,65 @@ const carts = [
   }
 ]
 
-const total = 99999
 
-export const PaymentScreen = (props) => {
-  const [payByCard, setPayByCard] = useState(false);
-  const token = 'hehe'
+const total = 9999999;
 
-  const addOrder = async () => {
-
+export class SummaryOrder extends React.PureComponent {
+  render() {
+    
+    return (
+      <View style={styles.container}>
+        <CustomText style={{ ...styles.title, marginVertical: 5 }}>
+          Tóm tắt đơn hàng
+        </CustomText>
+        <View style={{ backgroundColor: "#fff", paddingHorizontal: 10 }}>
+          {cartItems.map((item) => {
+            return (
+              <View key={item.item.createdAt}>
+                <PreOrderItem item={item} />
+              </View>
+            );
+          })}
+        </View>
+        <View style={styles.total}>
+          <CustomText
+            style={{
+              fontSize: 15,
+              color: Colors.text,
+              fontWeight: "500",
+              top:-10
+            }}
+          >
+            Thành tiền
+          </CustomText>
+          <NumberFormat price={total.toString()} />
+        </View>
+      </View>
+    );
   }
-
-
-  return (
-      <ScrollView>
-              <Header/>
-
-            <PaymentBody
-              navigation={props.navigation}
-              payByCard={payByCard}
-              setPayByCard={setPayByCard}
-              token={token}
-            />
-            <SummaryOrder cartItems={carts.items} total={total} />
-            <View style={styles.total}>
-            <View style={styles.orderButton}>
-              <TouchableOpacity onPress={addOrder}>
-                <CustomText style={{ color: '#fff', fontSize: 16 }}>
-                  Tiến hành đặt hàng
-                </CustomText>
-              </TouchableOpacity>
-            </View>
-          </View>
-      </ScrollView>
-          
-  )
 }
 
+SummaryOrder.propTypes = {
+  cartItems: PropTypes.array.isRequired,
+  total: PropTypes.number.isRequired,
+};
+
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: Colors.white },
-  total: {
-    width: '100%',
-    position: 'absolute',
-    bottom: 20,
-    left: 0,
-    paddingHorizontal: 10,
-    backgroundColor: 'transparent',
+  container: {
+    marginTop: -10,
   },
-  orderButton: {
-    width: '100%',
-    height: 50,
-    backgroundColor: Colors.red,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: 5,
-    top:10
+  total: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginBottom: 65,
+    marginTop: 10,
+    paddingHorizontal: 10,
+  },
+  title: {
+    fontSize: 16,
+    color: Colors.text,
+    fontWeight: "500",
+    marginVertical: 20,
+    marginHorizontal: 10,
   },
 });
-
