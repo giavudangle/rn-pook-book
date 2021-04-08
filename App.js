@@ -25,11 +25,17 @@ import { StatusBar } from "expo-status-bar";
 //Notification
 import LocalNotication from "./src/components/Notification/LocalNotification";
 
+
+
+
+
 import {TouchIdScreen} from './src/screens/TouchIdScreen'
 import { SignUpScreen } from "./src/screens/SignupScreen";
 import {IntroScreen} from "./src/screens/IntroScreen";
 import {AuthScreen} from './src/screens/AuthScreen';
 import { ResetPasswordScreen } from "./src/screens/ResetPasswordScreen/ResetPasswordScreen";
+
+import {ProfileScreen} from './src/screens/ProfileScreen'
 
 
 
@@ -127,12 +133,11 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <ResetPasswordScreen/>
+      <SignUpScreen/>
+
     </Provider>
 
   )
 }
-
-
 
 export default App

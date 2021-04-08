@@ -2,6 +2,7 @@ import React from 'react';
 import {View,Text,StyleSheet} from 'react-native'  
 import {MaterialCommunityIcons,MaterialIcons} from '@expo/vector-icons'
 import Colors from '../../../utils/Colors'
+import CustomText from '../../../components/UI/CustomText'
 
 // Check types of component (strongly type)
 import PropTypes from 'prop-types'
