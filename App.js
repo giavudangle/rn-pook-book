@@ -30,12 +30,12 @@ import LocalNotication from "./src/components/Notification/LocalNotification";
 
 
 import {TouchIdScreen} from './src/screens/TouchIdScreen'
-
 import { SignUpScreen } from "./src/screens/SignupScreen";
 import { LoginScreen } from "./src/screens/LoginScreen";
 
 import {IntroScreen} from "./src/screens/IntroScreen";
 import {AuthScreen} from './src/screens/AuthScreen';
+
 import { ResetPasswordScreen } from "./src/screens/ResetPasswordScreen";
 import {ProfileScreen} from './src/screens/ProfileScreen'
 import {CartScreen} from './src/screens/CartScreen'
@@ -46,6 +46,9 @@ import {ForgetPasswordScreen} from './src/screens/ForgetPasswordScreen'
 import {PaymentScreen} from './src/screens/PaymentScreen'
 import {AddCreditCardScreen} from './src/screens/PaymentScreen'
 import {FinishOrderScreen} from './src/screens/FinishOrderScreen'
+
+
+import {ProfileScreen} from './src/screens/ProfileScreen'
 
 
 const rootReducer = combineReducers({
@@ -150,11 +153,8 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-<<<<<<< HEAD
-      <ResetPasswordScreen/>
-=======
-      <FinishOrderScreen/>
->>>>>>> 0a05b390c085875f316f9f02962838a7f58a19d6
+rderScreen/>
+
     </Provider>
 
   )

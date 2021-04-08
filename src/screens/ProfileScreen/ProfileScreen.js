@@ -58,15 +58,12 @@ export const ProfileScreen = (props) => {
             />
             <ProfileBody
               user={user}
-              imageUri={imageUri}
-              setImageUri={setImageUri}
-              setType={setType}
-              setFilename={setFilename}
+              uploadButton={uploadButton}
               setUploadButton={setUploadButton}
+              setImageUri={setImageUri}
+              loading={loading}
               //UploadProfile={UploadProfile}
-
             />
-       
           </View>
         </View>
       </View>
