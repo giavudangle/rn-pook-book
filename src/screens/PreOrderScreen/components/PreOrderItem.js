@@ -25,7 +25,7 @@ class PreOrderItem extends React.PureComponent {
         </View>
         <View style={styles.right}>
           <View>
-            <CustomText style={styles.title}>{item.item.filename}</CustomText>
+            <CustomText style={styles.title}>{item.item.title }</CustomText>
           </View>
           <NumberFormat
             value={total.toString()}
