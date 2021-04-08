@@ -35,9 +35,6 @@ import { LoginScreen } from "./src/screens/LoginScreen";
 
 import {IntroScreen} from "./src/screens/IntroScreen";
 import {AuthScreen} from './src/screens/AuthScreen';
-import { ResetPasswordScreen } from "./src/screens/ResetPasswordScreen/ResetPasswordScreen";
-
-
 import { ResetPasswordScreen } from "./src/screens/ResetPasswordScreen";
 import {ProfileScreen} from './src/screens/ProfileScreen'
 import {CartScreen} from './src/screens/CartScreen'
@@ -51,9 +48,6 @@ import {FinishOrderScreen} from './src/screens/FinishOrderScreen'
 
 
 import {ProfileScreen} from './src/screens/ProfileScreen'
-
-
-
 
 const rootReducer = combineReducers({
   store: productReducer,
@@ -158,6 +152,8 @@ const App = () => {
   return (
     <Provider store={store}>
       <PaymentScreen/>
+
+
     </Provider>
 
   )

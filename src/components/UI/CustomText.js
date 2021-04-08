@@ -18,6 +18,7 @@ export default CustomText
 const styles = StyleSheet.create({
     text: {
 <<<<<<< HEAD
+<<<<<<< HEAD
         fontSize: 18,
         fontFamily: 'Roboto-Bold'
 <<<<<<< HEAD
@@ -29,5 +30,10 @@ const styles = StyleSheet.create({
 =======
 
 >>>>>>> master
+=======
+        fontSize: 18,
+        fontFamily: 'Roboto-Bold'
+
+>>>>>>> 182d791b7d8f42a5dd38968756111b528e046f54
     },
 })
