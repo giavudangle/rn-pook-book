@@ -154,7 +154,7 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <PreOrderScreen/>
+      <ProductScreen/>
     </Provider>
 
   )
