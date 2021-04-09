@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, TouchableOpacity,Dimensions } from 'react-native'
+import { View, Text, StyleSheet, TouchableOpacity, Dimensions } from 'react-native'
 
 //Fonts
 
@@ -13,7 +13,7 @@ import RenderField from './RenderField';
 //Colors
 import Colors from '../../../utils/Colors'
 
-const {width,heigth}=Dimensions.get('screen');
+const { width, heigth } = Dimensions.get('screen');
 
 export const LoginForm = () => {
     const [hide, setHide] = useState(true);
@@ -41,17 +41,18 @@ export const LoginForm = () => {
                 />
             </View>
 
-            <View>
-                <TouchableOpacity>
-                    <CustomText style={styles.textSign}>LOGIN</CustomText>
-                </TouchableOpacity>
-            </View>
+            <TouchableOpacity style={styles.textSign}>
+                    <Text style={{
+                        color: '#fff',
+                        fontSize: 16,
+                        fontWeight: '700'
+                    }}>LOGIN</Text>
+            </TouchableOpacity>
 
-            <View>
-                <TouchableOpacity>
-                    <Text style={styles.forget}>Quên mật khẩu?</Text>
-                </TouchableOpacity>
-            </View>
+
+            <TouchableOpacity style={{ marginTop: 50 }}>
+                <Text style={styles.forget}>Quên mật khẩu?</Text>
+            </TouchableOpacity>
         </View>
     )
 }
@@ -68,7 +69,7 @@ const styles = StyleSheet.create({
         fontSize: 50,
         textAlign: 'center',
         marginBottom: 100,
-        fontStyle:'normal',
+        fontStyle: 'normal',
     },
 
     forget: {
@@ -77,23 +78,18 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         fontFamily: 'Roboto-LightItalic',
         textAlign: 'center',
-        marginTop: 50,
     },
-    textSign:{
-        fontSize:18,
-        fontWeight:'700',
-        fontStyle:'normal',
-        color:'#fff',
-       flexDirection:'row',
-       textAlign:'center',
-        borderRadius:10,
-        backgroundColor:Colors.lighter_green,
-        width:200,
-        height:50,
-        justifyContent:'center',
-        alignSelf:'center',
-        alignContent:'center',
-        marginTop:20,
+
+    textSign: {
+        flexDirection: 'row',
+        borderRadius: 10,
+        backgroundColor: Colors.lighter_green,
+        width: 150,
+        height: 50,
+        justifyContent: 'center',
+        alignSelf: 'center',
+        alignContent: 'center',
+        marginTop: 20,
     }
 })
 
