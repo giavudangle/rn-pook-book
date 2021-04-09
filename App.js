@@ -47,10 +47,10 @@ import {ForgetPasswordScreen} from './src/screens/ForgetPasswordScreen'
 import {PaymentScreen} from './src/screens/PaymentScreen'
 import {AddCreditCardScreen} from './src/screens/PaymentScreen'
 import {FinishOrderScreen} from './src/screens/FinishOrderScreen'
-
-
-import {ProfileScreen} from './src/screens/ProfileScreen'
-
+import {ProductScreen} from './src/screens/ProductScreen'
+import { OrderScreen } from "./src/screens/OrderScreen";
+import { HomeScreen } from "./src/screens/HomeScreen";
+import { DetailScreen } from "./src/screens/DetailScreen";
 
 const rootReducer = combineReducers({
   store: productReducer,
@@ -154,16 +154,7 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-<<<<<<< HEAD
-<<<<<<< HEAD
-      <ResetPasswordScreen/>
-=======
-      <FinishOrderScreen/>
->>>>>>> 0a05b390c085875f316f9f02962838a7f58a19d6
-=======
-rderScreen/>
-
->>>>>>> 5fd294fb56ba655d4f95c3ccfc9e34ab4e017db3
+      <PreOrderScreen/>
     </Provider>
 
   )
