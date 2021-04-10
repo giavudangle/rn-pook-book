@@ -146,7 +146,7 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <FinishResetPasswordScreen/>
+      <LoginScreen/>
     </Provider>
 
   )

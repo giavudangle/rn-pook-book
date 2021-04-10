@@ -49,6 +49,7 @@ export const LoginForm = () => {
                     }}>LOGIN</Text>
             </TouchableOpacity>
 
+          
 
             <TouchableOpacity style={{ marginTop: 50 }}>
                 <Text style={styles.forget}>Quên mật khẩu?</Text>
@@ -61,6 +62,7 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         marginTop: 200,
+        flexDirection:'column',
     },
 
     title: {
@@ -86,10 +88,9 @@ const styles = StyleSheet.create({
         backgroundColor: Colors.lighter_green,
         width: 150,
         height: 50,
-        justifyContent: 'center',
-        alignSelf: 'center',
-        alignContent: 'center',
-        marginTop: 20,
+        alignItems:'center',
+        justifyContent:'center',
+        alignSelf:'center',
     }
 })
 
