@@ -27,7 +27,9 @@ import Colors from '../utils/Colors';
 /**
  * Custom Drawer
  */
+import CustomDrawer from './CustomDrawer'
 
+import CustomText from '../components/UI/CustomText'
 // Do it later
 
 //  Auth Screens

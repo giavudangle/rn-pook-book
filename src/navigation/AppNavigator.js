@@ -70,9 +70,9 @@ export const AppNavigator = () => {
   return (
     <NavigationContainer ref={navigationRef}>
       <Host>
-        {/* <IntroStackScreen /> */}
-        {(isFirstOpen || value !== null) && <DrawerNavigator />}
-        {!isFirstOpen && value === null && <IntroStackScreen />}
+        
+        {/* {(isFirstOpen || value !== null) && <DrawerNavigator />} */}
+        {(!isFirstOpen && value === null) && <IntroStackScreen />}
       </Host>
     </NavigationContainer>
   );

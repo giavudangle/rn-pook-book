@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useRef,useState} from 'react';
 import { 
   StyleSheet, 
   Text, 
@@ -36,6 +36,24 @@ export const IntroScreen = () =>  {
     extrapolate: 'clamp'
   })
 
+
+  /**
+   * Local state
+   */
+
+   const [loading, setLoading] = useState(false);
+
+
+
+  /**
+   * Handler function area
+   */
+
+  const SubmitApp = async () => {
+    console.warn("log submjit");
+    setLoading(true)
+  }
+
   return (
     <View style={styles.container}>
         <Animated.View style={{
@@ -70,6 +88,7 @@ export const IntroScreen = () =>  {
             {
               slides.map((item, index) => {
                 return <SubSlide 
+                  submitApp={SubmitApp}
                   key={item.id}
                   title={item.subtitle} 
                   backgroundColor={backgroundColor}

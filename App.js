@@ -30,7 +30,6 @@ import LocalNotication from "./src/components/Notification/LocalNotification";
 
 //Screens
 import {TouchIdScreen} from './src/screens/TouchIdScreen'
-
 import { SignUpScreen } from "./src/screens/SignupScreen";
 import { LoginScreen } from "./src/screens/LoginScreen";
 import {IntroScreen} from "./src/screens/IntroScreen";
@@ -43,14 +42,7 @@ import {ForgetPasswordScreen} from './src/screens/ForgetPasswordScreen'
 import {PaymentScreen} from './src/screens/PaymentScreen'
 import {AddCreditCardScreen} from './src/screens/PaymentScreen'
 import {FinishOrderScreen} from './src/screens/FinishOrderScreen'
-
-import {ProductScreen} from './src/screens/ProductScreen'
-import { OrderScreen } from "./src/screens/OrderScreen";
-import { HomeScreen } from "./src/screens/HomeScreen";
-import { DetailScreen } from "./src/screens/DetailScreen";
-
 import {FinishResetPasswordScreen} from './src/screens/FinishResetPasswordScreen'
-
 
 const rootReducer = combineReducers({
   store: productReducer,
@@ -101,24 +93,24 @@ const LoadAssets = async () => {
 
   return await Promise.all([imageAssets, fetchFonts]);
 };
-// export default function App() {
-//   const [assetLoaded, setAssetLoaded] = useState(false);
-//   if (!assetLoaded) {
-//     return (
-//       <AppLoading
-//         startAsync={LoadAssets}
-//         onFinish={() => setAssetLoaded(true)}
-//       />
-//     );
-//   }
-//   return (
-//     <Provider store={store}>
-//       <StatusBar />
-//       <LocalNotication />
-//       <AppNavigator />
-//     </Provider>
-//   );
-// }
+export default function App() {
+  const [assetLoaded, setAssetLoaded] = useState(false);
+  if (!assetLoaded) {
+    return (
+      <AppLoading
+        startAsync={LoadAssets}
+        onFinish={() => setAssetLoaded(true)}
+      />
+    );
+  }
+  return (
+    <Provider store={store}>
+      <StatusBar />
+      <LocalNotication />
+      <AppNavigator />
+    </Provider>
+  );
+}
 
 /**
  * ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
@@ -142,22 +134,23 @@ const LoadAssets = async () => {
 
 
 
-const App = () => {
-  const [assetLoaded, setAssetLoaded] = useState(false);
-  if (!assetLoaded) {
-    return (
-      <AppLoading
-        startAsync={LoadAssets}
-        onFinish={() => setAssetLoaded(true)}
-      />
-    );
-  }
-  return (
-    <Provider store={store}>
-      <ProductScreen/>
-    </Provider>
+// const App = () => {
+//   const [assetLoaded, setAssetLoaded] = useState(false);
+//   if (!assetLoaded) {
+//     return (
+//       <AppLoading
+//         startAsync={LoadAssets}
+//         onFinish={() => setAssetLoaded(true)}
+//       />
+//     );
+//   }
+//   return (
+//     <Provider store={store}>
+//       <LoginScreen/>
 
-  )
-}
+//     </Provider>
 
-export default App
+//   )
+// }
+
+//export default App
