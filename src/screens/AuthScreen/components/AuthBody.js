@@ -19,7 +19,9 @@ export const AuthBody = ({ navigation }) => {
                 
             </View>
             <View style={{ marginTop: 100 }}>
-                <TouchableOpacity style={styles.login}>
+                <TouchableOpacity style={styles.login}
+                    onPress={()=>navigation.navigate('LoginScreen')}
+                >
                     <Text style={{
                         color: '#00AA88',
                         fontWeight: 'bold',
@@ -28,7 +30,10 @@ export const AuthBody = ({ navigation }) => {
                     }}>LOGIN</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity style={styles.signup}>
+                <TouchableOpacity 
+                style={styles.signup}
+                onPress={()=>navigation.navigate('SignupScreen')}
+                >
                     <Text style={{
                         color:'#FFFFFF',
                         fontSize:18,

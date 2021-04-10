@@ -1,11 +1,11 @@
 import React from 'react'
 import { View, Text } from 'react-native'
 import {AuthBody} from './components'
-export const AuthScreen = () => {
+export const AuthScreen = ({navigation}) => {
   return (
     <View>
       <View>
-        <AuthBody />
+        <AuthBody navigation={navigation}/>
       </View>
     </View>
   )

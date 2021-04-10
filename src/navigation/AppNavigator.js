@@ -12,11 +12,16 @@ import { Host } from 'react-native-portalize';
 import { urlRedirect } from '../utils/Tools';
 import * as Linking from 'expo-linking';
 
+//Types
+import {IS_FIRST_TIME} from '../types/AuthTypes'
+
 
 export const AppNavigator = () => {
   const [value, setValue] = useState(null);
   const dispatch = useDispatch();
-  const isFirstOpen = useSelector((state) => state.store.isFirstOpen);
+  
+  // Get Value connection is first time from store
+  const isFirstOpen = useSelector((state) => state.auth.isFirstTime);
   useEffect(() => {
     // listen for new url events coming from Expo
     Linking.addEventListener(
@@ -37,8 +42,11 @@ export const AppNavigator = () => {
   }, [urlRedirect]);
 
   useEffect(() => {
+
     const isFirstTime = async () => {
-      const firstOpen = await AsyncStorage.getItem('isFirstTime');
+      await AsyncStorage.clear();
+      const firstOpen = await AsyncStorage.getItem(IS_FIRST_TIME);
+      console.log(firstOpen)
       setValue(firstOpen);
     };
     isFirstTime();
@@ -71,7 +79,7 @@ export const AppNavigator = () => {
     <NavigationContainer ref={navigationRef}>
       <Host>
         
-        {/* {(isFirstOpen || value !== null) && <DrawerNavigator />} */}
+        {(isFirstOpen || value !== null) && <DrawerNavigator />}
         {(!isFirstOpen && value === null) && <IntroStackScreen />}
       </Host>
     </NavigationContainer>
