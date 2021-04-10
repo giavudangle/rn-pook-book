@@ -12,7 +12,7 @@ import CustomText from '../../components/UI/CustomText';
 import Colors from '../../utils/Colors';
 import ForgetRenderField from './components/ForgetRenderField'
 
-export const ForgetPasswordScreen = (props) => {
+export const ForgetPasswordScreen = ({navigation}) => {
     return (
         <View>
             <View style={styles.container} />
@@ -23,7 +23,9 @@ export const ForgetPasswordScreen = (props) => {
                         zIndex:10,
                         left:10,
                         top:40,
-                    }}>
+                    }}
+                    onPress={()=>navigation.goBack()}
+                    >
                     <Ionicons name='ios-arrow-back' size={40} color={Colors.light_green} />
                 </TouchableOpacity>
                 

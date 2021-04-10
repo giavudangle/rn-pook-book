@@ -162,7 +162,7 @@ export default (props) => {
             <CustomText
               style={{ color: Colors.grey, fontFamily: "Roboto-LightItalic" }}
             >
-              CatTuong App Version 1.0
+              Pookbook v1.0
             </CustomText>
           )}
         />

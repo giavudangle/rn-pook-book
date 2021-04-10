@@ -1,8 +1,8 @@
-import React, {useRef} from 'react';
-import { 
-  StyleSheet, 
-  Text, 
-  View, 
+import React, { useRef, useState } from 'react';
+import {
+  StyleSheet,
+  Text,
+  View,
   Dimensions,
   Animated,
   Button
@@ -12,14 +12,17 @@ import Slide from './components/Slide'
 import SubSlide from './components/SubSlide'
 import Pagination from './components/Pagination'
 import slides from '../../db/IntroSlides'
+import { useDispatch, useSelector } from 'react-redux';
 
-const {width, height} = Dimensions.get('screen')
+const { width, height } = Dimensions.get('screen')
+
+import {firstOpen} from '../../actions/auth'
 
 // Khi nao lam xong het thi moi merge vo
 // Code nho comment
 
 // Changed
-export const IntroScreen = () =>  {
+export const IntroScreen = () => {
 
   const scrollX = new Animated.Value(0);
   const scrollClick = useRef(null)
@@ -27,7 +30,7 @@ export const IntroScreen = () =>  {
   const backgroundColor = scrollX.interpolate({
     inputRange: [0, width, width * 2],
     outputRange: ["#7EFFB1", "#5BFF9C", "#4DFF94"],
-    extrapolate: 'clamp' 
+    extrapolate: 'clamp'
   })
 
   const textTranslate = scrollX.interpolate({
@@ -36,56 +39,81 @@ export const IntroScreen = () =>  {
     extrapolate: 'clamp'
   })
 
+
+  /**
+   * Local state
+   */
+
+  const [loading, setLoading] = useState(false);
+  const unmounted = useRef(false);
+  const dispatch = useDispatch()
+
+
+
+  /**
+   * Handler function area
+   */
+
+  const SubmitApp = async () => {
+    console.warn("log submjit");
+    setLoading(true)
+    await dispatch(firstOpen())
+    if(!unmounted.current){
+      setLoading(false)
+    }
+  }
+
   return (
     <View style={styles.container}>
-        <Animated.View style={{
-          backgroundColor: backgroundColor, 
-          flex: 6, 
-          borderBottomRightRadius: 75
-          }}
+      <Animated.View style={{
+        backgroundColor: backgroundColor,
+        flex: 6,
+        borderBottomRightRadius: 75
+      }}
+      >
+        <Animated.ScrollView
+          ref={scrollClick}
+          horizontal
+          snapToInterval={width}
+          scrollTo={{ x: scrollClick, animated: true }}
+          decelerationRate='fast'
+          showsHorizontalScrollIndicator={false}
+          bounces={false}
+          onScroll={Animated.event(
+            [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+            { useNativeDriver: false }
+          )}
         >
-          <Animated.ScrollView
-            ref={scrollClick}
-            horizontal
-            snapToInterval={width}
-            scrollTo={{ x: scrollClick, animated: true }}
-            decelerationRate='fast'
-            showsHorizontalScrollIndicator={false}
-            bounces={false}
-            onScroll={Animated.event(
-              [{ nativeEvent: { contentOffset: { x: scrollX } } }],
-              {useNativeDriver: false}
-            )}
-          >
-            {
-              slides.map(item => {
-                return <Slide key={item.id} name={item.lable} imageUrl={item.imageUrl}/>
-              })
-            }
-          </Animated.ScrollView>
+          {
+            slides.map(item => {
+              return <Slide key={item.id} name={item.lable} imageUrl={item.imageUrl} />
+            })
+          }
+        </Animated.ScrollView>
+      </Animated.View>
+      <Animated.View style={[styles.footer, { backgroundColor }]}>
+        <Pagination slides={slides} scrollX={scrollX} />
+        <Animated.View style={[styles.footerContent, { transform: [{ translateX: textTranslate }] }]}>
+          {
+            slides.map((item, index) => {
+              return <SubSlide
+                submitApp={SubmitApp}
+                key={item.id}
+                title={item.subtitle}
+                backgroundColor={backgroundColor}
+                content={item.des}
+                scrollX={scrollX}
+                last={index === slides.length - 1}
+                nextSlide={() => {
+                  if (scrollClick.current) {
+                    scrollClick.current.scrollTo({ x: width * (index + 1) })
+                  }
+                }}
+              />
+            })
+          }
         </Animated.View>
-        <Animated.View  style={[styles.footer, {backgroundColor}]}>
-          <Pagination slides={slides} scrollX={scrollX}/>
-          <Animated.View style={[styles.footerContent, {transform: [{translateX: textTranslate}]}]}>
-            {
-              slides.map((item, index) => {
-                return <SubSlide 
-                  key={item.id}
-                  title={item.subtitle} 
-                  backgroundColor={backgroundColor}
-                  content={item.des}
-                  scrollX={scrollX}
-                  last={index === slides.length - 1}
-                  nextSlide={() => {
-                    if(scrollClick.current) {
-                      scrollClick.current.scrollTo({x: width * (index + 1)})
-                    }
-                  }}
-                />
-              })
-            }
-          </Animated.View>
-        </Animated.View>
+      </Animated.View>
     </View>
   );
 }

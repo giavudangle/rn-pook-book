@@ -18,8 +18,8 @@ import CustomText from '../../../components/UI/CustomText';
 import RenderField from './RenderField';
 
 const {width,height}=Dimensions.get('screen')
-export const SignUpForm = (props) => {
-    const { handleSubmit, reset } = props;
+export const SignUpForm = ({navigation}) => {
+
 
     const [hidePass,setHidePass]=useState(true);
     const [hideConfirm,setHideConfirm]=useState(true);
@@ -30,6 +30,16 @@ export const SignUpForm = (props) => {
             style={{ flex: 1 }}
         >
             <View style={styles.container}>
+            <TouchableOpacity
+                style={{
+                    position: 'relative',
+                    zIndex: 999,
+                    bottom:30
+                }}
+                onPress={() => navigation.goBack()}
+            >
+                <Ionicons name='ios-arrow-back' size={50} color={Colors.light_green} />
+            </TouchableOpacity>
             <CustomText style={styles.title}>REGISTER</CustomText>
             </View>
             <ScrollView>
@@ -54,7 +64,6 @@ export const SignUpForm = (props) => {
                             />
                             <RenderField
                                 label='Password'
-                                secureTextEntry={true}
                                 right={<TextInput.Icon
                                     name={hidePass ? 'eye-off' : 'eye' }
                                     size={24}
@@ -69,7 +78,6 @@ export const SignUpForm = (props) => {
 
                             <RenderField
                                 label='Confirm Password'
-                                secureTextEntry={true}
                                 right={<TextInput.Icon
                                     name={hideConfirm ? 'eye-off' : 'eye' }
                                     size={24}
@@ -82,7 +90,7 @@ export const SignUpForm = (props) => {
                                 
                             />
                         </View>
-                        <TouchableOpacity>
+                        <TouchableOpacity onPress={()=>navigation.navigate('LoginScreen')}>
                             <View style={styles.signIn}>
                                 <Text style={{ color: 'white',fontWeight:'bold',fontSize:18 }}>REGISTER</Text>
                             </View>
@@ -97,8 +105,7 @@ export const SignUpForm = (props) => {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop:200,
-        marginBottom: 10,
+        marginTop:100,
         paddingHorizontal: 20,
         zIndex: 1,
     },
