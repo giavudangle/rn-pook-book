@@ -2,19 +2,23 @@ import React from 'react'
 import {
     View, 
     Text,
-    StyleSheet
+    StyleSheet,
+    ImageBackground,
+    Dimensions
 } from 'react-native'
 
-import Header from './components/Header';
-import TextInput from './components/TextInputCustom';
+import {LoginForm} from './components';
 
+const {width,height}=Dimensions.get('screen');
 export const LoginScreen = () => {
     return (
         <View style={styles.container}>
-            <Header/>
-            <Text>Welcome</Text>
-            <TextInput/>
-
+            <ImageBackground
+                style={{flex:1,position:'absolute',height,width}}
+                source={require('../../assets/Images/Forest.jpg')}
+            >
+            </ImageBackground>
+            <LoginForm />
         </View>
     )
 }
