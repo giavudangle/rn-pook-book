@@ -7,7 +7,7 @@ import React from 'react';
  * 3. Bottom Tab
  */
 
-import { createStackNavigator, CardStyleInterpolators, TransitionPreset }
+import { createStackNavigator, CardStyleInterpolators, TransitionPresets }
   from '@react-navigation/stack'
 
 import { createDrawerNavigator } from '@react-navigation/drawer'
@@ -88,7 +88,7 @@ export const LoginStackScreen = () => (
       headerShown: false,
       gestureEnabled: true,
       cardOverlayEnabled: true,
-      ...TransitionPresets.ModalPresentationIOS,
+      ...TransitionPresets.ModalPresentationIOS
     }}
     mode='modal'
   >
@@ -330,7 +330,10 @@ export const DrawerNavigator = () => {
         />
       ))}
 
-      {Object.keys(user).length === 0 ? (
+      
+      {Object.keys(user).length === 0 ? ( // Use this for check current user has been logged in ?
+        // if has not user => display login screen tab
+        // else => display touchid & profile screen
         <Drawer.Screen
           name='SignUp'
           component={AuthStackScreen}
