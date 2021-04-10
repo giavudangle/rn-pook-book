@@ -10,7 +10,7 @@ import {
 import {LoginForm} from './components';
 
 const {width,height}=Dimensions.get('screen');
-export const LoginScreen = () => {
+export const LoginScreen = ({navigation}) => {
     return (
         <View style={styles.container}>
             <ImageBackground
@@ -18,7 +18,7 @@ export const LoginScreen = () => {
                 source={require('../../assets/Images/Forest.jpg')}
             >
             </ImageBackground>
-            <LoginForm />
+            <LoginForm navigation={navigation}/>
         </View>
     )
 }
