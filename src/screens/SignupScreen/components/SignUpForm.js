@@ -54,7 +54,6 @@ export const SignUpForm = (props) => {
                             />
                             <RenderField
                                 label='Password'
-                                secureTextEntry={true}
                                 right={<TextInput.Icon
                                     name={hidePass ? 'eye-off' : 'eye' }
                                     size={24}
@@ -69,7 +68,6 @@ export const SignUpForm = (props) => {
 
                             <RenderField
                                 label='Confirm Password'
-                                secureTextEntry={true}
                                 right={<TextInput.Icon
                                     name={hideConfirm ? 'eye-off' : 'eye' }
                                     size={24}
