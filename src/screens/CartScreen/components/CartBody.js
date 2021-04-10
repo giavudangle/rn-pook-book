@@ -53,7 +53,7 @@ export const CartBody = ({
       {
         item: {
           url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-          thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142502/dvjh8mwvnf5atgpqqzon.jpg",
+          thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
           _id: "605449051d6e5b1185c9d2db",
           filename: "imageUrl-1616136453234.jpg",
           price: "5800",
@@ -72,7 +72,7 @@ export const CartBody = ({
       {
         item: {
           url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-          thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142502/dvjh8mwvnf5atgpqqzon.jpg",
+          thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
           _id: "605449051d6e5b1185c9d2db",
           filename: "imageUrl-1616136453234.jpg",
           price: "999999",
@@ -91,7 +91,7 @@ export const CartBody = ({
       {
         item: {
           url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-          thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png",
+          thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
           _id: "605449051d6e5b1185c9d2db",
           filename: "imageUrl-1616136453234.jpg",
           price: "999999",
