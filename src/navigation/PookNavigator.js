@@ -31,6 +31,7 @@ import Colors from '../utils/Colors';
 // Do it later
 
 //  Auth Screens
+
 import { AuthScreen } from '../screens/AuthScreen';
 import { IntroScreen } from '../screens/IntroScreen';
 import { SignUpScreen } from '../screens/SignupScreen';
