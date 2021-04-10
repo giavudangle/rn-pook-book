@@ -147,6 +147,7 @@ const App = () => {
   return (
     <Provider store={store}>
       <LoginScreen/>
+
     </Provider>
 
   )
