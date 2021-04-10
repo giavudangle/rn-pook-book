@@ -28,8 +28,8 @@ export default function Pagination({slides, scrollX}) {
                 }}
             />
             {
-                slides.map(item => {
-                    return <View style={styles.dot}></View>
+                slides.map((item,index) => {
+                    return <View key={index} style={styles.dot}></View>
                 })
             }
         </View>
