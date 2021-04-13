@@ -3,7 +3,10 @@ import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Animated } from '
 
 const {width, height} = Dimensions.get('screen')
 
-export default function SubSlide({title, content, last, nextSlide, scrollX}) {
+export default function SubSlide({title, content, last, nextSlide, scrollX,submitApp}) {
+
+    const onSubmitApp = last ? submitApp : nextSlide
+
 
     const backgroundColor = scrollX.interpolate({
         inputRange: [0, width, width * 2],
@@ -15,7 +18,7 @@ export default function SubSlide({title, content, last, nextSlide, scrollX}) {
             <Text style={styles.title}>{title}</Text>
             <Text style={styles.content}>{content}</Text>
 
-            <TouchableOpacity onPress={nextSlide}>
+            <TouchableOpacity onPress={onSubmitApp}>
                 <Animated.View style={[styles.scrollButton,{backgroundColor: backgroundColor}]}>
                     <Text style={{color:'#00806C',fontSize:18,fontWeight:'bold'}}>
                         {last ? "Bắt đầu" : "Tiếp theo"}

@@ -28,24 +28,25 @@ import LocalNotication from "./src/components/Notification/LocalNotification";
 
 
 
-
+//Screens
 import {TouchIdScreen} from './src/screens/TouchIdScreen'
 import { SignUpScreen } from "./src/screens/SignupScreen";
 import { LoginScreen } from "./src/screens/LoginScreen";
-
 import {IntroScreen} from "./src/screens/IntroScreen";
 import {AuthScreen} from './src/screens/AuthScreen';
 import { ResetPasswordScreen } from "./src/screens/ResetPasswordScreen";
 import {ProfileScreen} from './src/screens/ProfileScreen'
 import {CartScreen} from './src/screens/CartScreen'
-
 import {PreOrderScreen} from './src/screens/PreOrderScreen'
 import {ForgetPasswordScreen} from './src/screens/ForgetPasswordScreen'
-
 import {PaymentScreen} from './src/screens/PaymentScreen'
 import {AddCreditCardScreen} from './src/screens/PaymentScreen'
 import {FinishOrderScreen} from './src/screens/FinishOrderScreen'
+<<<<<<< HEAD
 
+=======
+import {FinishResetPasswordScreen} from './src/screens/FinishResetPasswordScreen'
+>>>>>>> fede89006f20a0e594a58fe0f42fa01cb4437be0
 
 const rootReducer = combineReducers({
   store: productReducer,
@@ -96,24 +97,24 @@ const LoadAssets = async () => {
 
   return await Promise.all([imageAssets, fetchFonts]);
 };
-// export default function App() {
-//   const [assetLoaded, setAssetLoaded] = useState(false);
-//   if (!assetLoaded) {
-//     return (
-//       <AppLoading
-//         startAsync={LoadAssets}
-//         onFinish={() => setAssetLoaded(true)}
-//       />
-//     );
-//   }
-//   return (
-//     <Provider store={store}>
-//       <StatusBar />
-//       <LocalNotication />
-//       <AppNavigator />
-//     </Provider>
-//   );
-// }
+export default function App() {
+  const [assetLoaded, setAssetLoaded] = useState(false);
+  if (!assetLoaded) {
+    return (
+      <AppLoading
+        startAsync={LoadAssets}
+        onFinish={() => setAssetLoaded(true)}
+      />
+    );
+  }
+  return (
+    <Provider store={store}>
+      <StatusBar />
+      <LocalNotication />
+      <AppNavigator />
+    </Provider>
+  );
+}
 
 /**
  * ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
@@ -137,6 +138,7 @@ const LoadAssets = async () => {
 
 
 
+<<<<<<< HEAD
 const App = () => {
   const [assetLoaded, setAssetLoaded] = useState(false);
   if (!assetLoaded) {
@@ -151,8 +153,25 @@ const App = () => {
     <Provider store={store}>
       <FinishOrderScreen/>
     </Provider>
+=======
+// const App = () => {
+//   const [assetLoaded, setAssetLoaded] = useState(false);
+//   if (!assetLoaded) {
+//     return (
+//       <AppLoading
+//         startAsync={LoadAssets}
+//         onFinish={() => setAssetLoaded(true)}
+//       />
+//     );
+//   }
+//   return (
+//     <Provider store={store}>
+//       <LoginScreen/>
+>>>>>>> fede89006f20a0e594a58fe0f42fa01cb4437be0
 
-  )
-}
+//     </Provider>
 
-export default App
+//   )
+// }
+
+//export default App
