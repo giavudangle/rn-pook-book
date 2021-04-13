@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, FlatList, ScrollView } from 'react-native'
+import { View, Text, FlatList, ScrollView, Button } from 'react-native'
 import RenderItem from './RenderItem'
 
 //Colors
@@ -9,6 +9,7 @@ export default function Body({data, types}) {
 
     let renderList = [];
     for(var x of types) {
+        // console.log(data[0])
         renderList.push(
             <FlatList 
                 ListHeaderComponent={
@@ -24,15 +25,27 @@ export default function Body({data, types}) {
                         {x}
                     </Text>
                 }
-                key={x}
-                data={data}
+                key={x} 
+                data={() => {
+                        const abc =  data.filter(a => a.type == "Sex")
+                        console.log(abc)
+                        return abc
+                    }
+                }
                 keyExtractor={item => item._id}
-                renderItem={({item}) => (item.type === x ? <RenderItem item={item}/> : null)}
+                renderItem={({item}) => <RenderItem item={item}/>}
             />
         )
     }
+
+    const a = () => {
+        for(var x of renderList) {
+            console.log(x)
+        }
+    }
     return (
         <View style={{marginBottom: 10}}>
+            {/* <Button title="haha" onPress={() => console.log(renderList[0])}/> */}
             {renderList}
         </View>
     )
