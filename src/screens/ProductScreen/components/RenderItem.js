@@ -21,6 +21,7 @@ export default function RenderItem({item}) {
                 <View style={styles.wrapContent}>
                     <Text style={styles.title}>{item.title}</Text>
                     <Text style={styles.origin}>{item.origin}</Text>
+                    <Text>{item.type}</Text>
                     <Text style={styles.price}>{item.price} VND</Text>
                 </View>
             </View>
