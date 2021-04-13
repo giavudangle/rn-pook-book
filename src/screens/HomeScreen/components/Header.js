@@ -3,56 +3,64 @@ import {
     View, 
     Text,
     StyleSheet,
-    StatusBar
+    StatusBar,
+    TouchableOpacity
 } from 'react-native'
 
-//react-native-paper hook
-import {useTheme} from 'react-native-paper';
+import Colors from '../../../utils/Colors'
+
 
 //Icon
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Entypo from 'react-native-vector-icons/Entypo'
 
 export default function Header() {
-    const {colors} = useTheme();
 
     return (
         <View style={styles.container}>
-            <Entypo 
-                name="menu" 
-                size={36}
-                style={[styles.menuIcon, {color: colors.primary}]}
-            />
+            <TouchableOpacity>
+                <Entypo 
+                    name="menu" 
+                    size={36}
+                    style={styles.menuIcon}
+                />
+            </TouchableOpacity>
             <Text 
-                style={[styles.title, {color: colors.primary}]}
+                style={styles.title}
             >
                 POOKBOOK
             </Text>
-            <FontAwesome 
-                name="search" 
-                size={25} 
-                style={[styles.searchIcon, {color: colors.primary}]}
-            />
+            <TouchableOpacity>
+                <FontAwesome 
+                    name="search" 
+                    size={25} 
+                    style={styles.searchIcon}
+                />
+            </TouchableOpacity>
         </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: StatusBar.currentHeight,
-        flex: 1,
+        paddingTop: StatusBar.currentHeight + 10,
         justifyContent: 'space-between',
         alignItems: 'center',
-        flexDirection: 'row'
+        flexDirection: 'row',
+        // backgroundColor: Colors.lighter_green,
+        paddingBottom: 10
     },
     title: {
         fontSize: 30,
         fontWeight: 'bold',
+        color: Colors.lighter_green
     },
     searchIcon: {
-        marginRight: 10
+        marginRight: 10,
+        color: Colors.lighter_green
     },
     menuIcon: {
-        marginLeft: 10
+        marginLeft: 10,
+        color: Colors.lighter_green
     }
 })
