@@ -1,9 +1,15 @@
  
 ## PookBook App ( powered by Coding with Vudang ) 🚀
-
-### <img width="500px" height="500px" src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.6435-9/151284066_207254161142817_5812038792384707893_n.png?_nc_cat=105&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=KAVSahpcm04AX_lEqGb&_nc_ht=scontent.fsgn2-1.fna&oh=f8f95fca5dcb99c3592f41127391cf3c&oe=609E2BB1" >
 [![](https://img.shields.io/badge/Facebook-CodingwithVudang-blue)](https://www.facebook.com/codingwithvudang)
 [![](https://img.shields.io/badge/Gmail-codingwithvudang@gmail.com-red)](mailto:codingwithvudang@gmail@gmail.com)
+
+<div >
+<img width="400px" height="400px" src="https://github.com/giavudangle/rn-bookstore/blob/master/src/assets/SplashScreen@2x.png?raw=true" >
+<img width="400px" height="400px" src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.6435-9/151284066_207254161142817_5812038792384707893_n.png?_nc_cat=105&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=KAVSahpcm04AX_lEqGb&_nc_ht=scontent.fsgn2-1.fna&oh=f8f95fca5dcb99c3592f41127391cf3c&oe=609E2BB1" >
+</div>
+
+
+
 
 
 ## 🚀 Get Started
@@ -94,7 +100,7 @@ Change the API in config.js to the server that you're running.
 
 ## 🚀 Technical details
 - React Native
-- Expo 
+- Expo
 - React Native Paper
 - Animated, On Scroll Event Animation.
 - Header Animation: Animated, React Animatable.
@@ -102,7 +108,7 @@ Change the API in config.js to the server that you're running.
 - Icon: Lottie, RN Vector Icons.
 - Payment: React native credit card, Stripe server for card validation checking.
 - Loader: Skeleton loader, Linear gradient.
-- Reducer: Redux. 
+- Reducer: Redux, Redux-Thunk. 
 - Image Picker: Expo image picker.
 - Deep Link: Expo Linking.
 - Touch/Face ID: react native touch id, react native keychain, expo authentication 
