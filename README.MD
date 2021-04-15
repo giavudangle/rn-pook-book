@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/Gmail-codingwithvudang@gmail.com-red)](mailto:codingwithvudang@gmail@gmail.com)
 
 <div >
-<img width="400px" height="400px" src="https://github.com/giavudangle/rn-bookstore/blob/master/src/assets/SplashScreen@2x.png?raw=true" >
+<img width="400px" height="400px" src="https://lh6.googleusercontent.com/UuV7uA3kftg8BTSn3H6-wGZXLNYxW1UiA-N5WPp9w8llp-jf_2G-ENHr76T7YH5CuDydi9uAjPCf1jZMifj0=w1920-h832" >
 <img width="400px" height="400px" src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.6435-9/151284066_207254161142817_5812038792384707893_n.png?_nc_cat=105&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=KAVSahpcm04AX_lEqGb&_nc_ht=scontent.fsgn2-1.fna&oh=f8f95fca5dcb99c3592f41127391cf3c&oe=609E2BB1" >
 </div>
 
