@@ -1,6 +1,6 @@
 {
   "expo": {
-    "scheme": "bookap-vudang",
+    "scheme": "pookbook-vudang",
     "name": "Book Book",
     "slug": "book-app",
     "platforms": ["ios", "android"],
@@ -9,7 +9,7 @@
     "icon": "./src/assets/icon.png",
     "splash": {
       "image": "./src/assets/splash.png",
-      "resizeMode": "contain",
+      "resizeMode": "contain", 
       "backgroundColor": "#ffffff"
     },
     "updates": {
@@ -18,7 +18,7 @@
     "assetBundlePatterns": ["./src/assets/**/*"],
 
     "ios": {
-      "bundleIdentifier": "com.vudang.bookapp",
+      "bundleIdentifier": "com.vudang.pookapp",
       "buildNumber": "1.0.1",
       "supportsTablet": true,
       "infoPlist": {
@@ -27,7 +27,7 @@
       }
     },
     "android": {
-      "package": "com.cattuong.ecommerce",
+      "package": "com.vudang.pookapp",
       "versionCode": 2,
       "useNextNotificationsApi": true,
       "permissions": [

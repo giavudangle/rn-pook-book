@@ -42,7 +42,6 @@ import {ForgetPasswordScreen} from './src/screens/ForgetPasswordScreen'
 import {PaymentScreen} from './src/screens/PaymentScreen'
 import {AddCreditCardScreen} from './src/screens/PaymentScreen'
 import {FinishOrderScreen} from './src/screens/FinishOrderScreen'
-import {FinishResetPasswordScreen} from './src/screens/FinishResetPasswordScreen'
 
 const rootReducer = combineReducers({
   store: productReducer,
@@ -121,10 +120,6 @@ export default function App() {
 
 
 
-
-
-
-
 /**
 |--------------------------------------------------
 | Use this component to implement screen
@@ -133,22 +128,6 @@ export default function App() {
 */
 
 
-
-// const App = () => {
-//   const [assetLoaded, setAssetLoaded] = useState(false);
-//   if (!assetLoaded) {
-//     return (
-//       <AppLoading
-//         startAsync={LoadAssets}
-//         onFinish={() => setAssetLoaded(true)}
-//       />
-//     );
-//   }
-//   return (
-//     <Provider store={store}>
-//       <LoginScreen/>
-
-//     </Provider>
 
 //   )
 // }
