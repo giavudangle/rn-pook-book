@@ -3,7 +3,11 @@ import { View, ImageBackground, Dimensions, TouchableOpacity, Text, StyleSheet }
 
 //Colors
 import Colors from '../../../utils/Colors'
+
 import CustomText from '../../../components/UI/CustomText'
+
+//Icon 
+import LottieView from 'lottie-react-native'
 
 const { width, height } = Dimensions.get('screen')
 export const AuthBody = ({ navigation }) => {
@@ -14,30 +18,41 @@ export const AuthBody = ({ navigation }) => {
                 style={{ flex: 1, width, height }}
                 blurRadius={3}
             />
+
             <View style={styles.container}>
                 <CustomText style={styles.title}>POOK BOOK</CustomText>
-                
             </View>
+
+            <LottieView 
+                source={require('../../../../src/components/IconAnimation/welcome.json')}
+                autoPlay
+                loop
+                resizeMode='contain'
+                style={{
+                    marginTop:20,
+                }}
+            />
+
             <View style={{ marginTop: 100 }}>
                 <TouchableOpacity style={styles.login}
-                    onPress={()=>navigation.navigate('LoginScreen')}
+                    onPress={() => navigation.navigate('LoginScreen')}
                 >
                     <Text style={{
-                        color: '#00AA88',
+                        color: Colors.light_green,
                         fontWeight: 'bold',
-                        fontSize: 18,
-                        
+                        fontSize: 20,
+
                     }}>LOGIN</Text>
                 </TouchableOpacity>
 
-                <TouchableOpacity 
-                style={styles.signup}
-                onPress={()=>navigation.navigate('SignupScreen')}
+                <TouchableOpacity
+                    style={styles.signup}
+                    onPress={() => navigation.navigate('SignupScreen')}
                 >
                     <Text style={{
-                        color:'#FFFFFF',
-                        fontSize:18,
-                        fontWeight:'bold',
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontWeight: 'bold',
                     }}
                     >SIGNUP</Text>
                 </TouchableOpacity>
@@ -47,38 +62,37 @@ export const AuthBody = ({ navigation }) => {
 }
 const styles = StyleSheet.create({
     login: {
-        borderRadius: 10,
-        backgroundColor: '#FFFFFF',
+        borderRadius: 30,
+        backgroundColor: Colors.white,
         flexDirection: 'row',
         alignItems: 'center',
-        marginTop: 20,
+        marginTop: 25,
         alignSelf: 'center',
-        width: 241,
+        width: 280,
         height: 65,
         justifyContent: 'center',
 
     },
     container: {
-        marginTop: 164,
+        marginTop: 160,
     },
     title: {
-        color: '#00806C',
+        color: Colors.light_green,
         fontSize: 50,
         fontWeight: 'bold',
         textAlign: 'center',
-
+        letterSpacing: 5,
     },
-    signup:{
-        borderRadius:10,
-        flexDirection:'row',
-        alignItems:'center',
-        alignSelf:'center',
-        backgroundColor:'#00AA88',
-        width: 241,
+    signup: {
+        borderRadius: 30,
+        flexDirection: 'row',
+        alignItems: 'center',
+        alignSelf: 'center',
+        backgroundColor: Colors.lighter_green,
+        width: 280,
         height: 65,
-        justifyContent:'center',
-        marginTop:30,
-
+        justifyContent: 'center',
+        marginTop: 30,
     }
 })
 
