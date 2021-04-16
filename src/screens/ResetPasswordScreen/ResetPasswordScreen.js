@@ -13,10 +13,10 @@ import ButtonSubmit from './components/ButtonSubmit';
 import {useTheme} from 'react-native-paper';
 
 
-export const ResetPasswordScreen = () => {
+export const ResetPasswordScreen = ({navigation}) => {
   return (
     <View style={styles.container}>
-      <Header/>
+      <Header navigation={navigation}/>
       <Text style={[styles.title, {color: Colors.lighter_green}]}>Reset password</Text>
       <TextInputCustom label='Enter password'/>
       <TextInputCustom label='Confirm password'/>
