@@ -32,7 +32,9 @@ export default function Header({navigation}) {
             >
                 POOKBOOK
             </Text>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.navigate('Search')}
+            >
                 <FontAwesome 
                     name="search" 
                     size={25} 
