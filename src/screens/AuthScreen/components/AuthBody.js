@@ -15,7 +15,7 @@ export const AuthBody = ({ navigation }) => {
                 blurRadius={3}
             />
             <View style={styles.container}>
-                <CustomText style={styles.title}>POOKBOOK</CustomText>
+                <CustomText style={styles.title}>POOK BOOK</CustomText>
                 
             </View>
             <View style={{ marginTop: 100 }}>
@@ -66,6 +66,7 @@ const styles = StyleSheet.create({
         fontSize: 50,
         fontWeight: 'bold',
         textAlign: 'center',
+
     },
     signup:{
         borderRadius:10,

@@ -19,19 +19,22 @@ const { width, heigth } = Dimensions.get('screen');
 export const LoginForm = ({ navigation }) => {
     const [hide, setHide] = useState(true);
     return (
-
-        <View style={styles.container}>
+        <View>
             <TouchableOpacity
                 style={{
                     position: 'absolute',
-                    zIndex: 10,
-                    left: -20,
-                    top: -170,
+                    zIndex: 1,
+                    top:30,
+                    left:-30,
+                    
                 }}
                 onPress={() => navigation.goBack()}
             >
                 <Ionicons name='ios-arrow-back' size={40} color={Colors.light_green} />
             </TouchableOpacity>
+
+            <View style={styles.container}>
+            
             <View>
                 <CustomText style={styles.title}>LOGIN</CustomText>
             </View>
@@ -74,13 +77,14 @@ export const LoginForm = ({ navigation }) => {
                 <Text style={styles.forget}>Quên mật khẩu?</Text>
             </TouchableOpacity>
         </View>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-        marginTop: 200,
+        marginTop: 150,
         flexDirection: 'column',
     },
 
@@ -89,8 +93,9 @@ const styles = StyleSheet.create({
         fontWeight: '900',
         fontSize: 50,
         textAlign: 'center',
-        marginBottom: 100,
+        marginBottom:30,
         fontStyle: 'normal',
+        letterSpacing:10,
     },
 
     forget: {

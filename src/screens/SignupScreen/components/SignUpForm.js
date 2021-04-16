@@ -4,8 +4,6 @@ import {
     StyleSheet,
     TouchableOpacity,
     ScrollView,
-    KeyboardAvoidingView,
-    Platform,
     TouchableWithoutFeedback,
     Text,
     Dimensions
@@ -24,22 +22,20 @@ export const SignUpForm = ({navigation}) => {
     const [hidePass,setHidePass]=useState(true);
     const [hideConfirm,setHideConfirm]=useState(true);
     return (
-        <KeyboardAvoidingView
-            behavior={Platform.OS == 'ios' ? 'position' : 'height'}
-            keyboardVerticalOffset={40} //adjust the value here if you need more padding
-            style={{ flex: 1 }}
-        >
-            <View style={styles.container}>
+        <View>
             <TouchableOpacity
                 style={{
-                    position: 'relative',
-                    zIndex: 999,
-                    bottom:30
+                    position:'absolute',
+                    zIndex: 1,
+                    top:30,
+                    left:5,
                 }}
                 onPress={() => navigation.goBack()}
             >
-                <Ionicons name='ios-arrow-back' size={50} color={Colors.light_green} />
+                <Ionicons name='ios-arrow-back' size={40} color={Colors.light_green} />
             </TouchableOpacity>
+            <View style={styles.container}>
+            
             <CustomText style={styles.title}>REGISTER</CustomText>
             </View>
             <ScrollView>
@@ -48,7 +44,6 @@ export const SignUpForm = ({navigation}) => {
                         style={{
                             flexDirection: 'column',
                             marginHorizontal: 10,
-                            zIndex: 0,
                         }}
                     >
                         <View>
@@ -99,27 +94,27 @@ export const SignUpForm = ({navigation}) => {
                     </View>
                 </TouchableWithoutFeedback>
             </ScrollView>
-        </KeyboardAvoidingView>
+        </View>
     )
 }
 
 const styles = StyleSheet.create({
     container: {
-        marginTop:100,
+        marginTop:150,
         paddingHorizontal: 20,
         zIndex: 1,
     },
     title: {
         color: '#00806C',
         fontSize: 48,
-        letterSpacing: 5,
+        letterSpacing: 10,
         fontWeight: 'bold',
         marginBottom:30,
         textAlign: 'center',
     },
     signIn: {
-        width: 151,
-        height: 52,
+        width: 150,
+        height: 50,
         justifyContent: "center",
         alignItems: "center",
         borderRadius: 10,

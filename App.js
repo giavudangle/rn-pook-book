@@ -129,17 +129,12 @@ const LoadAssets = async () => {
 
 
 
-
-
-
-
 /**
 |--------------------------------------------------
 | Use this component to implement screen
 | ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
 |--------------------------------------------------
 */
-
 
 
 
@@ -156,8 +151,6 @@ const App = () => {
   return (
     <Provider store={store}>
       <HomeScreen/>
-
-
     </Provider>
 
   )
