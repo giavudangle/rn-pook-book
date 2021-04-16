@@ -6,15 +6,16 @@ import {
     TouchableOpacity,
     Dimensions 
 } from 'react-native'
+import { navigationRef } from '../../../navigation/RootNavigation'
 
 //Colors
 import Colors from '../../../utils/Colors'
 
 const {width, height} = Dimensions.get('screen')
 
-export default function Footer() {
+export default function Footer({navigation}) {
     return (
-        <TouchableOpacity style={styles.container}>
+        <TouchableOpacity style={styles.container} onPress={() => navigation.navigate('Product')}>
             <Text style={styles.buttonTitle}>Xem thêm</Text>
         </TouchableOpacity>
     )

@@ -282,7 +282,7 @@ const mockData = [
   },
 ]
 
-export default function Body() {
+export default function Body({navigation}) {
     let carousel = 0;
     return (
         <ScrollView style={styles.container}>
@@ -309,9 +309,10 @@ export default function Body() {
             <FlatList
                     data={mockData}
                     keyExtractor={item => item._id}
-                    renderItem={({item}) => <RenderGridItem item={item}/>}
+                    renderItem={({item}) => <RenderGridItem item={item} navigation={navigation}/>}
                     numColumns={2}
-                    initialNumToRender={1}
+                    initialNumToRender={6}
+                    maxToRenderPerBatch={6}
                 />
            </View>
         </ScrollView>

@@ -14,11 +14,13 @@ import Colors from '../../../utils/Colors'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 import Entypo from 'react-native-vector-icons/Entypo'
 
-export default function Header() {
+export default function Header({navigation}) {
 
     return (
         <View style={styles.container}>
-            <TouchableOpacity>
+            <TouchableOpacity
+                onPress={() => navigation.openDrawer()}
+            >
                 <Entypo 
                     name="menu" 
                     size={36}

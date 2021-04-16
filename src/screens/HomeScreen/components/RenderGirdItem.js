@@ -7,13 +7,14 @@ import {
     Image,
     TouchableOpacity
 } from 'react-native'
+import { navigationRef } from '../../../navigation/RootNavigation';
 
 //Colors
 import Colors from '../../../utils/Colors'
 
 const {width, height} = Dimensions.get('screen');
 
-export default function RenderGirdItem({item}) {
+export default function RenderGirdItem({item, navigation}) {
     return (
         <View style={styles.container}>
             <Image 
@@ -27,7 +28,7 @@ export default function RenderGirdItem({item}) {
                     <Text style={styles.price}>{item.price} VND</Text>
                 </View>
             </View>
-            <TouchableOpacity style={styles.detailButton}>
+            <TouchableOpacity style={styles.detailButton} onPress={() => navigation.navigate('Detail')}>
                 <Text style={{color: Colors.lighter_green}}>Xem chi tiết</Text>
             </TouchableOpacity>
         </View>
