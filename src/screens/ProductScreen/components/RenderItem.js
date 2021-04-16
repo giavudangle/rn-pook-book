@@ -13,9 +13,9 @@ import Colors from '../../../utils/Colors'
 
 
 const {width, height} = Dimensions.get('screen');
-export default function RenderItem({item}) {
+export default function RenderItem({item, navigation}) {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
             <View style={styles.container}>
                 <Image source={{uri: item.url}} style={styles.image}/>
                 <View style={styles.wrapContent}>

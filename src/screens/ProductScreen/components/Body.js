@@ -5,7 +5,7 @@ import RenderItem from './RenderItem'
 //Colors
 import Colors from '../../../utils/Colors'
 
-export default function Body({data, types}) {
+export default function Body({data, types, navigation}) {
     let renderList = [];
     for(let x of types) {
         renderList.push(
@@ -26,7 +26,7 @@ export default function Body({data, types}) {
                 key={x} 
                 data={data}
                 keyExtractor={item => item._id}
-                renderItem={({item}) => item.type == x ? <RenderItem item={item}/> : null}
+                renderItem={({item}) => item.type == x ? <RenderItem item={item} navigation={navigation}/> : null}
             />
         )
     }

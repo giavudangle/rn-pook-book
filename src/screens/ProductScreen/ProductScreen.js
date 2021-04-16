@@ -284,16 +284,16 @@ const getTypeOfArray = (arr) => {
   return newArr;
 }
 
-export const ProductScreen = () => {
+export const ProductScreen = ({navigation}) => {
   const [types, setTypes] = useState([]);
   useEffect(() => {
     setTypes(getTypeOfArray(mockData))
   }, [])
   return (
     <View style={{flex: 1}}>
-      <Header/>
+      <Header navigation={navigation}/>
       <ScrollView>
-        <Body data={mockData} types={types}/>
+        <Body data={mockData} types={types} navigation={navigation}/>
       </ScrollView>
     </View>
   )
