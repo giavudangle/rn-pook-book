@@ -9,7 +9,10 @@ import CustomText from "../../../components/UI/CustomText";
 class PreOrderItem extends React.PureComponent {
   render() {
     const { item } = this.props;
-    const total = +item.quantity * +item.item.price;
+    console.log('====================================');
+    console.log(item);
+    console.log('====================================');
+    const total = parseInt(item.quantity) * parseInt(item.item.price);
     return (
       <View style={styles.container}>
         <View style={styles.left}>
@@ -31,11 +34,11 @@ class PreOrderItem extends React.PureComponent {
             value={total.toString()}
             displayType={"text"}
             thousandSeparator={true}
-            suffix={" đ"}
+            suffix={" VND"}
             renderText={(formattedValue) => (
               <View style={styles.priceContainer}>
                 <CustomText style={{ fontSize: 13, padding: 0 }}>
-                  SL: x {item.quantity}
+                  Số lượng : x {item.quantity}
                 </CustomText>
                 <CustomText style={styles.price}>{formattedValue}</CustomText>
               </View>
