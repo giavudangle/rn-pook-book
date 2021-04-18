@@ -1,12 +1,17 @@
-import React from 'react'
-import { View, Text } from 'react-native'
+import React from "react";
+import { View, StyleSheet } from "react-native";
+//Components
+import { Header, ContactBody } from "./components";
 
-export const ContactScreen = () => {
+export const ContactScreen = ({ navigation }) => {
   return (
-    <View>
-      <Text></Text>
+    <View style={styles.container}>
+      <Header navigation={navigation} />
+      <ContactBody />
     </View>
-  )
-}
+  );
+};
 
-
+const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: "#fff" },
+});
