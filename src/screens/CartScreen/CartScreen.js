@@ -6,13 +6,83 @@ import Colors from '../../utils/Colors';
 
 const { height } = Dimensions.get('window');
 
+const carts = {
+  items :[
+    {
+      item: {
+        url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
+        thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
+        _id: "605449051d6e5b1185c9d2db",
+        filename: "imageUrl-1616136453234.jpg",
+        price: "5800",
+        color: "red",
+        origin: "USA",
+        standard: "VIP",
+        description: "A Best Book",
+        type: "Sex",
+        title: "Sex of Blow",
+        createdAt: "2021-03-19T06:47:33.251Z",
+        updatedAt: "2021-03-19T06:47:33.251Z",
+        __v: 0
+    },
+    quantity: "10"
+    },
+    {
+      item: {
+        url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
+        thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
+        _id: "605449051d6e5b1185c9d2db",
+        filename: "imageUrl-1616136453234.jpg",
+        price: "999999",
+        color: "red",
+        origin: "USA",
+        standard: "VIP",
+        description: "A Best Book",
+        type: "Sex",
+        title: "Sex of Blow",
+        createdAt: "2021-03-19T06:47:33.251Z",
+        updatedAt: "2021-03-19T06:47:33.251Z",
+        __v: 0
+    },
+    quantity: "10"
+    },
+    {
+      item: {
+        url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
+        thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
+        _id: "605449051d6e5b1185c9d2db",
+        filename: "imageUrl-1616136453234.jpg",
+        price: "999999",
+        color: "red",
+        origin: "USA",
+        standard: "VIP",
+        description: "A Best Book",
+        type: "Sex",
+        title: "Sex of Blow",
+        createdAt: "2021-03-19T06:47:33.251Z",
+        updatedAt: "2021-03-19T06:47:33.251Z",
+        __v: 0
+    },
+    quantity: "10"
+    }
+  ],
+  _id:"heheheehehidne"
+}
 
-export const CartScreen = () => {
+export const CartScreen = (props) => {
+
+  const cartItems = carts.items;
+  const cartId = carts._id;
+
   return (
     <View style={styles.container}>
-      <Header/>
+      <Header navigation={props.navigation}/>
       <CartBody/>
-      <TotalButton/>
+      <TotalButton
+        navigation={props.navigation}
+        cartItems={cartItems}
+        cartId={cartId}
+      />
     </View>
   )
 }
