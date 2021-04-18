@@ -54,7 +54,7 @@ export const PaymentBody = ({ navigation, payByCard, setPayByCard, token }) => {
             />
             {payByCard && token ? (
               <View style={{ flexDirection: "row", alignItems: "center" }}>
-                <Entypo name='dots-two-horizontal' size={24} color='black' />
+                <Entypo name='dots-two-horizontal' size={20} color={Colors.lighter_green} />
                 <CustomText>{token.card.last4}</CustomText>
               </View>
             ) : (
@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 0.5,
     borderBottomColor: Colors.grey,
-    top:-10
+    top:-10,
   },
   title: {
     fontSize: 15,
@@ -104,13 +104,14 @@ const styles = StyleSheet.create({
   cardContainer: {
     flex: 1,
     flexDirection: "column",
-
     justifyContent: "flex-start",
     paddingHorizontal: 20,
+    paddingVertical:-30,
+    marginBottom:10
   },
   cardImage: {
     resizeMode: "contain",
     height: 25,
-    width: 100,
+    width: 80,
   },
 });

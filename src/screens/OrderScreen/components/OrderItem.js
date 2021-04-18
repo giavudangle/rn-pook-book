@@ -90,7 +90,7 @@ export const OrderItem = ({ order }) => {
               data={order.items}
               keyExtractor={(item) => item.item._id}
               renderItem={({ item }) => {
-                return <ItemList item={item} />;
+                return <ItemList key={item.item._id} item={item} />;
               }}
             />
             <View
