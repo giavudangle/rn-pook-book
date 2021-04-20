@@ -7,8 +7,7 @@ import Colors from '../../utils/Colors';
 
 const { width, height } = Dimensions.get('screen');
 
-export const FinishResetPasswordScreen = (props) => {
-  console.log(props);
+export const FinishResetPasswordScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
 
@@ -20,16 +19,19 @@ export const FinishResetPasswordScreen = (props) => {
           resizeMode='cover'
           style={{ height: 130 }}
         />
-        <View style={{marginVertical:20}}>
-        <CustomText
-            style={{
-              fontSize:16,
-              color:Colors.blue,
-              textDecorationLine:'underline'
-            }}
-          >
-            tuananh.61779@gmail.com
+        <View style={{ marginVertical: 20 }}>
+          <TouchableOpacity onPress={()=>{navigation.navigate('ResetPassword')}}>
+            <CustomText
+              style={{
+                fontSize: 16,
+                color: Colors.blue,
+                textDecorationLine: 'underline'
+              }}
+            >
+              tuananh.61779@gmail.com
           </CustomText>
+          </TouchableOpacity>
+
         </View>
       </View>
 
@@ -39,9 +41,9 @@ export const FinishResetPasswordScreen = (props) => {
         </CustomText>
       </View>
 
-      <TouchableOpacity>
+      <TouchableOpacity onPress={() => { navigation.navigate('AuthScreen') }}>
         <View style={styles.button}>
-          <CustomText style={{...styles.title,color:'#fff'}}>
+          <CustomText style={{ ...styles.title, color: '#fff' }}>
             LOGIN
         </CustomText>
         </View>
@@ -69,13 +71,13 @@ const styles = StyleSheet.create({
     fontWeight: '500',
   },
   button: {
-    marginTop:20,
-    backgroundColor:Colors.light_green,
-    borderRadius:10,
-    width:200,
-    height:45,
-    alignItems:'center',
-    justifyContent:'center',
-    
+    marginTop: 20,
+    backgroundColor: Colors.light_green,
+    borderRadius: 10,
+    width: 200,
+    height: 45,
+    alignItems: 'center',
+    justifyContent: 'center',
+
   }
 })

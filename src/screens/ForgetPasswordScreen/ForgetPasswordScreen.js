@@ -37,7 +37,9 @@ export const ForgetPasswordScreen = ({navigation}) => {
                     />
                 </View>
 
-                <TouchableOpacity>
+                <TouchableOpacity 
+                    onPress={()=>{navigation.navigate('FinishResetPasswordScreen')}}
+                >
                     <View style={styles.btn}>
                         <Text style={{
                             color:'#FFFFFF',
