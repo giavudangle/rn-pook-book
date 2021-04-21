@@ -17,7 +17,7 @@ export default CustomText
 
 const styles = StyleSheet.create({
     text: {
-        fontSize: 18,
+        fontSize: 16,
         fontFamily: 'Roboto-Bold',
     },
 })

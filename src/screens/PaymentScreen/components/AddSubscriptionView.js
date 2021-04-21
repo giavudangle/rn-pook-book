@@ -1,16 +1,17 @@
 import React from "react";
 import { StyleSheet, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import PaymentFormView from "./PaymentFormView";
 /**
  * The class renders a view with PaymentFormView
  */
 export const AddSubscriptionView = (props) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.cardFormWrapper}>
         <PaymentFormView {...props} />
       </View>
-    </View>
+    </ScrollView>
   );
 };
 const styles = StyleSheet.create({

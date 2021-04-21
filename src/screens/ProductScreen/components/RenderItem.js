@@ -13,14 +13,15 @@ import Colors from '../../../utils/Colors'
 
 
 const {width, height} = Dimensions.get('screen');
-export default function RenderItem({item}) {
+export default function RenderItem({item, navigation}) {
     return (
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Detail')}>
             <View style={styles.container}>
                 <Image source={{uri: item.url}} style={styles.image}/>
                 <View style={styles.wrapContent}>
                     <Text style={styles.title}>{item.title}</Text>
                     <Text style={styles.origin}>{item.origin}</Text>
+                    <Text>{item.type}</Text>
                     <Text style={styles.price}>{item.price} VND</Text>
                 </View>
             </View>
