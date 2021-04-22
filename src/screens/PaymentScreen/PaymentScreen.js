@@ -1,4 +1,4 @@
-import React,{useState} from 'react'
+import React,{useState,useEffect} from 'react'
 import { View, Text,ScrollView,StyleSheet,TouchableOpacity } from 'react-native'
 
 import {Header,PaymentBody,PaymentFormView} from './components'
@@ -126,17 +126,39 @@ const carts = [
 const total = 99999
 
 export const PaymentScreen = (props) => {
+
+  let token = props.route.params.token
   const [payByCard, setPayByCard] = useState(false);
-  const token = 'hehe'
+  const paymentMethod = payByCard ? 'Credit Card' : 'Cash';
+
+  const {
+    orderItems,
+    name,
+    phone,
+    total,
+    cartId,
+    fullAddress,
+  } = props.route.params;
+
 
   const addOrder = async () => {
+    try {
+   
+      props.navigation.navigate('FinishOrder');
+    } catch (err) {
+      alert(err);
+    }
+  };
 
-  }
+  useEffect(() => {
+    setPayByCard(token ? true : false)
+  
+  }, [token]);
 
 
   return (
       <ScrollView>
-              <Header/>
+            <Header navigation={props.navigation}/>
 
             <PaymentBody
               navigation={props.navigation}

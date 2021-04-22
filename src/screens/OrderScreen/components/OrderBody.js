@@ -38,9 +38,9 @@ export class OrderBody extends React.PureComponent {
             data={orders}
             onRefresh={loadOrders}
             refreshing={isRefreshing}
-            keyExtractor={(item) => item._id}
+            keyExtractor={(item) => item["_id"]}
             renderItem={({ item }) => {
-              return <OrderItem order={item} />;
+              return <OrderItem key={item._id} order={item} />;
             }}
           />
         )}
