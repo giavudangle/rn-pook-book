@@ -18,44 +18,42 @@ export const AuthBody = ({ navigation }) => {
                 style={{ flex: 1, width, height }}
                 blurRadius={3}
             />
-
-            <View style={styles.container}>
-                <CustomText style={styles.title}>POOK BOOK</CustomText>
-            </View>
-
-            <LottieView 
-                source={require('../../../../src/components/IconAnimation/welcome.json')}
+            <LottieView
+                source={require('../../../../src/components/IconAnimation/book.json')}
                 autoPlay
                 loop
                 resizeMode='contain'
                 style={{
-                    marginTop:20,
+                    marginBottom: 50,
                 }}
             />
 
-            <View style={{ marginTop: 100 }}>
-                <TouchableOpacity style={styles.login}
-                    onPress={() => navigation.navigate('LoginScreen')}
-                >
-                    <Text style={{
-                        color: Colors.light_green,
-                        fontWeight: 'bold',
-                        fontSize: 20,
+            <View style={styles.container}>
+                <CustomText style={styles.title}>POOK BOOK</CustomText>
+                <View>
+                    <TouchableOpacity style={styles.login}
+                        onPress={() => navigation.navigate('LoginScreen')}
+                    >
+                        <Text style={{
+                            color: Colors.light_green,
+                            fontWeight: 'bold',
+                            fontSize: 20,
 
-                    }}>LOGIN</Text>
-                </TouchableOpacity>
+                        }}>LOGIN</Text>
+                    </TouchableOpacity>
 
-                <TouchableOpacity
-                    style={styles.signup}
-                    onPress={() => navigation.navigate('SignupScreen')}
-                >
-                    <Text style={{
-                        color: Colors.white,
-                        fontSize: 20,
-                        fontWeight: 'bold',
-                    }}
-                    >SIGNUP</Text>
-                </TouchableOpacity>
+                    <TouchableOpacity
+                        style={styles.signup}
+                        onPress={() => navigation.navigate('SignupScreen')}
+                    >
+                        <Text style={{
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontWeight: 'bold',
+                        }}
+                        >SIGNUP</Text>
+                    </TouchableOpacity>
+                </View>
             </View>
         </View>
     )
@@ -74,14 +72,14 @@ const styles = StyleSheet.create({
 
     },
     container: {
-        marginTop: 160,
+        marginTop: 200,
     },
     title: {
         color: Colors.light_green,
         fontSize: 50,
         fontWeight: 'bold',
         textAlign: 'center',
-        letterSpacing: 5,
+        marginTop: 150,
     },
     signup: {
         borderRadius: 30,
