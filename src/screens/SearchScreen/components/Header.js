@@ -12,11 +12,12 @@ import Colors from '../../../utils/Colors'
 
 //Icon
 import Entypo from 'react-native-vector-icons/Entypo'
+import AntDesign from 'react-native-vector-icons/AntDesign'
 
 //Components
 import SearchBar from './SearchBar'
 
-export default function Header() {
+export default function Header({filterData, setSearchData}) {
     return (
         <View style={styles.container}>
             <TouchableOpacity>
@@ -27,7 +28,11 @@ export default function Header() {
                     color={Colors.lighter_green}
                 />
             </TouchableOpacity>
-            <SearchBar/>
+
+            <SearchBar 
+                filterData={filterData}
+                setSearchData={setSearchData}
+            />
         </View>
     )
 }
@@ -38,5 +43,6 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'space-between'
-    }
+    },
+    
 })

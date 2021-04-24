@@ -8,10 +8,11 @@ import {
 
 //Components
 import RenderEmptyBody from './RenderEmptyBody'
+import RenderBody from './RenderBody'
 
-export default function Body() {
+export default function Body({searchData}) {
     return (
-        <RenderEmptyBody/>
+        searchData.length > 0 ? <RenderBody searchData={searchData}/> : <RenderEmptyBody/>
     )
 }
 
