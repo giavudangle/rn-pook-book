@@ -5,8 +5,8 @@ import { View, Button} from 'react-native'
 import styles from './styles'
 
 //Components
-import Header from './components/Header'
-import Body from './components/Body'
+import {Body} from './components/Body'
+import {Header} from './components/Header'
 
 const mockData = [
     {
@@ -280,7 +280,22 @@ const mockData = [
     "createdAt": "2021-03-19T06:47:33.251Z",
     "updatedAt": "2021-03-19T06:47:33.251Z",
     "__v": 0
-    },
+    },{
+      "url": "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
+      "thumb": "https://res.cloudinary.com/daktfdww5/image/upload/v1616142502/dvjh8mwvnf5atgpqqzon.jpg",
+      "_id": "605449051da876543sc65b1185jc9d7ngs2db",
+      "filename": "imageUrl-1616136453234.jpg",
+      "price": "999999",
+      "color": "red",
+      "origin": "USA",
+      "standard": "VIP",
+      "description": "A Best Book",
+      "type": "hihi",
+      "title": "Khang Hy",
+      "createdAt": "2021-03-19T06:47:33.251Z",
+      "updatedAt": "2021-03-19T06:47:33.251Z",
+      "__v": 0
+      },
 ]
 
 export function SearchScreen({data}) {
@@ -289,8 +304,9 @@ export function SearchScreen({data}) {
     const filterData = (mockData, searchValue) => {
         let temp = mockData.filter(item => {
             let a = item.title.split(' ').join("");
+            let b = searchValue.split(' ').join("");
             // console.log(a)
-            return a.toLowerCase().includes(searchValue);
+            return a.toLowerCase().includes(b.toLowerCase())
         })
         // console.log(temp)
         return temp;

@@ -1,15 +1,30 @@
 import React from 'react'
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 //Colors
+import Colors from '../../../../utils/Colors'
 
 //Icon
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
-import Colors from '../../../utils/Colors'
 
-export default function RenderSearchItem({item}) {
+export const RenderSearchItem = ({item}) => {
+
+    const storeData = async (value) => {
+        try {
+          const jsonValue = JSON.stringify(value)
+          await AsyncStorage.setItem('search_history', jsonValue)
+        } catch (e) {
+          console.log(e)
+        }
+      }
+      
     return (
-       <TouchableOpacity>
+       <TouchableOpacity onPress={() => {
+
+           //add navigation
+       }}>
             <View style={styles.container}>
                 <Image source={{uri: item.url}} style={{width: 100, height: 100}}/>
                 <Text style={styles.title}>{item.title}</Text>

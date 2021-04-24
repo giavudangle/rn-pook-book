@@ -8,11 +8,11 @@ import {
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 //Colos
-import Colors from '../../../utils/Colors'
+import Colors from '../../../../utils/Colors'
 
 const {width} = Dimensions.get('screen')
 
-export default function SearchBar({filterData, setSearchData}) {
+export const SearchBar = ({filterData, setSearchData}) => {
     const [searchValue, setSearchValue] = useState('');
     return (
       <View>

@@ -8,16 +8,16 @@ import {
 } from 'react-native'
 
 //Colors
-import Colors from '../../../utils/Colors'
+import Colors from '../../../../utils/Colors'
 
 //Icon
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 //Components
-import SearchBar from './SearchBar'
+import {SearchBar} from './SearchBar'
 
-export default function Header({filterData, setSearchData}) {
+export const Header = ({filterData, setSearchData}) => {
     return (
         <View style={styles.container}>
             <TouchableOpacity>

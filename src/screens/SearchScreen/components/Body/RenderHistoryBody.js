@@ -7,14 +7,14 @@ import {
 } from 'react-native'
 
 //Colors
-import Colors from '../../../utils/Colors'
+import Colors from '../../../../utils/Colors'
 
 
-export default function RenderEmptyBody() {
+export const RenderHistoryBody = () => {
     return (
         <View style={styles.container}>
             <Image 
-                source={require('../../../assets/Splash-rmbg.png')} 
+                source={require('../../../../assets/Splash-rmbg.png')} 
                 style={{width: 250, height: 250}}
             />
             <Text style={{color: "#AAA"}}>Nhập từ khóa để tìm kiếm</Text>

@@ -1,9 +1,9 @@
 import React from 'react'
 import { View, Text, FlatList } from 'react-native'
 
-import RenderSearchItem from './RenderSearchItem'
+import {RenderSearchItem} from './RenderSearchItem'
 
-export default function RenderBody({searchData}) {
+export const RenderSearchBody = ({searchData}) => {
     return (
         <View>
             <FlatList
