@@ -138,7 +138,7 @@ export default function App() {
 
 
 
-// const App = () => {
+// export default  App = () => {
 //   const [assetLoaded, setAssetLoaded] = useState(false);
 //   if (!assetLoaded) {
 //     return (

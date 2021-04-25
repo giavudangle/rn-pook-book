@@ -49,7 +49,6 @@ import { CartScreen } from '../screens/CartScreen';
 import { DetailScreen } from '../screens/DetailScreen';
 import { FavoriteScreen } from '../screens/FavoriteScreen';
 import { ProductScreen } from '../screens/ProductScreen';
-//Search Screen
 // Order Screens
 import { OrderScreen } from '../screens/OrderScreen';
 import { PreOrderScreen } from '../screens/PreOrderScreen';
@@ -62,7 +61,6 @@ import { EditProfileScreen } from '../screens/ProfileScreen';
 // redux
 import { useSelector } from 'react-redux';
 import { ResetPasswordScreen } from '../screens/ResetPasswordScreen/ResetPasswordScreen';
-import {SearchScreen} from '../screens/SearchScreen';
 
 /**
 |--------------------------------------------------
@@ -211,7 +209,6 @@ export const HomeStackScreen = () => (
     <HomeStack.Screen name='Cart' component={CartStackScreen} />
     <HomeStack.Screen name='Product' component={ProductStackScreen} />
     <HomeStack.Screen name='FinishOrder' component={FinishOrderScreen} />
-    <HomeStack.Screen name='Search' component={SearchScreen}/>
     <HomeStack.Screen name='ResetPassword' component={ResetPasswordScreen} />
   </HomeStack.Navigator>
 );
