@@ -28,7 +28,7 @@ export const OrderItem = ({ order }) => {
         return 1;
       case "delivery":
         return 2;
-      case "delivered":
+      case "success":
         return 3;
       default:
         return 4;
