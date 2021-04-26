@@ -19,7 +19,7 @@ export const PreOrderScreen = (props) => {
   const carts = cartItems
 
   // We need to optimize this screen
-  // Insteaf of separate to lots of fields
+  // Instead of separate to lots of fields
   // Combines them with single object
   //Can Toi uu lai
   const [name, setName] = useState("");
