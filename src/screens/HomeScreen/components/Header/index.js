@@ -15,7 +15,7 @@ import {
 //icon
 import { Ionicons } from '@expo/vector-icons';
 //Colors
-import Colors from '../../../../../utils/Colors';
+import Colors from '../../../../utils/Colors';
 //Search Item component
 import Animated, { Easing } from 'react-native-reanimated';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
@@ -202,7 +202,7 @@ export const Header = ({ style,navigation,products }) => {
             </TouchableOpacity>
             <View>
               <Image
-                source={require('../../../assets/Images/logo1.png')}
+                source={require('../../../../assets/Images/logo1.png')}
                 style={{
                   width: height < 668 ? 50 : 80, // set size icon
                   resizeMode: 'contain',
@@ -267,7 +267,7 @@ export const Header = ({ style,navigation,products }) => {
           {keyword === '' ? (
             <View style={styles.image_placeholder_container}>
               <Image
-                source={require('../../../assets/Images/logo1.png')}
+                source={require('../../../../assets/Images/logo1.png')}
                 style={styles.image_placeholder}
               />
               <Text style={styles.image_placeholder_text}>

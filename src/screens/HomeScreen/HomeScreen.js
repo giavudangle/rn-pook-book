@@ -15,7 +15,7 @@ import Colors from '../../utils/Colors';
 //Animation
 import Animated from 'react-native-reanimated';
 //Components
-import Header from './components/Header'
+import {Header} from './components/Header'
 
 // Float Button
 import { Portal, Provider } from 'react-native-paper';
