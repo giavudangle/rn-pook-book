@@ -13,26 +13,33 @@ import { BlurView } from "expo-blur";
 //PropTypes check
 import PropTypes from "prop-types";
 
-export class CategorySection extends React.PureComponent {
-  render() {
 
-    // Migrate to Functional Component
-    const { data, name, bg, navigation } = this.props;
-    const rings = data.filter((ring) => ring.type === "ring");
-    const bracelets = data.filter((bracelet) => bracelet.type === "bracelet");
-    const stones = data.filter((stone) => stone.type === "stone");
-    function getItems() {
-      const items =
-        name === "Vòng Thạch Anh"
-          ? bracelets
-          : name === "Đá Ruby"
-          ? stones
-          : rings;
-      return items;
+export const CategorySection = ({data, name, bg, navigation}) => {
+
+  // Migrate to Functional Component
+  const lifeSkills = data.filter((item) => item.category.code === "KNS");
+  const literaries = data.filter((item) => item.category.code === "VH");
+  const economics = data.filter((item) => item.category.code === "KT");
+
+
+  const getItems = () => {
+    switch(name) {
+      case 'Sách kỹ năng sống':
+        return lifeSkills
+      case 'Sách văn học':
+        return literaries
+      default :
+        return economics
     }
-    return (
-      <View style={[styles.category]}>
-        <Image style={styles.background} source={bg} blurRadius={10} />
+
+  }
+
+  const trans = getItems()
+
+
+  return (
+    <View style={[styles.category]}>
+        {/* <Image style={styles.background} source={bg} blurRadius={10} /> */}
         <View style={styles.titleHeader}>
           <CustomText style={styles.title}>{name}</CustomText>
         </View>
@@ -43,7 +50,6 @@ export class CategorySection extends React.PureComponent {
             numColumns={2}
             columnWrapperStyle={styles.list}
             renderItem={({ item }) => {
-              console.log(item);
               return (
                 <ProductItem
                   key={item._id}
@@ -55,17 +61,21 @@ export class CategorySection extends React.PureComponent {
           />
         </View>
         <TouchableOpacity
-          onPress={() => navigation.navigate("Product")}
+          onPress={() => navigation.navigate("Product",{trans})}
           style={{ marginHorizontal: 10 }}
         >
-          <BlurView tint="light" intensity={100} style={styles.seeMore}>
+          <BlurView tint='light' intensity={100} style={styles.seeMore}>
             <CustomText style={styles.seeMoreText}>Xem Thêm</CustomText>
           </BlurView>
         </TouchableOpacity>
       </View>
-    );
-  }
+  )
 }
+
+
+
+
+
 
 CategorySection.propTypes = {
   data: PropTypes.array.isRequired,
@@ -80,6 +90,7 @@ const styles = StyleSheet.create({
     paddingVertical: 15,
     borderRadius: 5,
     overflow: "hidden",
+    backgroundColor:Colors.white
   },
   background: {
     position: "absolute",
@@ -94,9 +105,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
   },
   title: {
-    fontSize: 18,
+    fontSize: 20,
     color: Colors.light_green,
     fontWeight: "500",
+    fontFamily:'Roboto-Bold'
   },
   list: {
     justifyContent: "space-between",
@@ -107,15 +119,18 @@ const styles = StyleSheet.create({
     paddingHorizontal: 10,
   },
   seeMore: {
-    // backgroundColor: "rgba(255, 255, 255, 0.9)",
     width: "100%",
     height: 45,
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor:'red'
   },
   seeMoreText: {
     fontSize: 14,
     color: Colors.lighter_green,
+    justifyContent:'center',
+    alignItems:'center',
+    alignSelf:'center'
   },
 });
