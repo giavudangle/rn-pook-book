@@ -15,14 +15,14 @@ import {
 //icon
 import { Ionicons } from '@expo/vector-icons';
 //Colors
-import Colors from '../../../utils/Colors';
+import Colors from '../../../../../utils/Colors';
 //Search Item component
 import Animated, { Easing } from 'react-native-reanimated';
 import { TouchableOpacity, TextInput } from 'react-native-gesture-handler';
 const { Value, timing } = Animated;
 // Calculate window size
 const { width, height } = Dimensions.get('window');
-import SearchItem from './Search/SearchItem'
+import SearchItem from '../Search/SearchItem'
 
 import PropTypes from 'prop-types';
 
@@ -132,7 +132,7 @@ const __header_config_opacity = Animated.interpolate(__diff_clamp_scroll_y, {
 
 
 
-const Header = ({ style,navigation,products }) => {
+export const Header = ({ style,navigation,products }) => {
 
   // Local state
   const [isFocused, setIsFocused] = useState(false);
@@ -204,7 +204,7 @@ const Header = ({ style,navigation,products }) => {
               <Image
                 source={require('../../../assets/Images/logo1.png')}
                 style={{
-                  width: height < 668 ? 130 : 120,
+                  width: height < 668 ? 50 : 80, // set size icon
                   resizeMode: 'contain',
                 }}
               />
@@ -430,4 +430,3 @@ const styles = StyleSheet.create({
 
 
 
-export default Header
