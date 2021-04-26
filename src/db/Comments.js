@@ -1,4 +1,4 @@
-export default comments = [
+export const comments = [
   {
     id: 1,
     username: "Lionel Nguyen",

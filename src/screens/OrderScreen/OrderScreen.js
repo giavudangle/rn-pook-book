@@ -14,8 +14,8 @@ const user = {
 const orders = [
   {
     "status": "waiting",
-    "_id": "60544c1161d79712005f47e1",
-    "totalAmount": "9999999",
+    "_id": "60544c1161d79712005f47e2",
+    "totalAmount": "1000000",
     "name": "Test payment",
     "paymentMethod": "MasterCard",
     "phone": "0967781273",
@@ -28,7 +28,7 @@ const orders = [
                 "thumb": "https://res.cloudinary.com/daktfdww5/image/upload/v1616142502/dvjh8mwvnf5atgpqqzon.jpg",
                 "_id": "605449411d6e5b1185c9d2de",
                 "filename": "imageUrl-1616136513560.jpg",
-                "price": "999999",
+                "price": "100000",
                 "color": "red",
                 "origin": "USA",
                 "standard": "VIP",
@@ -49,7 +49,7 @@ const orders = [
   {
     "status": "done",
     "_id": "60544c1161d79712005f47e1",
-    "totalAmount": "9999999",
+    "totalAmount": "100000",
     "name": "Test payment",
     "paymentMethod": "MasterCard",
     "phone": "0967781273",

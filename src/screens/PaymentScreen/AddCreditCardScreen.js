@@ -1,14 +1,43 @@
-import React,{useState} from 'react'
+import React, { useState } from 'react'
 import { View, StyleSheet, TouchableOpacity } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { AddSubscriptionView } from "./components";
+import {getCreditCardToken} from '../../utils/Tools'
 
-export const AddCreditCardScreen = () => {
+const STRIPE_ERROR = "Payment service error. Try again later.";
+
+
+export const AddCreditCardScreen = ({ navigation }) => {
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState(null);
 
-  const onSubmit =  async () => {
-
+  const onSubmit = async (creditCardInput) => {
+    // Disable the Submit button after the request is sent
+    // console.log(creditCardInput);
+    setSubmitted(true);
+    let creditCardToken;
+    try {
+      // Create a credit card token
+      creditCardToken = await getCreditCardToken(creditCardInput);
+      console.log('==============CC TOKENS======================');
+      console.log(creditCardToken);
+      console.log('====================================');
+      if (creditCardToken.error) {
+        // Reset the state if Stripe responds with an error
+        // Set submitted to false to let the user subscribe again
+        setSubmitted(false);
+        setError(STRIPE_ERROR);
+        return;
+      }
+    } catch (e) {
+      // Reset the state if the request was sent with an error
+      // Set submitted to false to let the user subscribe again
+  
+      setSubmitted(false);
+      setError(STRIPE_ERROR);
+      return;
+    } // Send a request to your server with the received credit card token
+    navigation.navigate("PaymentScreen", { token: creditCardToken });
   }
 
   return (
@@ -27,10 +56,12 @@ export const AddCreditCardScreen = () => {
   )
 }
 
+// Add Proptypes here
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginVertical:30
+    marginVertical: 30
   },
   backIcon: {
     marginTop: 20,

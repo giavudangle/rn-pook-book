@@ -16,11 +16,11 @@ import Entypo from 'react-native-vector-icons/Entypo'
 //Components
 import SearchBar from './SearchBar'
 
-export default function Header() {
+export default function Header({navigation}) {
     return (
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity>
+                <TouchableOpacity onPress={() => navigation.navigate('Home')}>
                     <Entypo name="chevron-left" size={30} color='white'/>
                 </TouchableOpacity>
                 <Text style={styles.title}>Tất cả sản phẩm</Text>
