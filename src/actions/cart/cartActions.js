@@ -14,7 +14,7 @@ export const fetchCart = () => {
       });
       try {
         const response = await timeoutPromise(
-          fetch(`${API_URL}/cart`, {
+          fetch(`${API_URL}/carts`, {
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
@@ -30,7 +30,7 @@ export const fetchCart = () => {
           throw new Error("Something went wrong!, can't get your carts");
         }
         const resData = await response.json();
-        const filterUserCart = resData.content.filter(
+        const filterUserCart = resData.data.filter(
           (userCart) => userCart.userId === user.userid
         );
         let carts = emptyCart;
