@@ -16,7 +16,8 @@ import * as Animatable from 'react-native-animatable';
 //Redux
 import { useDispatch, useSelector } from 'react-redux';
 //Action
-//import { addToCart, removeFavorite, addFavorite } from '../../../reducers';
+
+import { addToCart, removeFavorite, addFavorite } from '../../../../actions/cart';
 import Messages from '../../../../messages/user';
 import Colors from '../../../../utils/Colors'
 
