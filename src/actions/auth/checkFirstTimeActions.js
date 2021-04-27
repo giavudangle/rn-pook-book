@@ -1,6 +1,6 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {IS_FIRST_TIME,FIRST_OPEN,FIRST_TIME_OPEN_VALUE} from '../../types/AuthTypes'
+import {IS_FIRST_TIME,FIRST_OPEN,FIRST_TIME_OPEN_VALUE} from '../../@types/firstTimeOpenActionTypes'
 
 //Create dataStorage
 const saveDataToStorage = (name, data) => {
