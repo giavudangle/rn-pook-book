@@ -382,6 +382,7 @@ export const HomeScreen = ({ navigation }) => {
 
   const isLoading = useSelector(state => state.store.isLoading)
   const notification = useSelector((state) => state.auth.notification);
+  const user = useSelector((state) => state.auth.user);
 
   let scrollY = new Animated.Value(0);
 
@@ -431,7 +432,7 @@ export const HomeScreen = ({ navigation }) => {
               {Object.keys(notification).length === 0 ? (
                 <View />
               ) : (
-                <Snackbar
+                <SnackBar
                   checkVisible={true}
                   message={
                     Object.keys(user).length === 0
