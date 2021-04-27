@@ -322,6 +322,7 @@ const styles = StyleSheet.create({
     zIndex: 1000,
     backgroundColor: Colors.white,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    top:-20
   },
   header: {
     position: 'absolute',

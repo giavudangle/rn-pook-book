@@ -17,7 +17,11 @@ import * as Animatable from 'react-native-animatable';
 import { useDispatch, useSelector } from 'react-redux';
 //Action
 
-import { addToCart, removeFavorite, addFavorite } from '../../../../actions/cart';
+import { addToCart } from '../../../../actions/cart';
+import { addFavorite } from '../../../../actions/favorite';
+
+
+
 import Messages from '../../../../messages/user';
 import Colors from '../../../../utils/Colors'
 
@@ -41,6 +45,7 @@ export const ActionButton = ({
       unmounted.current = true;
     };
   }, []);
+
   //Set Colors
   const addToCartAct = async () => {
     if (Object.keys(user).length === 0) {
@@ -48,7 +53,7 @@ export const ActionButton = ({
       setShowSnackbar(true);
     } else {
       try {
-        await dispatch(addToCart(item, user.token));
+        dispatch(addToCart(item, user.token));
         setModalVisible(true);
       } catch (err) {
         throw err;
