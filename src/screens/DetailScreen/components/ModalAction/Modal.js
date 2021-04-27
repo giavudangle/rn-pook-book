@@ -8,121 +8,117 @@ import {
   Image,
 } from "react-native";
 //import CustomText
-import CustomText from "../../../components/UI/CustomText";
+import CustomText from "../../../../components/UI/CustomText";
 //icon
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 //Color
-import Colors from "../../../utils/Colors";
+import Colors from "../../../../utils/Colors";
 //number format
-import NumberFormat from "../../../components/UI/NumberFormat";
+import NumberFormat from "../../../../components/UI/NumberFormat";
 //PropTypes check
 import PropTypes from "prop-types";
 
 const { width, height } = Dimensions.get("window");
 
-export class ModalComp extends React.PureComponent {
-  render() {
-    const {
-      item,
-      color,
-      modalVisible,
-      setModalVisible,
-      navigation,
-    } = this.props;
-    const moveToCart = () => {
-      setModalVisible(false);
-      navigation.navigate("Cart");
-    };
 
-    return (
-      <Modal
-        style={{
-          flex: 1,
-        }}
-        animationType='slide'
-        transparent={true}
-        visible={modalVisible}
-      >
-        <View style={styles.modalContainer}></View>
-        <View style={styles.modal}>
-          <TouchableOpacity
-            animation='zoomIn'
-            style={styles.close}
-            onPress={() => setModalVisible(false)}
-          >
-            <MaterialCommunityIcons
-              name='window-close'
-              size={24}
-              color={color}
-            />
-          </TouchableOpacity>
+export const ModalComponent = ({ item, color, modalVisible, setModalVisible, navigation }) => {
 
+
+  const moveToCart = () => {
+    setModalVisible(false)
+    navigation.navigate('Cart')
+  }
+
+  return (
+    <Modal
+      style={{
+        flex: 1,
+      }}
+      animationType='slide'
+      transparent={true}
+      visible={modalVisible}
+    >
+      <View style={styles.modalContainer}></View>
+      <View style={styles.modal}>
+        <TouchableOpacity
+          animation='zoomIn'
+          style={styles.close}
+          onPress={() => setModalVisible(false)}
+        >
+          <MaterialCommunityIcons
+            name='window-close'
+            size={24}
+            color={color}
+          />
+        </TouchableOpacity>
+
+        <View
+          style={{ width: "90%", flexDirection: "row", alignItems: "center" }}
+        >
+          <MaterialCommunityIcons
+            name='check-circle-outline'
+            color={color}
+            size={20}
+          />
+          <CustomText style={{ ...styles.success, color }}>
+            Sản phẩm đã được thêm vào giỏ hàng
+          </CustomText>
+        </View>
+        <View style={styles.modelInfo}>
           <View
-            style={{ width: "90%", flexDirection: "row", alignItems: "center" }}
+            style={{ borderRadius: 20, width: "45%", overflow: "hidden" }}
           >
-            <MaterialCommunityIcons
-              name='check-circle-outline'
-              color={color}
-              size={20}
+            <Image
+              source={{ uri: item.thumb }}
+              style={{
+                height: 100,
+                resizeMode: "stretch",
+              }}
             />
-            <CustomText style={{ ...styles.success, color }}>
-              Sản phẩm đã được thêm vào giỏ hàng
-            </CustomText>
           </View>
-          <View style={styles.modelInfo}>
-            <View
-              style={{ borderRadius: 20, width: "45%", overflow: "hidden" }}
-            >
-              <Image
-                source={{ uri: item.thumb }}
-                style={{
-                  height: 100,
-                  resizeMode: "stretch",
-                }}
-              />
-            </View>
-            <View style={styles.quantity}>
-              <View>
-                <CustomText style={{ ...styles.title, fontSize: 15 }}>
-                  {item.filename}
-                </CustomText>
-                <CustomText style={{ fontSize: 12, color: Colors.grey }}>
-                  Cung cấp bởi Cát Tường
-                </CustomText>
-              </View>
-              <CustomText
-                style={{ marginTop: 5, fontSize: 14, color: Colors.text }}
-              >
-                Thành tiền:
+          <View style={styles.quantity}>
+            <View>
+              <CustomText style={{ ...styles.title, fontSize: 15 }}>
+                {item.filename}
               </CustomText>
-              <NumberFormat price={item.price} />
+              <CustomText style={{ fontSize: 12, color: Colors.grey }}>
+                Cung cấp bởi Cát Tường
+              </CustomText>
             </View>
-          </View>
-          <View
-            style={{
-              height: 55,
-              justifyContent: "center",
-            }}
-          >
-            <TouchableOpacity
-              style={[
-                styles.addCart,
-                {
-                  backgroundColor: color,
-                },
-              ]}
-              onPress={moveToCart}
+            <CustomText
+              style={{ marginTop: 5, fontSize: 14, color: Colors.text }}
             >
-              <CustomText style={styles.actionText}>Xem Giỏ Hàng</CustomText>
-            </TouchableOpacity>
+              Thành tiền:
+            </CustomText>
+            <NumberFormat price={item.price} />
           </View>
         </View>
-      </Modal>
-    );
-  }
+        <View
+          style={{
+            height: 55,
+            justifyContent: "center",
+          }}
+        >
+          <TouchableOpacity
+            style={[
+              styles.addCart,
+              {
+                backgroundColor: color,
+              },
+            ]}
+            onPress={moveToCart}
+          >
+            <CustomText style={styles.actionText}>Xem Giỏ Hàng</CustomText>
+          </TouchableOpacity>
+        </View>
+      </View>
+    </Modal>
+  );
+
 }
 
-ModalComp.propTypes = {
+
+ModalComponent.propTypes = {
   item: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
   modalVisible: PropTypes.bool.isRequired,

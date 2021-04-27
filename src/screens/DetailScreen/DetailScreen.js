@@ -13,6 +13,9 @@ import {Header} from './components/Header'
 import {DetailBody} from './components/Body'
 import { Comments } from './components/Comments';
 
+import {ActionButton, ModalComponent} from './components/ModalAction'
+
+
 
 
 export const DetailScreen = (props) => {
@@ -22,6 +25,12 @@ export const DetailScreen = (props) => {
   const [message, setMessage] = useState('Hello Vudang');
   const [showSnackbar, setShowSnackbar] = useState(true);
   const [color, setColor] = useState(Colors.leave_green);
+
+
+
+  const FavoriteProducts = useSelector((state) =>
+  state.fav.favoriteList.some((product) => product._id === item._id),
+  );
 
   //color
   const type = item.color;
@@ -48,7 +57,7 @@ export const DetailScreen = (props) => {
         <Comments />
       </Animated.ScrollView>
 
-       {/* <ActionButton
+      <ActionButton
         item={item}
         FavoriteProducts={FavoriteProducts}
         setShowSnackbar={setShowSnackbar}
@@ -56,7 +65,14 @@ export const DetailScreen = (props) => {
         setMessage={setMessage}
         user={user}
         color={color}
-      /> */}
+      /> 
+      <ModalComponent
+       item={item}
+       color={color}
+       modalVisible={modalVisible}
+       setModalVisible={setModalVisible}
+       navigation={props.navigation}
+      />
 
     </View>
   )

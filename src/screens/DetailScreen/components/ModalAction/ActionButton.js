@@ -7,7 +7,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 //import CustomText
-import CustomText from '../../../components/UI/CustomText';
+import CustomText from '../../../../components/UI/CustomText';
 //icon
 import { Ionicons } from '@expo/vector-icons';
 import LottieView from 'lottie-react-native';
@@ -17,8 +17,8 @@ import * as Animatable from 'react-native-animatable';
 import { useDispatch, useSelector } from 'react-redux';
 //Action
 //import { addToCart, removeFavorite, addFavorite } from '../../../reducers';
-import Messages from '../../../messages/user';
-import Colors from '../../../utils/Colors';
+import Messages from '../../../../messages/user';
+import Colors from '../../../../utils/Colors'
 
 //PropTypes check
 import PropTypes from 'prop-types';
@@ -90,7 +90,7 @@ export const ActionButton = ({
         >
           {FavoriteProducts ? (
             <LottieView
-              source={require('../../../components/IconAnimation/heart.json')}
+              source={require('../../../../components/IconAnimation/heart.json')}
               autoPlay={FavoriteProducts}
               loop={false}
             />
