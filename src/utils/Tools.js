@@ -42,11 +42,11 @@ export const urlRedirect = (url) => {
 };
 
 //Handle Fetching timeout
-export const timeoutPromise = (url) => {
+export const predictTimeoutPromise = (url) => {
   return new Promise((resolve, reject) => {
     const timeoutId = setTimeout(() => {
-      reject(new Error("Timeout, Server is not responding"));
-    }, 20 * 1000);
+      reject(new Error("Request time out"));
+    }, 20 * 1000); // 20 second
     url.then(
       (res) => {
         clearTimeout(timeoutId);
