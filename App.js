@@ -48,6 +48,7 @@ import {ProductScreen} from './src/screens/ProductScreen'
 import { OrderScreen } from "./src/screens/OrderScreen";
 import { HomeScreen } from "./src/screens/HomeScreen";
 import { DetailScreen } from "./src/screens/DetailScreen";
+import {SearchScreen} from './src/screens/SearchScreen'
 
 import {FinishResetPasswordScreen} from './src/screens/FinishResetPasswordScreen'
 
@@ -150,7 +151,7 @@ const App = () => {
   }
   return (
     <Provider store={store}>
-      <HomeScreen/>
+      <SearchScreen/>
     </Provider>
 
   )
