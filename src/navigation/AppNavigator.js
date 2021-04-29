@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { navigationRef } from './RootNavigation';
 import { DrawerNavigator, IntroStackScreen } from './PookNavigator';
 import { useDispatch } from 'react-redux';
-import { Logout } from '../reducers';
+import { Logout } from '../actions/auth/authActions';
 //Modalize
 import { Host } from 'react-native-portalize';
 //Deep Link
@@ -13,7 +13,7 @@ import { urlRedirect } from '../utils/Tools';
 import * as Linking from 'expo-linking';
 
 //Types
-import {IS_FIRST_TIME} from '../types/AuthTypes'
+import {IS_FIRST_TIME} from '../@types/firstTimeOpenActionTypes'
 
 
 export const AppNavigator = () => {
@@ -46,7 +46,12 @@ export const AppNavigator = () => {
     const isFirstTime = async () => {
       await AsyncStorage.clear();
       const firstOpen = await AsyncStorage.getItem(IS_FIRST_TIME);
-      console.log(firstOpen)
+      
+      console.log('================FIRST OPEN GET FROM ASYNCSTORAGE====================');
+      console.log(firstOpen);
+      console.log('====================================');
+
+
       setValue(firstOpen);
     };
     isFirstTime();

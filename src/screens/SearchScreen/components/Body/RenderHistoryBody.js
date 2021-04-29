@@ -26,8 +26,8 @@ export const RenderHistoryBody = () => {
         try {
           const value = await AsyncStorage.getItem('search_history')
           if(value === null) {
-            // value previously stored
             const temp = [1,2,3];
+            
             await AsyncStorage.setItem('search_history', JSON.stringify(temp))
           }
           setHistoryData(value)

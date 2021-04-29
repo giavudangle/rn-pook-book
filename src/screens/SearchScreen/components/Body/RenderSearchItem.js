@@ -10,15 +10,6 @@ import Colors from '../../../../utils/Colors'
 import FontAwesome from 'react-native-vector-icons/FontAwesome'
 
 export const RenderSearchItem = ({item}) => {
-
-    const storeData = async (value) => {
-        try {
-          const jsonValue = JSON.stringify(value)
-          await AsyncStorage.setItem('search_history', jsonValue)
-        } catch (e) {
-          console.log(e)
-        }
-      }
       
     return (
        <TouchableOpacity onPress={() => {

@@ -55,9 +55,8 @@ export const IntroScreen = () => {
    */
 
   const SubmitApp = async () => {
-    console.warn("log submjit");
     setLoading(true)
-    await dispatch(firstOpen())
+    await dispatch(firstOpen()) // fix this -> memory leak
     if(!unmounted.current){
       setLoading(false)
     }

@@ -19,6 +19,9 @@ export const AddCreditCardScreen = ({ navigation }) => {
     try {
       // Create a credit card token
       creditCardToken = await getCreditCardToken(creditCardInput);
+      console.log('==============CC TOKENS======================');
+      console.log(creditCardToken);
+      console.log('====================================');
       if (creditCardToken.error) {
         // Reset the state if Stripe responds with an error
         // Set submitted to false to let the user subscribe again
@@ -29,9 +32,7 @@ export const AddCreditCardScreen = ({ navigation }) => {
     } catch (e) {
       // Reset the state if the request was sent with an error
       // Set submitted to false to let the user subscribe again
-      console.log('====================================');
-      console.log(e);
-      console.log('====================================');
+  
       setSubmitted(false);
       setError(STRIPE_ERROR);
       return;

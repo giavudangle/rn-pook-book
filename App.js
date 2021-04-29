@@ -102,24 +102,24 @@ const LoadAssets = async () => {
 
   return await Promise.all([imageAssets, fetchFonts]);
 };
-// export default function App() {
-//   const [assetLoaded, setAssetLoaded] = useState(false);
-//   if (!assetLoaded) {
-//     return (
-//       <AppLoading
-//         startAsync={LoadAssets}
-//         onFinish={() => setAssetLoaded(true)}
-//       />
-//     );
-//   }
-//   return (
-//     <Provider store={store}>
-//       <StatusBar />
-//       <LocalNotication />
-//       <AppNavigator />
-//     </Provider>
-//   );
-// }
+export default function App() {
+  const [assetLoaded, setAssetLoaded] = useState(false);
+  if (!assetLoaded) {
+    return (
+      <AppLoading
+        startAsync={LoadAssets}
+        onFinish={() => setAssetLoaded(true)}
+      />
+    );
+  }
+  return (
+    <Provider store={store}>
+      <StatusBar />
+      <LocalNotication />
+      <AppNavigator />
+    </Provider>
+  );
+}
 
 /**
  * ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
@@ -139,22 +139,21 @@ const LoadAssets = async () => {
 
 
 
-const App = () => {
-  const [assetLoaded, setAssetLoaded] = useState(false);
-  if (!assetLoaded) {
-    return (
-      <AppLoading
-        startAsync={LoadAssets}
-        onFinish={() => setAssetLoaded(true)}
-      />
-    );
-  }
-  return (
-    <Provider store={store}>
-      <SearchScreen/>
-    </Provider>
+// export default  App = () => {
+//   const [assetLoaded, setAssetLoaded] = useState(false);
+//   if (!assetLoaded) {
+//     return (
+//       <AppLoading
+//         startAsync={LoadAssets}
+//         onFinish={() => setAssetLoaded(true)}
+//       />
+//     );
+//   }
+//   return (
+//     <Provider store={store}>
+//       <HomeScreen/>
+//     </Provider>
 
-  )
-}
+//   )
+// }
 
-export default App
