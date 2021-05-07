@@ -36,9 +36,12 @@ export const CategorySection = ({data, name, bg, navigation}) => {
 
   const trans = getItems()
 
+  
 
   return (
-    <View style={[styles.category]}>
+    trans.length > 0
+    ?(
+<View style={[styles.category]}>
         {/* <Image style={styles.background} source={bg} blurRadius={10} /> */}
         <View style={styles.titleHeader}>
           <CustomText style={styles.title}>{name}</CustomText>
@@ -62,13 +65,16 @@ export const CategorySection = ({data, name, bg, navigation}) => {
         </View>
         <TouchableOpacity
           onPress={() => navigation.navigate("Product",{trans})}
-          style={{ marginHorizontal: 10,marginTop:20 }}
+          style={{ marginHorizontal: 10,marginTop:10 }}
         >
           <BlurView tint='light' intensity={100} style={styles.seeMore}>
             <CustomText style={styles.seeMoreText}>Xem Thêm</CustomText>
           </BlurView>
         </TouchableOpacity>
       </View>
+    )
+    :<></>
+    
   )
 }
 
@@ -86,11 +92,11 @@ const styles = StyleSheet.create({
   category: {
     height: 650,
     marginHorizontal: 5,
-    marginVertical: 15,
     paddingVertical: 15,
     borderRadius: 5,
     overflow: "hidden",
-    backgroundColor:Colors.white
+    backgroundColor:Colors.white,
+    marginBottom:-50
   },
   background: {
     position: "absolute",

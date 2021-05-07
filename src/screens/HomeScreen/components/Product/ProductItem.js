@@ -94,7 +94,9 @@ const styles = StyleSheet.create({
     // backgroundColor: "rgba(255, 255, 255, 0.9)",
     marginBottom: 15,
     borderRadius: 8,
-    marginTop:50,
+    marginTop:20,
+    borderColor:Colors.green,
+    borderWidth:2
     
   },
   image: {
@@ -106,15 +108,15 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    paddingVertical:30
 
   },
   name: {
     marginTop: 3,
-    color: Colors.lighter_green,
+    color: Colors.leave_green,
     textAlign: "center",
     fontWeight: "300",
-    fontSize:15,
+    fontSize:13,
+    width:100
   },
   info: {
     flexDirection: "row",

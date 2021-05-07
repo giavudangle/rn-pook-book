@@ -1,4 +1,4 @@
-import React, { useState,useRef,useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
     View,
     StyleSheet,
@@ -7,7 +7,8 @@ import {
     TouchableWithoutFeedback,
     Text,
     Dimensions,
-    Alert
+    Alert,
+    ActivityIndicator,
 } from 'react-native';
 import { TextInput } from 'react-native-paper';
 //Colors
@@ -20,9 +21,10 @@ import RenderField from './RenderField';
 import { useDispatch, useSelector } from 'react-redux';
 
 //Aciton
-import {SignUp as SignUpAct} from '../../../reducers'
-import { Field, reduxForm } from 'redux-form'
+import { SignUp as SignUpAct } from '../../../reducers';
+import { Field, reduxForm } from 'redux-form';
 
+import {PropTypes} from 'prop-types';
 const { width, height } = Dimensions.get('screen')
 
 //Validation
@@ -56,31 +58,31 @@ const validate = (values) => {
 
 const Signup = (props) => {
     const { handleSubmit, reset } = props;
-    const dispacth=useDispatch();
-    const loading=useSelector((state)=>state.auth.isLoading)
+    const dispacth = useDispatch();
+    const loading = useSelector((state) => state.auth.isLoading)
     const [hidePass, setHidePass] = useState(true);
     const [hideConfirm, setHideConfirm] = useState(true);
-    const unmounted=useRef(false);
-    useEffect(()=>{
-        return()=>{
-            unmounted.current=true;
+    const unmounted = useRef(false);
+    useEffect(() => {
+        return () => {
+            unmounted.current = true;
         };
     })
-    const submit=async(values)=>{
-        try{
-            await dispacth(SignUpAct(values.username,values.email,values.password));
+    const submit = async (values) => {
+        try {
+            await dispacth(SignUpAct(values.username, values.email, values.password));
             reset();
-            if(!unmounted.current){
-                Alert.alert("Signup Successfully","You can login now",[
+            if (!unmounted.current) {
+                Alert.alert("Signup Successfully", "You can login now", [
                     {
-                        text:'OK',
-                        onPress:()=>{
+                        text: 'OK',
+                        onPress: () => {
                             props.navigation.goBack();
                         }
                     }
                 ])
             }
-        }catch(err){
+        } catch (err) {
             alert(err);
         }
     }
@@ -89,8 +91,8 @@ const Signup = (props) => {
             <TouchableOpacity
                 style={{
                     position: 'absolute',
-                    left:15,
-                    top:30,
+                    left: 15,
+                    top: 30,
                 }}
                 onPress={() => navigation.goBack()}
             >
@@ -151,9 +153,14 @@ const Signup = (props) => {
                                 hide={hideConfirm}
                             />
                         </View>
-                        <TouchableOpacity onPress={() => navigation.navigate('LoginScreen')}>
+                        <TouchableOpacity onPress={(handleSubmit(submit))}>
                             <View style={styles.signIn}>
-                                <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 18 }}>REGISTER</Text>
+                                {loading ? (
+                                    <ActivityIndicator size='small' color='#fff' />
+                                ) : (
+                                    <Text style={{ color: 'white', fontWeight: 'bold', fontSize: 18 }}>REGISTER</Text>
+                                )
+                                }
                             </View>
                         </TouchableOpacity>
                         <View style={{ flex: 1 }} />
@@ -163,7 +170,10 @@ const Signup = (props) => {
         </View>
     )
 }
-
+Signup.propTypes={
+    handleSubmit:PropTypes.func.isRequired,
+    reset:PropTypes.func.isRequired,
+}
 export const SignUpForm = reduxForm({
     form: 'signup', //a unique identifier for this form
     validate, // <--- validation function given to redux-form
