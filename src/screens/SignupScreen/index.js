@@ -1,3 +1,3 @@
 
-export * from './SignUpScreen'
+export * from './SignupScreen'
 
