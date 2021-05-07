@@ -139,9 +139,6 @@ export const getCreditCardToken = async (creditCardData) => {
         .map((key) => key + "=" + card[key])
         .join("&"),
     });
-    console.log('==============STRIPE PAYMENT PROCESSING======================');
-    console.log(response);
-    console.log('====================================');
     return await response.json();
   } catch (error) {
     return console.log(error);
