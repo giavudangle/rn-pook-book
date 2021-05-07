@@ -4,7 +4,7 @@
 
 <div >
 <img width="400px" height="400px" src="https://res.cloudinary.com/codingwithvudang/image/upload/v1618561426/SplashScreen_2x_s5hpib.png" >
-<img width="400px" height="400px" src="https://scontent.fsgn2-1.fna.fbcdn.net/v/t1.6435-9/151284066_207254161142817_5812038792384707893_n.png?_nc_cat=105&ccb=1-3&_nc_sid=09cbfe&_nc_ohc=KAVSahpcm04AX_lEqGb&_nc_ht=scontent.fsgn2-1.fna&oh=f8f95fca5dcb99c3592f41127391cf3c&oe=609E2BB1" >
+<img width="400px" height="400px" src="https://res.cloudinary.com/codingwithvudang/image/upload/v1620178049/151284066_207254161142817_5812038792384707893_n_ztp9r6.png" >
 </div>
 
 ## 🚀 Contributors
