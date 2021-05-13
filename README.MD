@@ -111,8 +111,7 @@ Change the API in config.js to the server that you're running.
 - Touch/Face ID: react native touch id, react native keychain, expo authentication 
 
 ## 🚀 Figma Design with Prototype
-https://www.figma.com/file/NRr50DlcWOzDJR12OakgIB/CNPMNC_Design?node-id=0%3A1
-
+https://www.figma.com/community/file/974606891270365833
 
 
 
