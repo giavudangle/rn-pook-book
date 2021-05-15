@@ -135,7 +135,7 @@ const Signup = (props) => {
                                 label='Your password'
                                 icon='lock'
                                 passIcon='pass'
-                                secureTextEntry={hidePass?true:false}
+                                secureTextEntry={hidePass ? true : false}
                                 showPass={hidePass}
                                 setShowPass={setHidePass}
                             />
@@ -145,7 +145,7 @@ const Signup = (props) => {
                                 label='Confirm password'
                                 icon='lock'
                                 passIcon='confirm'
-                                secureTextEntry={hideConfirm?true:false}
+                                secureTextEntry={hideConfirm ? true : false}
                                 showConfirmPass={hideConfirm}
                                 setShowConfirmPass={setHideConfirm}
                             />
@@ -168,9 +168,9 @@ const Signup = (props) => {
     )
 }
 
-Signup.propTypes={
-    handleSubmit:PropTypes.func.isRequired,
-    reset:PropTypes.func.isRequired,
+Signup.propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired,
 }
 
 
@@ -186,7 +186,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         marginBottom: 30,
         textAlign: 'center',
-        letterSpacing:5
+        letterSpacing: 5
     },
     signIn: {
         width: 150,
