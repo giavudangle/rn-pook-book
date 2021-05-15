@@ -1,5 +1,5 @@
 import React from "react";
-import { View } from "react-native";
+import { View,StyleSheet } from "react-native";
 import { TextInput } from "react-native-paper";
 //Colors
 import Colors from "../../../utils/Colors";
@@ -15,7 +15,7 @@ export default renderField = ({
   passIcon,
   setShowPass,
   showConfirmPass,
-  setshowConfirmPass,
+  setShowConfirmPass,
   autoCapitalize,
   meta: { touched, error, warning },
   input: { onChange, ...restInput },
@@ -23,10 +23,11 @@ export default renderField = ({
   return (
     <View>
       <TextInput
+        style={Styles.body}
         placeholder={label}
         autoCapitalize={autoCapitalize ? "words" : "none"}
         clearButtonMode={passIcon ? "never" : "always"}
-        mode="outlined"
+        mode="flat"
         selectionColor={Colors.leave_green}
         theme={{ colors: { primary: Colors.leave_green } }}
         left={
@@ -37,12 +38,6 @@ export default renderField = ({
             style={{ paddingRight: 10 }}
           />
         }
-        style={{
-          fontSize: 14,
-          backgroundColor: "transparent",
-          marginVertical: 5,
-          // paddingHorizontal: 5,
-        }}
         keyboardType={keyboardType}
         onChangeText={onChange}
         secureTextEntry={secureTextEntry}
@@ -53,28 +48,28 @@ export default renderField = ({
           onPress={() => {
             setShowPass((prev) => !prev);
           }}
-          name={showPass ? "eye" : "eye-off"}
+          name={showPass ? "eye-off" : "eye"}
           size={24}
           color={Colors.lighter_green}
           style={{
             position: "absolute",
-            top: "40%",
-            right: 10,
+            top: "20%",
+            right: 40,
             zIndex: 100,
           }}
         />
       ) : passIcon === "confirm" ? (
         <MaterialCommunityIcons
           onPress={() => {
-            setshowConfirmPass((prev) => !prev);
+            setShowConfirmPass((prev) => !prev);
           }}
-          name={showConfirmPass ? "eye" : "eye-off"}
+          name={showConfirmPass ? "eye-off" : "eye"}
           size={24}
           color={Colors.lighter_green}
           style={{
             position: "absolute",
-            top: "40%",
-            right: 10,
+            top: "20%",
+            right: 40,
             zIndex: 100,
           }}
         />
@@ -83,10 +78,29 @@ export default renderField = ({
       )}
 
       {touched && error && (
-        <CustomText style={{ color: "red", marginHorizontal: 15 }}>
+        <CustomText style={Styles.textError}>
           {error}
         </CustomText>
       )}
     </View>
   );
 };
+
+const Styles=StyleSheet.create({
+  textError:{
+    color:'red',
+    paddingHorizontal:30,
+  },
+  body:{
+    marginBottom: 20,
+    overflow: 'hidden',
+    borderTopRightRadius: 15,
+    borderTopLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    borderBottomLeftRadius: 15,
+    backgroundColor:'#fff',
+    width:320,
+    height:60,
+    alignSelf:'center',
+  }
+})

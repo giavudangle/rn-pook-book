@@ -10,7 +10,6 @@ import {
     Alert,
     ActivityIndicator,
 } from 'react-native';
-import { TextInput } from 'react-native-paper';
 //Colors
 import Colors from '../../../utils/Colors';
 import { Ionicons } from '@expo/vector-icons';
@@ -122,42 +121,33 @@ const Signup = (props) => {
                                 name='username'
                                 component={RenderField}
                                 label='Your email'
-                                iconLeft='id-card'
+                                icon='id-card'
                             />
                             <Field
                                 name='email'
                                 component={RenderField}
                                 label='Your name'
-                                iconLeft='email'
+                                icon='email'
                             />
                             <Field
                                 name='password'
                                 component={RenderField}
                                 label='Your password'
-                                iconLeft='lock'
-                                right={<TextInput.Icon
-                                    name={hidePass ? 'eye-off' : 'eye'}
-                                    size={24}
-                                    color={Colors.lighter_green}
-                                    style={{ paddingLeft: 10 }}
-                                    onPress={() => setHidePass(!hidePass)}
-
-                                />}
-                                hide={hidePass}
+                                icon='lock'
+                                passIcon='pass'
+                                secureTextEntry={hidePass?true:false}
+                                showPass={hidePass}
+                                setShowPass={setHidePass}
                             />
                             <Field
                                 name='confirmpassword'
                                 component={RenderField}
                                 label='Confirm password'
-                                iconLeft='lock'
-                                right={<TextInput.Icon
-                                    name={hideConfirm ? 'eye-off' : 'eye'}
-                                    size={24}
-                                    color={Colors.lighter_green}
-                                    style={{ paddingLeft: 10 }}
-                                    onPress={() => setHideConfirm(!hideConfirm)}
-                                />}
-                                hide={hideConfirm}
+                                icon='lock'
+                                passIcon='confirm'
+                                secureTextEntry={hideConfirm?true:false}
+                                showConfirmPass={hideConfirm}
+                                setShowConfirmPass={setHideConfirm}
                             />
                         </View>
                         <TouchableOpacity onPress={handleSubmit(submit)}>
@@ -193,10 +183,10 @@ const styles = StyleSheet.create({
     title: {
         color: '#00806C',
         fontSize: 48,
-        letterSpacing: 10,
         fontWeight: 'bold',
         marginBottom: 30,
         textAlign: 'center',
+        letterSpacing:5
     },
     signIn: {
         width: 150,
