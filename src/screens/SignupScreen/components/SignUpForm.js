@@ -120,14 +120,15 @@ const Signup = (props) => {
                             <Field
                                 name='username'
                                 component={RenderField}
-                                label='Your email'
+                                label='Your name'
                                 icon='id-card'
                             />
                             <Field
                                 name='email'
                                 component={RenderField}
-                                label='Your name'
+                                label='Your email'
                                 icon='email'
+                                keyBoardType='email-address'
                             />
                             <Field
                                 name='password'
