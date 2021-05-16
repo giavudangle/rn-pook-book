@@ -13,7 +13,10 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 //Redux
 import { useDispatch } from "react-redux";
 // Action
-import { addToCart, removeFavorite } from "../../../../actions/favorite";
+import {fetchFavorite, removeFavorite } from "../../../../actions/favorite";
+import {addToCart} from '../../../../actions/cart'
+
+
 //Color
 import Colors from "../../../../utils/Colors";
 //number format
@@ -42,6 +45,7 @@ export const renderRightAction = (text, color, action, x, progress) => {
 
 export const FavoriteItem = ({ navigation, item }) => {
 
+
   const [isLoading, setIsLoading] = useState(true);
   const unmounted = useRef(false);
   useEffect(() => {
@@ -49,6 +53,8 @@ export const FavoriteItem = ({ navigation, item }) => {
       unmounted.current = true;
     };
   }, []);
+
+
   const dispatch = useDispatch();
   const addToCartAct = async () => {
     try {
@@ -64,6 +70,12 @@ export const FavoriteItem = ({ navigation, item }) => {
       throw err;
     }
   };
+
+  const _handleRemoveFavorite = async () => {
+    await dispatch(removeFavorite(item._id))
+    dispatch(fetchFavorite())
+  }
+
   const removeFavoriteAct = () => {
     Alert.alert(
       "Bỏ yêu thích",
@@ -75,7 +87,8 @@ export const FavoriteItem = ({ navigation, item }) => {
         },
         {
           text: "Đồng ý",
-          onPress: () => dispatch(removeFavorite(item._id)),
+          onPress: _handleRemoveFavorite,
+          
         },
       ]
     );
@@ -102,7 +115,6 @@ export const FavoriteItem = ({ navigation, item }) => {
   };
 
   console.log(item);
-
   return (
     <View>
       <Swipeable

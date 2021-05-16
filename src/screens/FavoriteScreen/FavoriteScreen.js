@@ -21,15 +21,25 @@ export const FavoriteScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
 
-  const loadFavoriteProducts = useCallback(() => {
+  const loadFavoriteProducts = useCallback(async () => {
     setIsRefreshing(true);
     try {
-      dispatch(fetchFavorite());
+      await dispatch(fetchFavorite());
     } catch (err) {
       alert(err.message);
     }
     setIsRefreshing(false);
   }, [dispatch, setIsRefreshing]);
+
+  // const loadFavoriteProducts =  async () => {
+  //   try {
+  //     await dispatch(fetchFavorite());
+  //   } catch (err) {
+  //     alert(err.message);
+  //   }
+  // }
+
+
   useEffect(() => {
     loadFavoriteProducts();
   }, [user.userid]);
@@ -37,9 +47,10 @@ export const FavoriteScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Header navigation={navigation} />
-      {loading ? (
-        <SkeletonLoadingCart />
-      ) : (
+      {loading ? (<SkeletonLoadingCart />)
+        
+       : 
+       (
         <FavoriteBody
           user={user}
           FavoriteProducts={FavoriteProducts}

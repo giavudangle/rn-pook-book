@@ -56,12 +56,16 @@ export const FavoriteBody = ({
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => {
             return <FavoriteItem navigation={navigation} item={item.item} />;
+          
           }}
         />
       )}
     </>
   );
 };
+
+
+
 
 FavoriteBody.propTypes = {
   user: PropTypes.object.isRequired,
