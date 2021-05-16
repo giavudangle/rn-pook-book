@@ -17,7 +17,7 @@ import {FIRST_OPEN} from '../../@types/firstTimeOpenActionTypes'
 
 
 const initialState = {
-  user : {  
+  user:{
     "userid": "6081a65c13f3e21db7724b3a",
     "name": "Vudang",
     "password": "$2a$10$EIL.gyeDLUlrcV7fqBbOOeq0UHa/dKxQsl8nygmPw3V10wiE7jOle",
@@ -25,9 +25,9 @@ const initialState = {
     "phone": "",
     "address": "",
     "profilePicture": "",
-    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDgxYTY1YzEzZjNlMjFkYjc3MjRiM2EiLCJpYXQiOjE2MTk1MTE2NjAsImV4cCI6MTYyMDExNjQ2MH0.CUPn3j76NBZ1vd1QclaOA-2NdcCp84hbNBSGhbS7n3U",
-    "loginAt": 1619511660945,
-    "expireTime": 1620116460945
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDgxYTY1YzEzZjNlMjFkYjc3MjRiM2EiLCJpYXQiOjE2MjExNTA2MTgsImV4cCI6MTYyMTc1NTQxOH0.87qcEcJu6kB5atsX6KzTyjSK7aPV40nuliMngCLb_vE",
+    "loginAt": 1621150618978,
+    "expireTime": 1621755418978
   },
   notification : UserMessages["user.login.success"],
   isLoading:false,
