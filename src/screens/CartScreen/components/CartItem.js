@@ -17,38 +17,37 @@ import CustomText from "../../../components/UI/CustomText";
 //PropTypes check
 import PropTypes from "prop-types";
 
-export class CartItem extends React.PureComponent {
-  render() {
-    const { item, onAdd, onDes, onRemove } = this.props;
-    const AddItemHandler = async () => {
-      await onAdd();
-    };
-    const sum = +item.item.price * +item.quantity;
-    const checkDesQuantity = async () => {
-      if (item.quantity == 1) {
-        Alert.alert(
-          "Xóa giỏ hàng",
-          "Bạn có chắc muốn xóa sản phẩm khỏi giỏ hàng?",
-          [
-            {
-              text: "Hủy",
-            },
-            {
-              text: "Đồng ý",
-              onPress: onRemove,
-            },
-          ]
-        );
-      } else {
-        await onDes();
-      }
-    };
-    console.log('====================================');
-    console.log(item);
-    console.log('====================================');
-    return (
-      
-      <View style={styles.container}>
+export const CartItem = ({item,onAdd,onDes,onRemove}) => {
+  const AddItemHandler = async () => {
+    await onAdd();
+  };
+  const sum = +item.item.price * +item.quantity;
+  const checkDesQuantity = async () => {
+    if (item.quantity == 1) {
+      Alert.alert(
+        "Xóa giỏ hàng",
+        "Bạn có chắc muốn xóa sản phẩm khỏi giỏ hàng?",
+        [
+          {
+            text: "Hủy",
+          },
+          {
+            text: "Đồng ý",
+            onPress: onRemove,
+          },
+        ]
+      );
+    } else {
+      await onDes();
+    }
+  };
+  console.log('====================================');
+  console.log(item);
+  console.log('====================================');
+
+
+  return(
+    <View style={styles.container}>
         <View style={styles.left}>
           <Image
             style={{
@@ -72,7 +71,7 @@ export class CartItem extends React.PureComponent {
             </View>
           </View>
           <CustomText style={{ color: Colors.grey, fontSize: 12 }}>
-            Powered by CodingWithVudang
+            Cung cấp bởi PookBook
           </CustomText>
           <NumberFormat price={sum.toString()} />
           <View style={styles.box}>
@@ -88,9 +87,10 @@ export class CartItem extends React.PureComponent {
           </View>
         </View>
       </View>
-    );
-  }
+  )
 }
+
+
 
 CartItem.propTypes = {
   item: PropTypes.object.isRequired,
