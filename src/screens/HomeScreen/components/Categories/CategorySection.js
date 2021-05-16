@@ -38,6 +38,7 @@ export const CategorySection = ({data, name, bg, navigation}) => {
 
   const trans = getItems()
 
+  
 
   return (
     trans ?
@@ -66,7 +67,7 @@ export const CategorySection = ({data, name, bg, navigation}) => {
           />
            <TouchableOpacity
           onPress={() => navigation.navigate("Product",{trans})}
-          style={{ marginHorizontal: 10 }}
+          style={{ marginHorizontal: 10,marginTop:10 }}
         >
           <BlurView tint='light' intensity={100} style={styles.seeMore}>
             <CustomText style={styles.seeMoreText}>Xem Thêm</CustomText>
@@ -93,7 +94,6 @@ const styles = StyleSheet.create({
   category: {
     height: height/1.2,
     marginHorizontal: 5,
-    marginVertical: 5,
     paddingVertical: 15,
     borderRadius: 5,
     overflow: "hidden",
