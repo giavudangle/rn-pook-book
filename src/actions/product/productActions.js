@@ -9,8 +9,8 @@ export const fetchProducts = () => {
       type: PRODUCT_LOADING,
     });
     try {
-      const response = await timeoutPromise(
-        fetch(`${API_URL}/product`, {
+      const response = await predictTimeoutPromise(
+        fetch(`${API_URL}/products`, {
           method: "GET",
         })
       );
@@ -24,7 +24,7 @@ export const fetchProducts = () => {
       const resData = await response.json();
       dispatch({
         type: FETCH_PRODUCTS,
-        products: resData.content,
+        products: resData.data,
       });
     } catch (err) {
       throw err;
