@@ -4,6 +4,8 @@ import { View, StyleSheet, Dimensions, Animated } from 'react-native';
 
 //Color
 import Colors from '../../utils/Colors';
+import { colorCheck } from '../../utils/Tools';
+
 //Redux
 import { useSelector } from 'react-redux';
 //Components
@@ -28,13 +30,28 @@ export const DetailScreen = (props) => {
 
 
 
+
+
   const FavoriteProducts = useSelector((state) =>
-  state.fav.favoriteList.some((product) => product._id === item._id),
+  state.fav.favoriteList.some((product) => product.item._id === item._id),
   );
 
   //color
   const type = item.color;
   const [modalVisible, setModalVisible] = useState(false);
+
+
+  useEffect(() => {
+    const checkColor = async () => {
+      const getColor = await colorCheck(type);
+      setColor(getColor);
+    };
+    checkColor();
+  }, [item]);
+
+  const _handleTrigger = () => {
+    
+  }
 
   return (
     <View style={styles.container}>
@@ -58,6 +75,7 @@ export const DetailScreen = (props) => {
       </Animated.ScrollView>
 
       <ActionButton
+        trigger={_handleTrigger}
         item={item}
         FavoriteProducts={FavoriteProducts}
         setShowSnackbar={setShowSnackbar}

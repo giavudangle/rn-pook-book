@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect,useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //Action
 
 import { addToCart } from '../../../../actions/cart';
-import { addFavorite } from '../../../../actions/favorite';
+import { addFavorite,removeFavorite } from '../../../../actions/favorite';
 
 
 
@@ -27,6 +27,7 @@ import Colors from '../../../../utils/Colors'
 
 //PropTypes check
 import PropTypes from 'prop-types';
+import { Button } from 'react-native-paper';
 
 export const ActionButton = ({
   user,
@@ -75,14 +76,29 @@ export const ActionButton = ({
           },
           {
             text: 'Đồng ý',
-            onPress: () => dispatch(removeFavorite(item._id)),
+            onPress: () => _handleRemoveItem(),
           },
         ],
       );
     } else {
       dispatch(addFavorite(item));
+      setFlag(!flag)
     }
   };
+
+  const _handleRemoveItem = async () => {
+    await dispatch(removeFavorite(item._id))
+    setFlag(!flag)
+  }
+
+  console.log('====================================');
+  console.log(flag);
+  console.log('====================================');
+
+
+  const [flag,setFlag] = useState(FavoriteProducts);
+
+
   return (
     <Animatable.View
       delay={1500}
@@ -94,7 +110,7 @@ export const ActionButton = ({
           onPress={toggleFavorite}
           style={[styles.favorite, { borderColor: color }]}
         >
-          {FavoriteProducts ? (
+          {flag ? (
             <LottieView
               source={require('../../../../components/IconAnimation/heart.json')}
               autoPlay={FavoriteProducts}
