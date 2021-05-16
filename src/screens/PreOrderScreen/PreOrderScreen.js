@@ -12,9 +12,10 @@ import Loader from "../../components/Loaders/Loader";
 export const PreOrderScreen = (props) => {
   const { cartItems,total, cartId } = props.route.params;
 
-  console.log('==============ROUITE PARAMShehe======================');
-  console.log(props.route.params);
-  console.log('====================================');
+  const {user} = props
+
+  console.log(props);
+
 
   const carts = cartItems
 
@@ -22,9 +23,9 @@ export const PreOrderScreen = (props) => {
   // Instead of separate to lots of fields
   // Combines them with single object
   //Can Toi uu lai
-  const [name, setName] = useState("");
-  const [phone, setPhone] = useState("");
-  const [address, setAddress] = useState("");
+  const [name, setName] = useState(user.name);
+  const [phone, setPhone] = useState(user.phone);
+  const [address, setAddress] = useState(user.address);
   const [province, setProvince] = useState("");
   const [town, setTown] = useState("");
   const getInfo = (province, town) => {
