@@ -70,12 +70,8 @@ const Signup = (props) => {
     })
 
     const state = useSelector(state => state)
-    console.log(state);
     const submit = async (values) => {
-        console.log("vo submit roi");
         try {
-            console.log("vo 222 roi");
-
             await dispacth(SignUpAct(values.username, values.email, values.password));
             reset();
             if (!unmounted.current) {
