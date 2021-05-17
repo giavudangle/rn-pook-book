@@ -29,7 +29,7 @@ const LocalNotification = () => {
       await Notifications.scheduleNotificationAsync({
         content: {
           title: "Ngày mới tốt lành bạn nhé ^^",
-          body: "Hãy lựa chọn sự may mắn, mua sự thành công cùng với CatTuong",
+          body: "Hãy lựa chọn sự may mắn, mua sự thành công cùng với POOKBOOK",
           data: { mySpecialData: "Some text" },
         },
         trigger: trigger,
