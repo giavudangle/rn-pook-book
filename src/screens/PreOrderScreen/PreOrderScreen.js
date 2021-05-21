@@ -1,66 +1,131 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { View, Text, ScrollView, StyleSheet } from 'react-native'
 import Address from './components/Address'
 import { Header, UserForm, TotalButton, SummaryOrder } from './components'
 
+import { useIsFocused } from '@react-navigation/native'
 import Colors from '../../utils/Colors'
 import Loader from "../../components/Loaders/Loader";
 
+import { useSelector } from 'react-redux'
 
 
 
-export const PreOrderScreen = (props) => {
-  const { cartItems,total, cartId } = props.route.params;
+export const PreOrderScreen = ({ route, navigation }) => {
+  // Get props via route params navigation
+  const { cartItems, total, cartId, user } = route.params;
+  // Destructuring
+  const { address, name, phone } = user;
 
-  const {user} = props
+  //Handlers & Intialize
+  const initializeForm = {
+    name,
+    phone,
+    address
+  }
 
-  console.log(props);
-
-
-  const carts = cartItems
-
-  // We need to optimize this screen
-  // Instead of separate to lots of fields
-  // Combines them with single object
-  //Can Toi uu lai
-  const [name, setName] = useState(user.name);
-  const [phone, setPhone] = useState(user.phone);
-  const [address, setAddress] = useState(user.address);
-  const [province, setProvince] = useState("");
-  const [town, setTown] = useState("");
-  const getInfo = (province, town) => {
-    setProvince(province);
-    setTown(town);
-  };
+  /**
+  |--------------------------------------------------
+  | Local State 
+  |--------------------------------------------------
+  */
+  const [deliveryInformation, setDeliveryInformation] = useState({
+    deliveryName: name,
+    deliveryAddress: address,
+    deliveryPhone: phone,
+    deliveryProvince: '',
+    deliveryTown: ''
+  })
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState('');
+  const unmounted = useRef(false);
+  const isFocused = useIsFocused();
 
-  const [error, setError] = useState("");
+  /**
+  |--------------------------------------------------
+  | Global State 
+  |--------------------------------------------------
+  */
+  const carts = useSelector(state => state.cart.cartItems)
 
-  const getReceiver = (name, phone, address) => {
-    setName(name);
-    setPhone(phone);
-    setAddress(address);
+
+  /**
+  |--------------------------------------------------
+  | Hooks Subscribing
+  |--------------------------------------------------
+  */
+  useEffect(() => {
+    return () => {
+      unmounted.current = true
+    };
+  }, []);
+
+  useEffect(() => {
+    if (isFocused) {
+      setLoading(true);
+      const interval = setInterval(() => {
+        setLoading(false)
+      }, 1000)
+      return () => clearInterval(interval);
+    }
+    return;
+  }, [isFocused]);
+
+  useEffect(() => {
+    if (carts.items.length === 0) {
+      navigation.goBack()
+    }
+  }, [carts.items])
+
+
+
+  // Setter Utils
+  const _setTownAndProvince = (province, town) => {
+    setDeliveryInformation({
+      ...deliveryInformation,
+      deliveryProvince: province,
+      deliveryTown: town
+    })
+
   };
-  const checkValidation = (error) => {
-    setError(error);
+
+
+  const _setReceiver = (fieldType,value) => {
+    switch(fieldType){
+      case 'name':
+        return setDeliveryInformation({...deliveryInformation,deliveryName:value})
+      case 'phone':
+        return setDeliveryInformation({...deliveryInformation,deliveryPhone:value})
+      default:
+        return setDeliveryInformation({...deliveryInformation,deliveryAddress:value})
+    }
   };
 
-  const fullAddress = `${address}, ${town} ,${province}`;
-  let orderItems = [];
-  cartItems.map((item) => {
-    orderItems.push({ item: item.item._id, quantity: item.quantity });
-  });
 
-  const toPayment = async () => {
+
+
+
+
+
+
+  const proceedToPayment = async () => {
+    //Composition Delivery
+    const fullAddress = `${deliveryInformation.deliveryAddress},${deliveryInformation.deliveryTown} ,${deliveryInformation.deliveryProvince}`;
+    const summaryOrders = cartItems.map((item) =>
+      ({ item: item.item._id, quantity: item.quantity }))
+      console.log('===============FULL ADDRESS=====================');
+      console.log(fullAddress);
+      console.log('====================================');
     try {
-      if (error == undefined && province.length !== 0 && town.length !== 0) {
-        props.navigation.navigate("Payment", {
+      if (error == undefined
+        && deliveryInformation.deliveryProvince.length !== 0
+        && deliveryInformation.deliveryTown.length !== 0) {
+        navigation.navigate("Payment", {
           screen: "PaymentScreen",
           params: {
             fullAddress,
-            orderItems,
-            name,
-            phone,
+            deliveryInformation,
+            summaryOrders,
             total,
             cartId,
             carts,
@@ -78,20 +143,23 @@ export const PreOrderScreen = (props) => {
 
   return (
     <View style={styles.container}>
-      <Header navigation={props.navigation} />
+      <Header navigation={navigation} />
       {loading ? (
         <Loader />
       ) : (
         <>
           <ScrollView>
             <UserForm
-              getReceiver={getReceiver}
-              checkValidation={checkValidation}
+              initialValues={initializeForm}
+              delivery={deliveryInformation}
+              setDelivery={_setReceiver}
+              checkValidation={(e) => setError(e)}
             />
-            <Address getInfo={getInfo} />
+            <Address setTownAndProvince={_setTownAndProvince} />
             <SummaryOrder cartItems={cartItems} total={total} />
           </ScrollView>
-          <TotalButton toPayment={toPayment} />
+          <TotalButton toPayment={proceedToPayment} />
+
         </>
       )}
     </View>
