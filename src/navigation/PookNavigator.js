@@ -1,5 +1,4 @@
 import React from 'react';
-
 /**
  * Navigation Core
  * 1. Stack
@@ -30,7 +29,6 @@ import Colors from '../utils/Colors';
 import CustomDrawer from './CustomDrawer'
 
 import CustomText from '../components/UI/CustomText'
-// Do it later
 
 //  Auth Screens
 
@@ -64,7 +62,7 @@ import { ResetPasswordScreen } from '../screens/ResetPasswordScreen/ResetPasswor
 
 /**
 |--------------------------------------------------
-| App Navigator
+| App Stack Navigator
 |--------------------------------------------------
 */
 
@@ -213,9 +211,12 @@ export const HomeStackScreen = () => (
   </HomeStack.Navigator>
 );
 
-// MaterialBottomTab
+/**
+|--------------------------------------------------
+| Material Bottom Tab
+|--------------------------------------------------
+*/
 const Tab = createMaterialBottomTabNavigator();
-
 export const TabScreen = () => {
   const carts = useSelector((state) => state.cart.cartItems);
   return (
@@ -268,7 +269,13 @@ export const TabScreen = () => {
   );
 };
 
-//Drawer Navigator
+/**
+|--------------------------------------------------
+| Drawer Navigator
+|--------------------------------------------------
+*/
+
+
 const Drawer = createDrawerNavigator();
 export const DrawerNavigator = () => {
   const user = useSelector((state) => state.auth.user);
@@ -331,7 +338,8 @@ export const DrawerNavigator = () => {
       ))}
 
       
-      {Object.keys(user).length === 0 ? ( // Use this for check current user has been logged in ?
+      {Object.keys(user).length === 0 ? ( 
+        // Use this for check current user has been logged in ?
         // if has not user => display login screen tab
         // else => display touchid & profile screen
         <Drawer.Screen

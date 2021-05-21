@@ -19,9 +19,17 @@ import {IS_FIRST_TIME} from '../@types/firstTimeOpenActionTypes'
 export const AppNavigator = () => {
   const [value, setValue] = useState(null);
   const dispatch = useDispatch();
-  
-  // Get Value connection is first time from store
   const isFirstOpen = useSelector((state) => state.auth.isFirstTime);
+  // Get Value connection is first time from store
+
+
+
+  /**
+  |--------------------------------------------------
+  | Deep linking event listener
+  | Listening all new url events coming from Expo
+  |--------------------------------------------------
+  */
   useEffect(() => {
     // listen for new url events coming from Expo
     Linking.addEventListener(
@@ -41,17 +49,16 @@ export const AppNavigator = () => {
     );
   }, [urlRedirect]);
 
+
+  /**
+  |--------------------------------------------------
+  | CHECK IS FIRST TIME OPEN APP & AUTO LOGOUT
+  |--------------------------------------------------
+  */
   useEffect(() => {
-
     const isFirstTime = async () => {
-      await AsyncStorage.clear();
+      //await AsyncStorage.clear(); // use this for testing
       const firstOpen = await AsyncStorage.getItem(IS_FIRST_TIME);
-      
-      console.log('================FIRST OPEN GET FROM ASYNCSTORAGE====================');
-      console.log(firstOpen);
-      console.log('====================================');
-
-
       setValue(firstOpen);
     };
     isFirstTime();
@@ -67,6 +74,12 @@ export const AppNavigator = () => {
     };
     autoLogout();
   }, []);
+
+  /**
+  |--------------------------------------------------
+  | AUTO LOGOUT SUBSCRIPTION
+  |--------------------------------------------------
+  */
   useEffect(() => {
     const autoLogout = async () => {
       const getUser = await AsyncStorage.getItem('user');
@@ -80,10 +93,10 @@ export const AppNavigator = () => {
     };
     autoLogout();
   }, []);
+
   return (
     <NavigationContainer ref={navigationRef}>
-      <Host>
-        
+      <Host>  
         {(isFirstOpen || value !== null) && <DrawerNavigator />}
         {(!isFirstOpen && value === null) && <IntroStackScreen />}
       </Host>

@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     elevation: 1,
   },
   price: {
-    fontSize: 13,
+    fontSize: 14,
   },
 });
 

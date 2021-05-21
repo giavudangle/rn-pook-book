@@ -78,12 +78,8 @@ export const DetailBody = ({ item, color }) => {
           <CustomText>{publisher.name}</CustomText>
         </View>
         <View style={styles.infoContainer}>
-          <CustomText>NPH: </CustomText>
-          <CustomText>{provider.name}</CustomText>
-        </View>
-        <View style={styles.infoContainer}>
           <CustomText>Số lượng còn lại : </CustomText>
-          <CustomText>{item.stocks}</CustomText>
+          <CustomText style={{color:Colors.red}}>{item.stocks}</CustomText>
         </View>
         <CustomText
           style={{

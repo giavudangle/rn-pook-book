@@ -14,7 +14,7 @@ import PropTypes from "prop-types";
 const { width } = Dimensions.get("window");
 // TextInput.defaultProps.allowFontScaling = false;
 
-const Address = ({ getInfo }) => {
+const Address = ({ setTownAndProvince }) => {
   const [selectedProvince, setselectedProvince] = useState("");
   const [selectedTown, setselectedTown] = useState("");
   const initialTown = [{ label: "Chọn Quận/Huyện", value: "1" }];
@@ -45,7 +45,7 @@ const Address = ({ getInfo }) => {
   );
   //get Address
   useEffect(() => {
-    getInfo(selectedProvince, selectedTown);
+    setTownAndProvince(selectedProvince, selectedTown);
   }, [selectedProvince, selectedTown]);
   //Show Icon
   const showIconPlatform =
@@ -91,7 +91,7 @@ const Address = ({ getInfo }) => {
 };
 
 Address.propTypes = {
-  getInfo: PropTypes.func.isRequired,
+  setTownAndProvince: PropTypes.func.isRequired,
 };
 
 const styles = StyleSheet.create({
