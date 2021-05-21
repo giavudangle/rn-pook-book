@@ -177,7 +177,7 @@ export const resetCart = (cartId) => {
     const user = getState().auth.user;
     try {
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/cart/${cartId}`, {
+        fetch(`${API_URL}/carts/${cartId}`, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",

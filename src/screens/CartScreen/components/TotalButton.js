@@ -63,10 +63,11 @@ const styles = StyleSheet.create({
   total: {
     width: '100%',
     position: 'absolute',
-    bottom: 20,
+    bottom: 0,
     left: 0,
     paddingHorizontal: 10,
     paddingVertical: 5,
+    backgroundColor:'white'
   },
   btn: {
     width: '100%',

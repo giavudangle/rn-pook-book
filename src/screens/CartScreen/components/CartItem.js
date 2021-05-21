@@ -18,10 +18,23 @@ import CustomText from "../../../components/UI/CustomText";
 import PropTypes from "prop-types";
 
 export const CartItem = ({item,onAdd,onDes,onRemove}) => {
-  const AddItemHandler = async () => {
-    await onAdd();
-  };
+
+
+  /**
+  |--------------------------------------------------
+  | Action Handlers
+  |--------------------------------------------------
+  */
   const sum = +item.item.price * +item.quantity;
+
+  const AddItemHandler = async () => {
+    if(+item.item.stocks - +item.quantity !==0) {
+      await onAdd();
+    }else {
+        Alert.alert('HẾT HÀNG','Không thể thêm sản phẩm vào giỏ hàng ')
+    }
+
+  };
   const checkDesQuantity = async () => {
     if (item.quantity == 1) {
       Alert.alert(
@@ -41,10 +54,6 @@ export const CartItem = ({item,onAdd,onDes,onRemove}) => {
       await onDes();
     }
   };
-  console.log('====================================');
-  console.log(item);
-  console.log('====================================');
-
 
   return(
     <View style={styles.container}>
@@ -64,14 +73,14 @@ export const CartItem = ({item,onAdd,onDes,onRemove}) => {
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <CustomText style={styles.title}>{item.item.title}</CustomText>
-            <View>
+            <View style={{justifyContent:'center',alignItems:'center'}}>
               <TouchableOpacity onPress={onRemove}>
                 <MaterialCommunityIcons name='close' size={20} color='#000' />
               </TouchableOpacity>
             </View>
           </View>
           <CustomText style={{ color: Colors.grey, fontSize: 12 }}>
-            Cung cấp bởi PookBook
+            Vận chuyển bởi PookBook
           </CustomText>
           <NumberFormat price={sum.toString()} />
           <View style={styles.box}>
@@ -109,10 +118,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingVertical: 10,
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: Colors.white,
     paddingHorizontal: 10,
     borderRadius: 5,
-    marginTop: 5,
+    //bottom:20,
   },
   left: {
     width: "35%",
@@ -120,13 +129,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   right: {
-    width: "65%",
+    width: "60%",
     paddingLeft: 15,
     height: 90,
     // overflow: "hidden",
   },
   title: {
     fontSize: 14,
+    width:'70%'
   },
   box: {
     flexDirection: "row",

@@ -18,19 +18,39 @@ const { height } = Dimensions.get('window');
 
 export const CartScreen = (props) => {
 
-
-  const [isRefreshing, setIsRefreshing] = useState(false);
+  /**
+  |--------------------------------------------------
+  | Global State
+  |--------------------------------------------------
+  */
   const user = useSelector((state) => state.auth.user);
   const carts = useSelector((state) => state.cart.cartItems);
-  //const loading = useSelector((state) => state.cart.isLoading);
-  const loading = false;
+  const loading = useSelector((state) => state.cart.isLoading);
+  
+
+  /**
+  |--------------------------------------------------
+  | Local State
+  |--------------------------------------------------
+  */
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+
+  /**
+   * Stuff
+   */
+  let total = 0; 
   const cartItems = carts.items;
   const cartId = carts._id;
-  const dispatch = useDispatch();
-
-  let total = 0; 
   carts.items.map((item) => (total+= +item.item.price * +item.quantity));
 
+
+  /**
+  |--------------------------------------------------
+  | Action Handlers
+  |--------------------------------------------------
+  */
+  const dispatch = useDispatch();
   const loadCarts = useCallback(async () => {
     setIsRefreshing(true);
     try {
@@ -41,6 +61,11 @@ export const CartScreen = (props) => {
     setIsRefreshing(false);
   },[dispatch,setIsRefreshing])
 
+  /**
+  |--------------------------------------------------
+  | Side Effect
+  |--------------------------------------------------
+  */
 
   useEffect(() => {
     loadCarts()
