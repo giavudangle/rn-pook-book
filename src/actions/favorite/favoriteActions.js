@@ -55,9 +55,6 @@ export const fetchFavorite = () => {
 }
 //Add Favorite
 export const addFavorite = (item) => {
-  console.log('====================================');
-  console.log(item._id);
-  console.log('====================================');
   return async (dispatch, getState) => {
     dispatch({
       type: FAVORITE_LOADING,

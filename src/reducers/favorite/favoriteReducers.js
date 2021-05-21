@@ -32,14 +32,12 @@ export const favoriteReducer = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
-        favoriteList:[...state.favoriteList,action.addItem]
-        
+        favoriteList:[...state.favoriteList,action.addItem]       
       };
     case REMOVE_FAVORITE:
-   
       return {
         ...state,
-        favoriteList: [...state.favoriteList.filter((item) => item._id !==action.itemId)],
+        favoriteList: [...state.favoriteList.filter((q) => q.item._id !==action.itemId)],
         isLoading: false,
       };
     default:
