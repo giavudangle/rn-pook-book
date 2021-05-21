@@ -27,7 +27,6 @@ import Colors from '../../../../utils/Colors'
 
 //PropTypes check
 import PropTypes from 'prop-types';
-import { Button } from 'react-native-paper';
 
 export const ActionButton = ({
   user,
@@ -38,8 +37,20 @@ export const ActionButton = ({
   setModalVisible,
   setMessage,
 }) => {
-  const dispatch = useDispatch();
+
+  /**
+  |--------------------------------------------------
+  | Global State 
+  |--------------------------------------------------
+  */
   const cartLoading = useSelector((state) => state.cart.isLoading);
+
+
+  /**
+  |--------------------------------------------------
+  | Local State 
+  |--------------------------------------------------
+  */
   const unmounted = useRef(false);
   useEffect(() => {
     return () => {
@@ -47,20 +58,39 @@ export const ActionButton = ({
     };
   }, []);
 
-  //Set Colors
+
+  /**
+  |--------------------------------------------------
+  | Action Handlers
+  |--------------------------------------------------
+  */
+  const dispatch = useDispatch();
+
+  const validateAddToCart = () => {
+    return +item.stocks > 0;
+  }
+  const _handleRemoveItem = async () => {
+    await dispatch(removeFavorite(item._id))
+  }
+
   const addToCartAct = async () => {
-    if (Object.keys(user).length === 0) {
-      setMessage(Messages['user.login.require']);
-      setShowSnackbar(true);
-    } else {
-      try {
-        dispatch(addToCart(item, user.token));
-        setModalVisible(true);
-      } catch (err) {
-        throw err;
+    if(validateAddToCart()){
+      if (Object.keys(user).length === 0) {
+        setMessage(Messages['user.login.require']);
+        setShowSnackbar(true);
+      } else {
+        try {
+          dispatch(addToCart(item, user.token));
+          setModalVisible(true);
+        } catch (err) {
+          throw err;
+        }
       }
+    } else {
+      Alert.alert('HẾT HÀNG','PookBook sẽ liên hệ cho bạn khi có hàng')
     }
   };
+ 
   const toggleFavorite = () => {
     if (Object.keys(user).length === 0) {
       setMessage(Messages['user.login.require']);
@@ -82,22 +112,8 @@ export const ActionButton = ({
       );
     } else {
       dispatch(addFavorite(item));
-      setFlag(!flag)
     }
   };
-
-  const _handleRemoveItem = async () => {
-    await dispatch(removeFavorite(item._id))
-    setFlag(!flag)
-  }
-
-  console.log('====================================');
-  console.log(flag);
-  console.log('====================================');
-
-
-  const [flag,setFlag] = useState(FavoriteProducts);
-
 
   return (
     <Animatable.View
@@ -110,7 +126,7 @@ export const ActionButton = ({
           onPress={toggleFavorite}
           style={[styles.favorite, { borderColor: color }]}
         >
-          {flag ? (
+          {FavoriteProducts ? (
             <LottieView
               source={require('../../../../components/IconAnimation/heart.json')}
               autoPlay={FavoriteProducts}

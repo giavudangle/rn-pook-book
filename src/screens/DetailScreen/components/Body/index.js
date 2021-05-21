@@ -79,7 +79,7 @@ export const DetailBody = ({ item, color }) => {
         </View>
         <View style={styles.infoContainer}>
           <CustomText>Số lượng còn lại : </CustomText>
-          <CustomText>{item.stocks}</CustomText>
+          <CustomText style={{color:Colors.red}}>{item.stocks}</CustomText>
         </View>
         <CustomText
           style={{

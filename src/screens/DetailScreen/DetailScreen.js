@@ -1,57 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { View, StyleSheet, Dimensions, Animated } from 'react-native';
-
-
 //Color
 import Colors from '../../utils/Colors';
 import { colorCheck } from '../../utils/Tools';
-
 //Redux
 import { useSelector } from 'react-redux';
-//Components
+//Global Component
 import SnackBar from '../../components/Notification/SnackBar';
-
+// Local Component
 import {Header} from './components/Header'
 import {DetailBody} from './components/Body'
 import { Comments } from './components/Comments';
-
 import {ActionButton, ModalComponent} from './components/ModalAction'
 
 
 
 
 export const DetailScreen = (props) => {
-  const scrollY = new Animated.Value(0);
-  const user = useSelector((state) => state.auth.user);
+
+  /**
+  |--------------------------------------------------
+  | Props
+  |--------------------------------------------------
+  */
   const { item } = props.route.params;
-  const [message, setMessage] = useState('Hello Vudang');
-  const [showSnackbar, setShowSnackbar] = useState(true);
-  const [color, setColor] = useState(Colors.leave_green);
 
+  /**
+  |--------------------------------------------------
+  | Local State
+  |--------------------------------------------------
+  */
+  const scrollY = new Animated.Value(0);
+  const [message, setMessage] = useState('');
+  const [showSnackbar, setShowSnackbar] = useState(false);
+  const [modalVisible, setModalVisible] = useState(false);
 
-
-
-
+  /**
+  |--------------------------------------------------
+  | Global State
+  |--------------------------------------------------
+  */
+  const user = useSelector((state) => state.auth.user);
   const FavoriteProducts = useSelector((state) =>
   state.fav.favoriteList.some((product) => product.item._id === item._id),
   );
-
-  //color
-  const type = item.color;
-  const [modalVisible, setModalVisible] = useState(false);
-
-
-  useEffect(() => {
-    const checkColor = async () => {
-      const getColor = await colorCheck(type);
-      setColor(getColor);
-    };
-    checkColor();
-  }, [item]);
-
-  const _handleTrigger = () => {
-    
-  }
 
   return (
     <View style={styles.container}>
@@ -70,23 +62,22 @@ export const DetailScreen = (props) => {
           { useNativeDriver: false },
         )}
       >
-        <DetailBody item={item} color={color} />
+        <DetailBody item={item} color={Colors.primary} />
         <Comments />
       </Animated.ScrollView>
 
       <ActionButton
-        trigger={_handleTrigger}
         item={item}
         FavoriteProducts={FavoriteProducts}
         setShowSnackbar={setShowSnackbar}
         setModalVisible={setModalVisible}
         setMessage={setMessage}
         user={user}
-        color={color}
+        color={Colors.primary}
       /> 
       <ModalComponent
        item={item}
-       color={color}
+       color={Colors.primary}
        modalVisible={modalVisible}
        setModalVisible={setModalVisible}
        navigation={props.navigation}
