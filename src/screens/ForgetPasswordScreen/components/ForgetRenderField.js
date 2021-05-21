@@ -1,35 +1,40 @@
 import React from 'react';
-import { View} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import { View } from 'react-native';
+import { TextInput } from 'react-native-paper';
+import CustomText from '../../../components/UI/CustomText';
 //Colors
 import Colors from '../../../utils/Colors';
 export default function ForgetRenderField({
-        label,
-        iconLeft,
-        iconRight,
-        secureTextEntry
-    }) {
+    label,
+    keyboardType,
+    icon,
+    secureTextEntry,
+    meta: { touched, error, warning },
+    input: { onChange, ...restInput }
+}) {
     return (
-        <View> 
+        <View>
             <TextInput
-                style={{backgroundColor:'#fff'}}
-                mode='flat'
                 placeholder={label}
-                left={<TextInput.Icon 
-                    name={iconLeft}
+                style={{ backgroundColor: '#fff' }}
+                mode='flat'
+                keyboardType={keyboardType}
+                left={<TextInput.Icon
+                    name={icon}
                     size={24}
                     color={Colors.light_green}
-                    style={{paddingLeft:10}}
+                    style={{ paddingLeft: 10 }}
                 />}
-                theme={{colors:{primary:Colors.leave_green}}}
-                right={<TextInput.Icon 
-                    name={iconRight}
-                    size={24}
-                    color={Colors.light_green}
-                    style={{paddingLeft:10}}
-                />}
+                theme={{ colors: { primary: Colors.leave_green } }}
                 secureTextEntry={secureTextEntry}
+                {...restInput}
             />
+            {touched && ((error && (
+                <CustomText style={{ color: Colors.red }}>{error}</CustomText>
+            )) || (warning && (
+                <CustomText style={{ color: Colors.red }}>{warning}</CustomText>
+            ))
+            )}
         </View>
     )
 }

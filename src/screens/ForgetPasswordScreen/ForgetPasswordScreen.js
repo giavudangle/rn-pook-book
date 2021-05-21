@@ -1,71 +1,121 @@
 import { Ionicons } from '@expo/vector-icons';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
     View,
     Text,
     TouchableOpacity,
-    StyleSheet
+    StyleSheet,
+    ActivityIndicator,
+    SafeAreaView
 
 } from 'react-native';
 import CustomText from '../../components/UI/CustomText';
 //Colors
 import Colors from '../../utils/Colors';
-import ForgetRenderField from './components/ForgetRenderField'
+import ForgetRenderField from './components/ForgetRenderField';
 
-export const ForgetPasswordScreen = ({navigation}) => {
+//reducers
+import { ForgetPassword } from '../../actions/auth'
+
+//redux
+import { Field, reduxForm } from 'redux-form';
+import { useDispatch, useSelector } from 'react-redux';
+
+//Validation
+const validate = (values) => {
+    const errors = {};
+    if (!values.email) {
+        errors.email = 'Email không được bỏ trống';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Email không hợp lệ';
+    }
+    return errors;
+}
+
+const SignUpForm = (props) => {
+    const { handleSubmit, reset } = props;
+    const loading = useSelector((state) => state.auth.isLoading);
+    const dispatch = useDispatch();
+    const unmounted = useRef(false);
+    useEffect(() => {
+        return () => {
+            unmounted.current = true;
+        }
+    }, []);
+    const submit = async (values) => {
+        try {
+            await dispatch(ForgetPassword(values.email));
+            if (!unmounted.current) {
+                props.navigation.navigate('FinishResetPasswordScreen', {
+                    value: values,
+                })
+            }
+        } catch (err) {
+            alert(err);
+        }
+    }
     return (
-        <View>
+        <SafeAreaView>
             <View style={styles.container} />
             <View>
                 <TouchableOpacity
                     style={{
                         position: 'absolute',
-                        zIndex:10,
-                        left:10,
-                        top:40,
+                        zIndex: 10,
+                        left: 10,
+                        top: 40,
                     }}
-                    onPress={()=>navigation.goBack()}
-                    >
+                    onPress={() => props.navigation.goBack()}
+                >
                     <Ionicons name='ios-arrow-back' size={40} color={Colors.light_green} />
                 </TouchableOpacity>
-                
+
                 <View style={styles.content}>
                     <CustomText style={styles.title}>Forget Password</CustomText>
-                    <ForgetRenderField
-                        label='Your email'
-                        iconLeft='email'
+                    <Field
+                        name='email'
+                        keyboardType='email-address'
+                        icon='email'
+                        label='Email'
+                        component={ForgetRenderField}
                     />
                 </View>
 
-                <TouchableOpacity 
-                    onPress={()=>{navigation.navigate('FinishResetPasswordScreen')}}
-                >
+                <TouchableOpacity onPress={(handleSubmit(submit))}>
                     <View style={styles.btn}>
-                        <Text style={{
-                            color:'#FFFFFF',
-                            fontWeight:'bold',                       
-                            }}>NEXT</Text>
+                        {loading ? (
+                            <ActivityIndicator size='small' color='#fff' />
+                        ) : (
+                            <CustomText style={{
+                                color: '#FFFFFF',
+                                fontWeight: 'bold',
+                            }}>NEXT</CustomText>
+                        )
+                        }
                     </View>
                 </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     )
 }
-
+export const ForgetPasswordScreen = reduxForm({
+    form: 'contact', //a unique identifier for this form
+    validate, // <-------- validation func given to redux-form
+})(SignUpForm)
 const styles = StyleSheet.create({
     container: {
-        flex:1,
-        backgroundColor:'#fff',
+        flex: 1,
+        backgroundColor: '#fff',
     },
-    content:{
-        paddingHorizontal:20,
-        marginTop:'20%',
+    content: {
+        paddingHorizontal: 20,
+        marginTop: '20%',
     },
     title: {
         color: Colors.light_green,
         fontSize: 40,
         fontWeight: 'bold',
-        marginBottom:24,
+        marginBottom: 24,
     },
     btn: {
         width: "90%",
@@ -76,6 +126,6 @@ const styles = StyleSheet.create({
         flexDirection: "row",
         backgroundColor: '#00806C',
         marginTop: 20,
-        alignSelf:'center',
+        alignSelf: 'center',
     }
 })
