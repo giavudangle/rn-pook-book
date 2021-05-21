@@ -13,6 +13,9 @@ import { LOGOUT } from "../../@types/authActionTypes";
 const emptyCart = {
   items: [],
 };
+
+
+
 const initialState = {
   cartItems: emptyCart,
   isLoading: false,

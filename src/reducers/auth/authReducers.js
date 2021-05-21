@@ -24,24 +24,27 @@ const initialState = {
 
 
 
-// const initialState = {
-//   user : {  
-//     "userid": "6081a65c13f3e21db7724b3a",
-//     "name": "Vudang",
-//     "password": "$2a$10$EIL.gyeDLUlrcV7fqBbOOeq0UHa/dKxQsl8nygmPw3V10wiE7jOle",
-//     "email": "vudang@gmail.com",
-//     "phone": "",
-//     "address": "",
-//     "profilePicture": "",
-//     "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDgxYTY1YzEzZjNlMjFkYjc3MjRiM2EiLCJpYXQiOjE2MTk1MTE2NjAsImV4cCI6MTYyMDExNjQ2MH0.CUPn3j76NBZ1vd1QclaOA-2NdcCp84hbNBSGhbS7n3U",
-//     "loginAt": 1619511660945,
-//     "expireTime": 1620116460945
-//   },
-//   notification : UserMessages["user.login.success"],
-//   isLoading:false,
-//   error:false
 
-// }
+const initialState = {
+  user:{ 
+    "userid": "6081a65c13f3e21db7724b3a",
+    "name": "Đặng Lê Gia Vũ",
+    "password": "$2a$10$EIL.gyeDLUlrcV7fqBbOOeq0UHa/dKxQsl8nygmPw3V10wiE7jOle",
+    "email": "vudang@gmail.com",
+    "phone": "0967781273",
+    "address": "67 Huỳnh Thiện Lộc",
+    "profilePicture": "",
+    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MDgxYTY1YzEzZjNlMjFkYjc3MjRiM2EiLCJpYXQiOjE2MjE1Njg4NTgsImV4cCI6MTYyMjE3MzY1OH0.Ai_T3mNN9l5tgHBDkuQHwJe7OO_FmcTOZqSBH6aR9QQ",
+    "loginAt": 1621568858063,
+    "expireTime": 1622173658063
+  },
+  notification : UserMessages["user.login.success"],
+  isLoading:false,
+  error:false,
+  isFirstTime:false
+
+}
+
 
 export const authReducer = (state = initialState,action) => {
   switch(action.type){

@@ -1,185 +1,154 @@
-import React,{useState,useEffect} from 'react'
-import { View, Text,ScrollView,StyleSheet,TouchableOpacity } from 'react-native'
+import React, { useState, useEffect, useRef } from 'react'
+import { View, Text, ScrollView, StyleSheet, TouchableOpacity } from 'react-native'
 
-import {Header,PaymentBody,PaymentFormView} from './components'
+import { Header, PaymentBody, PaymentFormView } from './components'
 import Colors from '../../utils/Colors'
-import {SummaryOrder} from '../PreOrderScreen/components'
+import { SummaryOrder } from '../PreOrderScreen/components'
 import CustomText from '../../components/UI/CustomText';
 
-const carts = [
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142502/dvjh8mwvnf5atgpqqzon.jpg",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "5800",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  },
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142502/dvjh8mwvnf5atgpqqzon.jpg",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "999999",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  },
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "999999",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  },
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "999999",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  },
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "999999",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  },
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "999999",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  }
-]
+import Loader from '../../components/Loaders/Loader';
 
-const total = 99999
+import { useSelector, useDispatch } from 'react-redux'
+import { createOrder } from '../../actions/order/orderActions'
+import { resetCart } from '../../actions/cart'
 
-export const PaymentScreen = (props) => {
-
-  let token = props.route.params.token
-  const [payByCard, setPayByCard] = useState(false);
-  const paymentMethod = payByCard ? 'Credit Card' : 'Cash';
-
+export const PaymentScreen = ({ route, navigation }) => {
+  /**
+  |--------------------------------------------------
+  | Route parameters & Stuff
+  |--------------------------------------------------
+  */
+  let token = route.params.token
   const {
-    orderItems,
-    name,
-    phone,
+    summaryOrders,
+    deliveryInformation,
     total,
     cartId,
     fullAddress,
-  } = props.route.params;
+  } = route.params;
+
+  const { deliveryName, deliveryPhone } = deliveryInformation;
+
+  /**
+  |--------------------------------------------------
+  | Local State
+  |--------------------------------------------------
+  */
+  const [loading, setLoading] = useState(true);
+  const [payByCard, setPayByCard] = useState(false);
+  const unmounted = useRef(false);
+
+  /**
+  |--------------------------------------------------
+  | Global State
+  |--------------------------------------------------
+  */
+  const carts = useSelector(state => state.cart.cartItems)
+  const cartLoading = useSelector(state => state.cart.cartLoading)
+  const orderLoading = useSelector(state => state.order.orderLoading)
+  const dispatch = useDispatch();
 
 
-  const addOrder = async () => {
+  /**
+  |--------------------------------------------------
+  | Sides Effect
+  |--------------------------------------------------
+  */
+  useEffect(() => {
+    return () => {
+      unmounted.current = true;
+    };
+  }, []);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setLoading(false);
+    }, 1000);
+    if (!unmounted.current) {
+      return () => clearInterval(interval);
+    }
+  });
+  useEffect(() => {
+    setPayByCard(token ? true : false);
+  }, [token]);
+
+
+  /**
+  |--------------------------------------------------
+  | Action Handler
+  |--------------------------------------------------
+  */
+
+  const _handleAddOrder = async () => {
     try {
-   
-      props.navigation.navigate('FinishOrder');
+      const paymentMethod = payByCard ? 'CC' : 'COD';
+      console.log('====================================');
+      console.log(paymentMethod);
+      console.log('====================================');
+      let chargeToken = payByCard ? token : {};
+      dispatch(
+        createOrder(
+          chargeToken,
+          summaryOrders,
+          deliveryName,
+          total,
+          paymentMethod,
+          fullAddress,
+          deliveryPhone
+        )
+      )
+      dispatch(resetCart(cartId))
+      navigation.navigate('FinishOrder');
     } catch (err) {
       alert(err);
     }
   };
-
-  useEffect(() => {
-    setPayByCard(token ? true : false)
   
-  }, [token]);
+  /**
+  |--------------------------------------------------
+  | Render JSX
+  |--------------------------------------------------
+  */
 
 
   return (
-      <ScrollView>
-            <Header navigation={props.navigation}/>
-
+    <ScrollView>
+      <Header navigation={navigation} />
+      {loading || cartLoading || orderLoading ? (
+        <Loader />
+      ) : (
+        <>
+          <ScrollView>
             <PaymentBody
-              navigation={props.navigation}
+              navigation={navigation}
               payByCard={payByCard}
               setPayByCard={setPayByCard}
               token={token}
             />
             <SummaryOrder cartItems={carts.items} total={total} />
-            <View style={styles.total}>
-            <View style={styles.orderButton}>
-              <TouchableOpacity onPress={addOrder}>
+          </ScrollView>
+          <View style={styles.total}>
+            <TouchableOpacity onPress={_handleAddOrder}>
+
+              <View style={styles.orderButton}>
                 <CustomText style={{ color: '#fff', fontSize: 16 }}>
                   Tiến hành đặt hàng
                 </CustomText>
-              </TouchableOpacity>
-            </View>
+              </View>
+            </TouchableOpacity>
+
           </View>
-      </ScrollView>
-          
+        </>
+      )}
+    </ScrollView>
+
   )
 }
+
+/**
+|--------------------------------------------------
+| Custom Styles
+|--------------------------------------------------
+*/
 
 const styles = StyleSheet.create({
   container: { flex: 1, backgroundColor: Colors.white },
@@ -198,7 +167,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 5,
-    top:10
+    top: 10
   },
 });
 

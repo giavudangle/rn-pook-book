@@ -25,7 +25,7 @@ export const SignUp = (name, email, password) => {
       type: AUTH_LOADING,
     });
     try {
-      const response = await timeoutPromise(
+      const response = await predictTimeoutPromise(
         fetch(`${API_URL}/user/register`, {
           headers: {
             Accept: 'application/json',
@@ -63,7 +63,7 @@ export const Login = (email, password) => {
     });
     const pushToken = await AskingExpoToken();
     try {
-      const response = await timeoutPromise(
+      const response = await predictTimeoutPromise(
         fetch(`${API_URL}/user/login`, {
           headers: {
             Accept: 'application/json',
@@ -104,7 +104,7 @@ export const EditInfo = (phone, address) => {
       type: AUTH_LOADING,
     });
     try {
-      const response = await timeoutPromise(
+      const response = await predictTimeoutPromise(
         fetch(`${API_URL}/user/${user.userid}`, {
           headers: {
             Accept: 'application/json',
@@ -151,7 +151,7 @@ export const UploadProfilePic = (imageUri, filename, type) => {
       type,
     });
     try {
-      const response = await timeoutPromise(
+      const response = await predictTimeoutPromise(
         fetch(`${API_URL}/user/photo/${user.userid}`, {
           headers: {
             Accept: 'application/json',
@@ -186,7 +186,7 @@ export const ForgetPassword = (email) => {
       type: AUTH_LOADING,
     });
     try {
-      const response = await timeoutPromise(
+      const response = await predictTimeoutPromise(
         fetch(`${API_URL}/user/reset_pw`, {
           headers: {
             Accept: 'application/json',
@@ -219,7 +219,7 @@ export const ResetPassword = (password, url) => {
       type: AUTH_LOADING,
     });
     try {
-      const response = await timeoutPromise(
+      const response = await predictTimeoutPromise(
         fetch(
           `${API_URL}/user/receive_new_password/${url.userid}/${url.token}`,
           {
