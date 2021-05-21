@@ -50,7 +50,6 @@ export const CategorySection = ({data, name, bg, navigation}) => {
         </View>
         <View style={styles.productList}>
           <FlatList
-            
             data={getItems().slice(0,4)}
             keyExtractor={(item) => item._id}
             numColumns={2}
@@ -98,6 +97,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     overflow: "hidden",
     backgroundColor:Colors.white,
+    bottom:30
   },
   background: {
     position: "absolute",
@@ -131,7 +131,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor:'red'
+    backgroundColor:'red',
+    bottom:20
   },
   seeMoreText: {
     fontSize: 14,

@@ -68,8 +68,7 @@ export const HomeScreen = ({ navigation }) => {
           ? (<SkeletonLoading />)
           : (
             <SafeAreaView style={styles.container}>
-              <Header
-                
+              <Header               
                 products={products}
                 navigation={navigation}
               />
@@ -137,4 +136,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingBottom: 20,
   },
+  banner:{
+    marginBottom:50
+  }
 });

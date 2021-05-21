@@ -14,13 +14,13 @@ import {AUTH_LOADING,
 //types
 import {FIRST_OPEN} from '../../@types/firstTimeOpenActionTypes'
 
-const initialState = {
-  user: {},
-  notification: {},
-  isLoading: false,
-  error: false,
-  isFirstTime: false
-};
+// const initialState = {
+//   user: {},
+//   notification: {},
+//   isLoading: false,
+//   error: false,
+//   isFirstTime: false
+// };
 
 
 
