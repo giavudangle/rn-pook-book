@@ -66,10 +66,6 @@ export const createOrder = (
       type: ORDER_LOADING,
     });
     const user = getState().auth.user;
-
-    console.log('====================================');
-    console.log(chargeToken,paymentMethod,name);
-    console.log('====================================');
     try {
       const response = await predictTimeoutPromise(
         axios.post(`${API_URL}/orders`, {

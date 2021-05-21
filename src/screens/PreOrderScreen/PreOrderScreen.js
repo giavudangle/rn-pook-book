@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { View, Text, ScrollView, StyleSheet } from 'react-native'
+import { View, Alert, ScrollView, StyleSheet } from 'react-native'
 import Address from './components/Address'
 import { Header, UserForm, TotalButton, SummaryOrder } from './components'
 
@@ -113,9 +113,7 @@ export const PreOrderScreen = ({ route, navigation }) => {
     const fullAddress = `${deliveryInformation.deliveryAddress},${deliveryInformation.deliveryTown} ,${deliveryInformation.deliveryProvince}`;
     const summaryOrders = cartItems.map((item) =>
       ({ item: item.item._id, quantity: item.quantity }))
-      console.log('===============FULL ADDRESS=====================');
-      console.log(fullAddress);
-      console.log('====================================');
+     
     try {
       if (error == undefined
         && deliveryInformation.deliveryProvince.length !== 0
@@ -132,7 +130,7 @@ export const PreOrderScreen = ({ route, navigation }) => {
           },
         });
       } else {
-        alert("Vui lòng nhập đầy đủ thông tin.");
+        Alert.alert("Không đủ thông tin","Vui lòng nhập đầy đủ thông tin.");
       }
     } catch (err) {
       throw err;

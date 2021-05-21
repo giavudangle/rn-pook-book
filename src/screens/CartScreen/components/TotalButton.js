@@ -66,8 +66,7 @@ const styles = StyleSheet.create({
     bottom: 0,
     left: 0,
     paddingHorizontal: 10,
-    paddingVertical: 5,
-    backgroundColor:'white'
+    paddingVertical: 0,
   },
   btn: {
     width: '100%',
