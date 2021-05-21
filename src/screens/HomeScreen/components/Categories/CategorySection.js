@@ -5,6 +5,7 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
+  Dimensions
 } from "react-native";
 import { ProductItem } from "../Product/ProductItem";
 import CustomText from "../../../../components/UI/CustomText";
@@ -13,6 +14,7 @@ import { BlurView } from "expo-blur";
 //PropTypes check
 import PropTypes from "prop-types";
 
+const {width,height} = Dimensions.get('screen')
 
 export const CategorySection = ({data, name, bg, navigation}) => {
 
@@ -39,16 +41,17 @@ export const CategorySection = ({data, name, bg, navigation}) => {
   
 
   return (
-    trans.length > 0
-    ?(
-<View style={[styles.category]}>
+    trans ?
+    (
+    <View style={[styles.category]}>
         {/* <Image style={styles.background} source={bg} blurRadius={10} /> */}
         <View style={styles.titleHeader}>
           <CustomText style={styles.title}>{name}</CustomText>
         </View>
         <View style={styles.productList}>
           <FlatList
-            data={getItems()}
+            
+            data={getItems().slice(0,4)}
             keyExtractor={(item) => item._id}
             numColumns={2}
             columnWrapperStyle={styles.list}
@@ -62,8 +65,7 @@ export const CategorySection = ({data, name, bg, navigation}) => {
               );
             }}
           />
-        </View>
-        <TouchableOpacity
+           <TouchableOpacity
           onPress={() => navigation.navigate("Product",{trans})}
           style={{ marginHorizontal: 10,marginTop:10 }}
         >
@@ -71,10 +73,10 @@ export const CategorySection = ({data, name, bg, navigation}) => {
             <CustomText style={styles.seeMoreText}>Xem Thêm</CustomText>
           </BlurView>
         </TouchableOpacity>
+        </View>
+       
       </View>
-    )
-    :<></>
-    
+    ) : <></>
   )
 }
 
@@ -90,13 +92,12 @@ CategorySection.propTypes = {
 
 const styles = StyleSheet.create({
   category: {
-    height: 650,
+    height: height/1.2,
     marginHorizontal: 5,
     paddingVertical: 15,
     borderRadius: 5,
     overflow: "hidden",
     backgroundColor:Colors.white,
-    marginBottom:-50
   },
   background: {
     position: "absolute",

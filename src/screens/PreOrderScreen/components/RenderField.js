@@ -15,7 +15,9 @@ export default renderField = ({
   checkValidation,
   meta: { touched, error, warning },
   input: { ...restInput },
+  ...custom
 }) => {
+
   useEffect(() => {
     checkValidation(error);
   }, [onChangeText]);

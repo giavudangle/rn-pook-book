@@ -37,6 +37,9 @@ export const fetchFavorite = () => {
         if (filterUserFavorite.length > 0) {
           items = filterUserFavorite[0].items;
         }
+        console.log('===============favorite actions=====================');
+        console.log(items);
+        console.log('====================================');
      
         dispatch({
           type: FETCH_FAVORITE,
@@ -82,9 +85,16 @@ export const addFavorite = (item) => {
         });
         throw new Error("Something went wrong!");
       }
+
+      const bestItem ={
+        item:{}
+      }
+
+      bestItem.item = item
+
       dispatch({
         type: ADD_FAVORITE,
-        addItem: item,
+        addItem: bestItem,
       });
     } catch (err) {
       throw err;
@@ -92,6 +102,7 @@ export const addFavorite = (item) => {
   };
 };
 export const removeFavorite = (id) => {
+  console.log(id);
   return async (dispatch, getState) => {
     dispatch({
       type: FAVORITE_LOADING,

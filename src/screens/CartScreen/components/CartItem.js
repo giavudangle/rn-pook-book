@@ -17,38 +17,46 @@ import CustomText from "../../../components/UI/CustomText";
 //PropTypes check
 import PropTypes from "prop-types";
 
-export class CartItem extends React.PureComponent {
-  render() {
-    const { item, onAdd, onDes, onRemove } = this.props;
-    const AddItemHandler = async () => {
+export const CartItem = ({item,onAdd,onDes,onRemove}) => {
+
+
+  /**
+  |--------------------------------------------------
+  | Action Handlers
+  |--------------------------------------------------
+  */
+  const sum = +item.item.price * +item.quantity;
+
+  const AddItemHandler = async () => {
+    if(+item.item.stocks - +item.quantity !==0) {
       await onAdd();
-    };
-    const sum = +item.item.price * +item.quantity;
-    const checkDesQuantity = async () => {
-      if (item.quantity == 1) {
-        Alert.alert(
-          "Xóa giỏ hàng",
-          "Bạn có chắc muốn xóa sản phẩm khỏi giỏ hàng?",
-          [
-            {
-              text: "Hủy",
-            },
-            {
-              text: "Đồng ý",
-              onPress: onRemove,
-            },
-          ]
-        );
-      } else {
-        await onDes();
-      }
-    };
-    console.log('====================================');
-    console.log(item);
-    console.log('====================================');
-    return (
-      
-      <View style={styles.container}>
+    }else {
+        Alert.alert('HẾT HÀNG','Không thể thêm sản phẩm vào giỏ hàng ')
+    }
+
+  };
+  const checkDesQuantity = async () => {
+    if (item.quantity == 1) {
+      Alert.alert(
+        "Xóa giỏ hàng",
+        "Bạn có chắc muốn xóa sản phẩm khỏi giỏ hàng?",
+        [
+          {
+            text: "Hủy",
+          },
+          {
+            text: "Đồng ý",
+            onPress: onRemove,
+          },
+        ]
+      );
+    } else {
+      await onDes();
+    }
+  };
+
+  return(
+    <View style={styles.container}>
         <View style={styles.left}>
           <Image
             style={{
@@ -65,14 +73,14 @@ export class CartItem extends React.PureComponent {
             style={{ flexDirection: "row", justifyContent: "space-between" }}
           >
             <CustomText style={styles.title}>{item.item.title}</CustomText>
-            <View>
+            <View style={{justifyContent:'center',alignItems:'center'}}>
               <TouchableOpacity onPress={onRemove}>
                 <MaterialCommunityIcons name='close' size={20} color='#000' />
               </TouchableOpacity>
             </View>
           </View>
           <CustomText style={{ color: Colors.grey, fontSize: 12 }}>
-            Powered by CodingWithVudang
+            Vận chuyển bởi PookBook
           </CustomText>
           <NumberFormat price={sum.toString()} />
           <View style={styles.box}>
@@ -88,9 +96,10 @@ export class CartItem extends React.PureComponent {
           </View>
         </View>
       </View>
-    );
-  }
+  )
 }
+
+
 
 CartItem.propTypes = {
   item: PropTypes.object.isRequired,
@@ -109,10 +118,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingVertical: 10,
     alignItems: "center",
-    backgroundColor: "#fff",
+    backgroundColor: Colors.white,
     paddingHorizontal: 10,
     borderRadius: 5,
-    marginTop: 5,
+    //bottom:20,
   },
   left: {
     width: "35%",
@@ -120,13 +129,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   right: {
-    width: "65%",
+    width: "60%",
     paddingLeft: 15,
     height: 90,
     // overflow: "hidden",
   },
   title: {
     fontSize: 14,
+    width:'70%'
   },
   box: {
     flexDirection: "row",

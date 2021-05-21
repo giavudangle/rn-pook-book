@@ -9,7 +9,7 @@ import {
 //Redux
 import { useDispatch } from "react-redux";
 //Action
-import { removeFromCart, addToCart, decCartQuantity } from "../../../reducers";
+import { removeFromCart, addToCart, decCartQuantity } from "../../../actions/cart";
 //Text
 import CustomText from "../../../components/UI/CustomText";
 //Colors
@@ -21,8 +21,8 @@ import PropTypes from "prop-types";
 
 export const CartBody = ({
   navigation,
-  // user,
-  // carts,
+  user,
+  carts,
   loadCarts,
   isRefreshing,
 }) => {
@@ -40,75 +40,7 @@ export const CartBody = ({
       },
     ]);
   };
-
-  const user = {
-    name:"Vudang",
-    phone:"0967781273",
-    email:"vudangdev@gmail.com",
-    address:"67 Huynh Thien Loc"
-  };
-
-  const carts = {
-    items :[
-      {
-        item: {
-          url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-          thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
-          _id: "605449051d6e5b1185c9d2db",
-          filename: "imageUrl-1616136453234.jpg",
-          price: "5800",
-          color: "red",
-          origin: "USA",
-          standard: "VIP",
-          description: "A Best Book",
-          type: "Sex",
-          title: "Sex of Blow",
-          createdAt: "2021-03-19T06:47:33.251Z",
-          updatedAt: "2021-03-19T06:47:33.251Z",
-          __v: 0
-      },
-      quantity: "10"
-      },
-      {
-        item: {
-          url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-          thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
-          _id: "605449051d6e5b1185c9d2db",
-          filename: "imageUrl-1616136453234.jpg",
-          price: "999999",
-          color: "red",
-          origin: "USA",
-          standard: "VIP",
-          description: "A Best Book",
-          type: "Sex",
-          title: "Sex of Blow",
-          createdAt: "2021-03-19T06:47:33.251Z",
-          updatedAt: "2021-03-19T06:47:33.251Z",
-          __v: 0
-      },
-      quantity: "10"
-      },
-      {
-        item: {
-          url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-          thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
-          _id: "605449051d6e5b1185c9d2db",
-          filename: "imageUrl-1616136453234.jpg",
-          price: "999999",
-          color: "red",
-          origin: "USA",
-          standard: "VIP",
-          description: "A Best Book",
-          type: "Sex",
-          title: "Sex of Blow",
-          createdAt: "2021-03-19T06:47:33.251Z",
-          updatedAt: "2021-03-19T06:47:33.251Z",
-          __v: 0
-      },
-      quantity: "10"
-      }
-    ]
-  }
+ 
   return (
     <View style={styles.footer}>
       {Object.keys(user).length === 0 ? (
