@@ -2,9 +2,11 @@ import React from "react";
 import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
 //Colors
 import Colors from "../../../../utils/Colors";
-//Text
-import CustomText from "../../../../components/UI/CustomText";
+// Local Components
 import { FavoriteItem } from "./FavoriteItem";
+// Global Components
+import CustomText from "../../../../components/UI/CustomText";
+// Mock Content
 import Messages from "../../../../messages/user";
 //PropTypes check
 import PropTypes from "prop-types";
@@ -16,8 +18,6 @@ export const FavoriteBody = ({
   loadFavoriteProducts,
   isRefreshing,
 }) => {
-
-
   return (
     <>
       {Object.keys(user).length === 0 ? (
@@ -55,8 +55,7 @@ export const FavoriteBody = ({
           refreshing={isRefreshing}
           keyExtractor={(item) => item._id}
           renderItem={({ item }) => {
-            return <FavoriteItem navigation={navigation} item={item.item} />;
-          
+            return <FavoriteItem navigation={navigation} item={item.item} />;        
           }}
         />
       )}
@@ -71,6 +70,8 @@ FavoriteBody.propTypes = {
   user: PropTypes.object.isRequired,
   navigation: PropTypes.object.isRequired,
   FavoriteProducts: PropTypes.array.isRequired,
+  loadFavoriteProducts : PropTypes.func.isRequired,
+  isRefreshing:PropTypes.bool.isRequired,
 };
 const styles = StyleSheet.create({
   center: { flex: 1, alignItems: "center", justifyContent: "center" },
