@@ -124,14 +124,6 @@ const __header_config_opacity = Animated.interpolate(__diff_clamp_scroll_y, {
   extrapolate: 'clamp',
 });
 
-
-
-
-// fix receive props in animation
-// products . scrollValue
-
-
-
 export const Header = ({ style,navigation,products }) => {
 
   // Local state

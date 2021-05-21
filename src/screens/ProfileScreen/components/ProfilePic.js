@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     transform: [{ translateY: -70 }],
     borderWidth: 2,
-    borderColor: "#00806C",
-    backgroundColor:'#fff'
+    borderColor: Colors.primary,
+    backgroundColor:Colors.white
   },
   cameraContainer: {
     height: 30,

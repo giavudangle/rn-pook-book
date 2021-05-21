@@ -10,6 +10,8 @@ import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 //Loader
 import Loader from "../../components/Loaders/Loader";
 
+import Colors from '../../utils/Colors'
+
 import AntIcon from '@expo/vector-icons/AntDesign'
 
 const { width, height } = Dimensions.get("window");
@@ -80,7 +82,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 0.15 * height,
     justifyContent: "center",
-    backgroundColor:'#00806C'
+    backgroundColor:Colors.primary
   },
   profileContainer: {
     width,

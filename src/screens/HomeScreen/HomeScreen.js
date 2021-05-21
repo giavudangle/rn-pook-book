@@ -5,7 +5,8 @@ import {
   Dimensions,
   Platform,
   FlatList,
-  SafeAreaView
+  SafeAreaView,
+  Button
 } from 'react-native';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -33,6 +34,7 @@ import { FloatButton } from './components/Contact'
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 
 
+import banners from "../../db/Banners";
 
 
 import { categories } from './components/Categories/CategoriesMockData'
@@ -45,21 +47,19 @@ export const HomeScreen = ({ navigation }) => {
   const notification = useSelector((state) => state.auth.notification);
   const user = useSelector((state) => state.auth.user);
   const products = useSelector((state) => state.store.products);
-
   const dispatch = useDispatch();
 
   useEffect(() => {
     // AsyncStorage.removeItem("isFirstTime");
     const fetching = async () => {
       try {
-        await dispatch(fetchProducts());
+        dispatch(fetchProducts());
       } catch (err) {
         alert(err);
       }
     };
     fetching();
   }, [user.userid]);
-
 
   return (
     <Provider>
@@ -68,7 +68,8 @@ export const HomeScreen = ({ navigation }) => {
           ? (<SkeletonLoading />)
           : (
             <SafeAreaView style={styles.container}>
-              <Header               
+
+              <Header      
                 products={products}
                 navigation={navigation}
               />
@@ -82,9 +83,9 @@ export const HomeScreen = ({ navigation }) => {
                 showsVerticalScrollIndicator={false}
                 ListHeaderComponent={() => (
                   <View style={styles.banner}>
-                    <Carousel />
+                    <Carousel banners={banners} />
                   </View>
-                )}
+                )}                  
                 scrollEventThrottle={1}
                 onScroll={Animated.event(
                   [
