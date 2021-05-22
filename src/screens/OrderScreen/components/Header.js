@@ -9,9 +9,6 @@ import Colors from "../../../utils/Colors";
 const { height } = Dimensions.get("window");
 
 export const Header = ({ navigation }) => {
-  console.log('================NAVIGATION IN HEADER====================');
-  console.log(navigation);
-  console.log('====================================');
   return (
     <View style={styles.header}>
       <View style={{ position: "absolute", bottom: 15, left: 15, zIndex: 10 }}>

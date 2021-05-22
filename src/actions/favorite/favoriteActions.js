@@ -37,10 +37,6 @@ export const fetchFavorite = () => {
         if (filterUserFavorite.length > 0) {
           items = filterUserFavorite[0].items;
         }
-        console.log('===============favorite actions=====================');
-        console.log(items);
-        console.log('====================================');
-     
         dispatch({
           type: FETCH_FAVORITE,
           favoriteList: items,

@@ -13,44 +13,27 @@ import Colors from "../../../../utils/Colors";
 import { BlurView } from "expo-blur";
 //PropTypes check
 import PropTypes from "prop-types";
-
 const {width,height} = Dimensions.get('screen')
 
-export const CategorySection = ({data, name, bg, navigation}) => {
+export const CategorySection = ({listProducts, name, bg, navigation,category}) => {
 
-  // Migrate to Functional Component
-  const lifeSkills = data.filter((item) => item.category.code === "KNS");
-  const literaries = data.filter((item) => item.category.code === "VH");
-  const economics = data.filter((item) => item.category.code === "KT");
-
-
-  const getItems = () => {
-    switch(name) {
-      case 'Sách kỹ năng sống':
-        return lifeSkills
-      case 'Sách văn học':
-        return literaries
-      default :
-        return economics
-    }
-
+  const mapProductsToCategory = () => {
+    return listProducts.filter(item => item.category.code === category.code )
   }
 
-  const trans = getItems()
-
-  
+  const flag = mapProductsToCategory();
 
   return (
-    trans ?
+    mapProductsToCategory().length ?
     (
     <View style={[styles.category]}>
         {/* <Image style={styles.background} source={bg} blurRadius={10} /> */}
         <View style={styles.titleHeader}>
-          <CustomText style={styles.title}>{name}</CustomText>
+          <CustomText style={styles.title}>{category.name}</CustomText>
         </View>
         <View style={styles.productList}>
           <FlatList
-            data={getItems().slice(0,4)}
+            data={mapProductsToCategory().slice(0,4)}
             keyExtractor={(item) => item._id}
             numColumns={2}
             columnWrapperStyle={styles.list}
@@ -65,7 +48,7 @@ export const CategorySection = ({data, name, bg, navigation}) => {
             }}
           />
            <TouchableOpacity
-          onPress={() => navigation.navigate("Product",{trans})}
+          onPress={() => navigation.navigate("Product",{flag})}
           style={{ marginHorizontal: 10,marginTop:10 }}
         >
           <BlurView tint='light' intensity={100} style={styles.seeMore}>
@@ -85,7 +68,7 @@ export const CategorySection = ({data, name, bg, navigation}) => {
 
 
 CategorySection.propTypes = {
-  data: PropTypes.array.isRequired,
+  listProducts: PropTypes.array.isRequired,
   navigation: PropTypes.object.isRequired,
 };
 

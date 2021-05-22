@@ -36,8 +36,7 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 
 import banners from "../../db/Banners";
 
-
-import { categories } from './components/Categories/CategoriesMockData'
+import { fetchCategories } from '../../actions/category/categoryAction';
 
 
 export const HomeScreen = ({ navigation }) => {
@@ -48,6 +47,16 @@ export const HomeScreen = ({ navigation }) => {
   const user = useSelector((state) => state.auth.user);
   const products = useSelector((state) => state.store.products);
   const dispatch = useDispatch();
+
+  const categories = useSelector(state => state.category.categories)
+
+  const mappedCategories = categories.map((cate) => cate.code)
+
+
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+  },[])
 
   useEffect(() => {
     // AsyncStorage.removeItem("isFirstTime");
@@ -96,12 +105,12 @@ export const HomeScreen = ({ navigation }) => {
                   { useNativeDriver: true },
                 )}
                 data={categories}
-                keyExtractor={(item) => item.name}
-                
+                keyExtractor={(item) => item._id}             
                 renderItem={({ item }) => (
                   <CategorySection
+                    category={item}
                     name={item.name}
-                    data={products}
+                    listProducts={products}
                     navigation={navigation}
                   />
                 )}
