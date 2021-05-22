@@ -8,6 +8,14 @@ export const categories = [
     "__v": 0
   },
   {
+    "code": "CAC",
+    "_id": "123",
+    "name": "Sách kinh tế",
+    "createdAt": "2021-04-22T16:14:40.940Z",
+    "updatedAt": "2021-04-22T16:14:40.940Z",
+    "__v": 23
+  },
+  {
     "code": "KNS",
     "_id": "6081a33b13f3e21db7724b37",
     "name": "Sách kỹ năng sống",
@@ -15,6 +23,7 @@ export const categories = [
     "updatedAt": "2021-04-22T16:24:27.466Z",
     "__v": 0
   },
+ 
   {
     "code": "VH",
     "_id": "6081a1ec13f3e21db7724b31",
