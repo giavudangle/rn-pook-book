@@ -1,114 +1,70 @@
-import React,{useState} from 'react'
-import { View, Text ,StyleSheet,Dimensions} from 'react-native'
+import React, { useState, useEffect, useCallback } from "react";
+import { View, StyleSheet, Dimensions, Platform } from "react-native";
+//Redux
+import { useSelector, useDispatch } from "react-redux";
+//Action
+import { fetchOrder } from "../../actions/order";
+import { Header, OrderBody } from "./components";
 
-import {useSelector} from 'react-redux'
-
-import {Header,OrderBody} from './components'
-
-
-// Mock DB
-const user = {
-  name:"Vudang"
-}
-
-const orders = [
-  {
-    "status": "waiting",
-    "_id": "60544c1161d79712005f47e2",
-    "totalAmount": "1000000",
-    "name": "Test payment",
-    "paymentMethod": "MasterCard",
-    "phone": "0967781273",
-    "address": "67 huynh thien loc",
-    "userId": null,
-    "items": [
-        {
-            "item": {
-                "url": "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-                "thumb": "https://res.cloudinary.com/daktfdww5/image/upload/v1616142502/dvjh8mwvnf5atgpqqzon.jpg",
-                "_id": "605449411d6e5b1185c9d2de",
-                "filename": "imageUrl-1616136513560.jpg",
-                "price": "100000",
-                "color": "red",
-                "origin": "USA",
-                "standard": "VIP",
-                "description": "A Best Book",
-                "type": "Sex",
-                "title": "Sex of Blow",
-                "createdAt": "2021-03-19T06:48:33.695Z",
-                "updatedAt": "2021-03-19T06:48:33.695Z",
-                "__v": 0
-            },
-            "quantity": "10"
-        }
-    ],
-    "createdAt": "2021-03-19T07:00:33.767Z",
-    "updatedAt": "2021-03-19T07:00:33.767Z",
-    "__v": 0
-  },
-  {
-    "status": "done",
-    "_id": "60544c1161d79712005f47e1",
-    "totalAmount": "100000",
-    "name": "Test payment",
-    "paymentMethod": "MasterCard",
-    "phone": "0967781273",
-    "address": "67 huynh thien loc",
-    "userId": null,
-    "items": [
-        {
-            "item": {
-                "url": "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-                "thumb": "https://res.cloudinary.com/daktfdww5/image/upload/v1616142502/dvjh8mwvnf5atgpqqzon.jpg",
-                "_id": "605449411d6e5b1185c9d2de",
-                "filename": "imageUrl-1616136513560.jpg",
-                "price": "999999",
-                "color": "red",
-                "origin": "USA",
-                "standard": "VIP",
-                "description": "A Best Book",
-                "type": "Sex",
-                "title": "Sex of Blow",
-                "createdAt": "2021-03-19T06:48:33.695Z",
-                "updatedAt": "2021-03-19T06:48:33.695Z",
-                "__v": 0
-            },
-            "quantity": "10"
-        }
-    ],
-    "createdAt": "2021-03-19T07:00:33.767Z",
-    "updatedAt": "2021-03-19T07:00:33.767Z",
-    "__v": 0
-  },
-]
+import SkeletonLoadingOrder from "../../components/Loaders/SkeletonLoadingOrder";
 
 const { height } = Dimensions.get("window");
 
 export const OrderScreen = ({navigation}) => {
+  /**
+  |--------------------------------------------------
+  | Global State
+  |--------------------------------------------------
+  */
+  const user = useSelector((state) => state.auth.user);
+  const orders = useSelector((state) => state.order.orders);
+  const isLoading = useSelector((state) => state.order.isLoading);
 
-  // Connect to redux
+  /**
+  |--------------------------------------------------
+  | Action Handlers
+  |--------------------------------------------------
+  */
+  const dispatch = useDispatch();
+  const loadOrders = useCallback(async () => {
+    setIsRefreshing(true);
+    try {
+      await dispatch(fetchOrder());
+    } catch (err) {
+      alert(err.message);
+    }
+    setIsRefreshing(false);
+  }, [dispatch, setIsRefreshing]);
 
-  const [isRefreshing,setIsRefreshing] = useState(false)
- 
+  /**
+  |--------------------------------------------------
+  | Side Effects & Local State
+  |--------------------------------------------------
+  */
+  const [isRefreshing, setIsRefreshing] = useState(false);
 
-  const loadOrders = async () => {
-
-  }
-
-
+  useEffect(() => {
+    loadOrders();
+  }, [user.userid]);
 
   return (
     <View style={styles.container}>
-      <Header navigation={navigation}/>
-      <OrderBody
+      <Header navigation={navigation} />
+      {isLoading ? (
+        <View style={styles.centerLoader}>
+          <SkeletonLoadingOrder />
+        </View>
+      ) : (
+        <OrderBody
           user={user}
           orders={orders}
           isRefreshing={isRefreshing}
           loadOrders={loadOrders}
           navigation={navigation}
-      />
+        />
+      )}
     </View>
-  )
+  );
 }
 
 const styles = StyleSheet.create({
