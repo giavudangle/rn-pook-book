@@ -21,6 +21,8 @@ export const CategorySection = ({listProducts, name, bg, navigation,category}) =
     return listProducts.filter(item => item.category.code === category.code )
   }
 
+  const flag = mapProductsToCategory();
+
   return (
     mapProductsToCategory().length ?
     (
@@ -46,7 +48,7 @@ export const CategorySection = ({listProducts, name, bg, navigation,category}) =
             }}
           />
            <TouchableOpacity
-          onPress={() => navigation.navigate("Product",{trans})}
+          onPress={() => navigation.navigate("Product",{flag})}
           style={{ marginHorizontal: 10,marginTop:10 }}
         >
           <BlurView tint='light' intensity={100} style={styles.seeMore}>

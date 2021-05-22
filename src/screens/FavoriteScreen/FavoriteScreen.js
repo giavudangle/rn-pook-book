@@ -10,6 +10,7 @@ import { Header, FavoriteBody } from "./components";
 import Colors from "../../utils/Colors";
 //Loader
 import SkeletonLoadingCart from "../../components/Loaders/SkeletonLoadingCart";
+import SkeletonLoadingFavorite from "../../components/Loaders/SkeletonLoadingFavorite";
 
 
 
@@ -67,7 +68,7 @@ export const FavoriteScreen = ({ navigation }) => {
     <View style={styles.container}>
       <Header navigation={navigation} />
       {loading
-        ? (<SkeletonLoadingCart />)
+        ? (<SkeletonLoadingFavorite />)
         : (<FavoriteBody
           user={user}
           FavoriteProducts={FavoriteProducts}

@@ -9,7 +9,6 @@ import { ProductBody } from "./components/ProductBody";
 
 export const ProductScreen = (props) => {
   const products = useSelector((state) => state.store.products);
-
   const [productsFilter, setproductsFilter] = useState(products);
   const searchFilterFunction = (text) => {
     const data = products.filter((product) =>
