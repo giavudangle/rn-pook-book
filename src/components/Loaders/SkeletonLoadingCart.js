@@ -158,6 +158,135 @@ const SkeletonLoadingCart = () => {
           />
         </View>
       </View>
+      <View style={styles.content}>
+        <Placeholder
+          style={{
+            ...styles.placeholder,
+            width: '35%',
+            height: 90,
+            marginRight: 10,
+          }}
+        />
+        <View style={{ width: '50%' }}>
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '100%',
+              height: 15,
+            }}
+          />
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '90%',
+              height: 15,
+              marginTop: 5,
+            }}
+          />
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '50%',
+              height: 15,
+              marginTop: 5,
+            }}
+          />
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '60%',
+              height: 20,
+              marginTop: 5,
+            }}
+          />
+        </View>
+      </View>
+      <View style={styles.content}>
+        <Placeholder
+          style={{
+            ...styles.placeholder,
+            width: '35%',
+            height: 90,
+            marginRight: 10,
+          }}
+        />
+        <View style={{ width: '50%' }}>
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '100%',
+              height: 15,
+            }}
+          />
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '90%',
+              height: 15,
+              marginTop: 5,
+            }}
+          />
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '50%',
+              height: 15,
+              marginTop: 5,
+            }}
+          />
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '60%',
+              height: 20,
+              marginTop: 5,
+            }}
+          />
+        </View>
+      </View>
+      <View style={styles.content}>
+        <Placeholder
+          style={{
+            ...styles.placeholder,
+            width: '35%',
+            height: 90,
+            marginRight: 10,
+          }}
+        />
+        <View style={{ width: '50%' }}>
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '100%',
+              height: 15,
+            }}
+          />
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '90%',
+              height: 15,
+              marginTop: 5,
+            }}
+          />
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '50%',
+              height: 15,
+              marginTop: 5,
+            }}
+          />
+          <Placeholder
+            style={{
+              ...styles.placeholder,
+              width: '60%',
+              height: 20,
+              marginTop: 5,
+            }}
+          />
+        </View>
+      </View>
     </PlaceholderContainer>
   );
 };
