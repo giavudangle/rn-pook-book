@@ -14,12 +14,13 @@ import Pagination from './components/Pagination'
 import slides from '../../db/IntroSlides'
 import { useDispatch, useSelector } from 'react-redux';
 
+import Colors from '../../utils/Colors'
+
 const { width, height } = Dimensions.get('screen')
 
 import {firstOpen} from '../../actions/auth'
 
-// Khi nao lam xong het thi moi merge vo
-// Code nho comment
+
 
 // Changed
 export const IntroScreen = () => {
@@ -29,7 +30,7 @@ export const IntroScreen = () => {
 
   const backgroundColor = scrollX.interpolate({
     inputRange: [0, width, width * 2],
-    outputRange: ["#7EFFB1", "#5BFF9C", "#4DFF94"],
+    outputRange: [Colors.blue_light, Colors.blue_lighter, Colors.blue_dark],
     extrapolate: 'clamp'
   })
 
@@ -57,9 +58,10 @@ export const IntroScreen = () => {
   const SubmitApp = async () => {
     setLoading(true)
     await dispatch(firstOpen()) // fix this -> memory leak
-    if(!unmounted.current){
-      setLoading(false)
-    }
+    unmounted.current = true
+    // if(!unmounted.current){
+    //   setLoading(false)
+    // }
   }
 
   return (
