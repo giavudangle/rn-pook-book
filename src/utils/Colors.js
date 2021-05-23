@@ -21,4 +21,8 @@ export default {
   blue: "#1A91DA",
   bluegreen: "#2CB9B0",
   black: "#000000",
+  blue_light:"#A1E4FC",
+  blue_lighter : "#76D8FB",
+  blue_dark:"#5DC1EA"
+  
 };
