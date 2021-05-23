@@ -1,23 +1,14 @@
-import { AsyncStorage } from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_URL } from '../../utils/Config';
 import { predictTimeoutPromise } from '../../utils/Tools';
 
+import axios from 'axios'
 
-
-import {AUTH_SUCCESS,AUTH_FAILURE,AUTH_LOADING,LOGIN,LOGOUT,RESET_ERROR,RESET_PASSWORD,UPLOAD_PROFILEPIC} from '../../@types/authActionTypes'
+import { AUTH_SUCCESS, AUTH_FAILURE, AUTH_LOADING, LOGIN, LOGOUT, RESET_ERROR, RESET_PASSWORD, UPLOAD_PROFILEPIC } from '../../@types/authActionTypes'
 
 
 import AskingExpoToken from '../../components/Notification/AskingNotificationPermisson';
 
-//Create dataStorage
-const saveDataToStorage = (name, data) => {
-  AsyncStorage.setItem(
-    name,
-    JSON.stringify({
-      data,
-    }),
-  );
-};
 
 export const SignUp = (name, email, password) => {
   return async (dispatch) => {
@@ -55,8 +46,27 @@ export const SignUp = (name, email, password) => {
   };
 };
 
+
+
+
+export const AccessByFingerPrintOrFaceId = () => {
+  return async dispatch => {
+    const userInfo = await AsyncStorage.getItem('user')
+    const parsedUser = await JSON.parse(userInfo)
+
+    console.log('===============ACESS=====================');
+    console.log(parsedUser.password);
+    console.log('====================================');
+  }
+}
+
+
+
 //Login
 export const Login = (email, password) => {
+  console.log('====================================');
+  console.log(email,password);
+  console.log('====================================');
   return async (dispatch) => {
     dispatch({
       type: AUTH_LOADING,
@@ -64,28 +74,38 @@ export const Login = (email, password) => {
     const pushToken = await AskingExpoToken();
     try {
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/user/login`, {
-          headers: {
+        axios.post(`${API_URL}/users/login`, {
+          email,
+          password,
+          pushTokens: [pushToken],
+        },{
+          headers:{
+            "Access-Control-Allow-Origin": "*",
             Accept: 'application/json',
             'Content-Type': 'application/json',
-          },
-          method: 'POST',
-          body: JSON.stringify({
-            email,
-            password,
-            pushTokens: [pushToken],
-          }),
+          }
         }),
       );
-      if (!response.ok) {
-        const errorResData = await response.json();
+      if (response.status !== 200) {
         dispatch({
           type: AUTH_FAILURE,
         });
-        throw new Error(errorResData.err);
+        throw new Error('Failed in authentication');
       }
-      const resData = await response.json();
-      saveDataToStorage('user', resData);
+
+      
+      //Create dataStorage
+  
+
+      const resData = response.data
+
+      await AsyncStorage.setItem(
+        'user',
+        JSON.stringify({
+          resData
+        }),
+      );
+    
       dispatch(setLogoutTimer(60 * 60 * 1000));
       dispatch({
         type: LOGIN,
@@ -253,8 +273,8 @@ export const ResetPassword = (password, url) => {
 //Logout
 export const Logout = () => {
   return (dispatch) => {
-    clearLogoutTimer(); //clear setTimeout when logout
-    AsyncStorage.removeItem('user');
+    //clearLogoutTimer(); //clear setTimeout when logout
+    //AsyncStorage.removeItem('user');
     dispatch({
       type: LOGOUT,
       user: {},
