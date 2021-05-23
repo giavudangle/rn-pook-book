@@ -107,6 +107,7 @@ export const CartScreen = (props) => {
       }
     </View>
   )
+
 }
 
 
