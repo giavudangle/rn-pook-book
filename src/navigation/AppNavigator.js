@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useSelector } from 'react-redux';
 import { NavigationContainer } from '@react-navigation/native';
@@ -19,9 +19,9 @@ import {IS_FIRST_TIME} from '../@types/firstTimeOpenActionTypes'
 export const AppNavigator = () => {
   const [value, setValue] = useState(null);
   const dispatch = useDispatch();
+    // Get Value connection is first time from store
   const isFirstOpen = useSelector((state) => state.auth.isFirstTime);
-  // Get Value connection is first time from store
-
+  const USER = 'user'
 
 
   /**
@@ -49,30 +49,36 @@ export const AppNavigator = () => {
     );
   }, [urlRedirect]);
 
+  const unmounted = useRef(true);
 
   /**
   |--------------------------------------------------
   | CHECK IS FIRST TIME OPEN APP & AUTO LOGOUT
   |--------------------------------------------------
   */
+  
+
+
   useEffect(() => {
+    
     const isFirstTime = async () => {
       //await AsyncStorage.clear(); // use this for testing
       const firstOpen = await AsyncStorage.getItem(IS_FIRST_TIME);
+      if(!unmounted.current) return null;
       setValue(firstOpen);
     };
     isFirstTime();
     const autoLogout = async () => {
-      const getUser = await AsyncStorage.getItem('user');
+      const getUser = await AsyncStorage.getItem(USER);
       if (getUser) {
         const user = await JSON.parse(getUser);
         if (user.data.expireTime - Date.now() < 0) {
           dispatch(Logout());
         }
       }
-      return;
     };
     autoLogout();
+    return () => unmounted.current = false
   }, []);
 
   /**
@@ -82,14 +88,13 @@ export const AppNavigator = () => {
   */
   useEffect(() => {
     const autoLogout = async () => {
-      const getUser = await AsyncStorage.getItem('user');
+      const getUser = await AsyncStorage.getItem(USER);
       if (getUser) {
         const user = await JSON.parse(getUser);
         if (user.data.expireTime - Date.now() < 0) {
           dispatch(Logout());
         }
       }
-      return;
     };
     autoLogout();
   }, []);
