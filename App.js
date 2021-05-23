@@ -24,7 +24,9 @@ import { reducer as formReducer } from "redux-form";
 import { StatusBar } from "expo-status-bar";
 //Notification
 import LocalNotication from "./src/components/Notification/LocalNotification";
+import { LogBox } from 'react-native';
 
+console.disableYellowBox = true; 
 
 
 

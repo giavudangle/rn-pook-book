@@ -33,6 +33,7 @@ export const ActionButton = ({
   user,
   item,
   color,
+  showSnackbar,
   setShowSnackbar,
   FavoriteProducts,
   setModalVisible,
@@ -78,7 +79,7 @@ export const ActionButton = ({
     if(validateAddToCart()){
       if (Object.keys(user).length === 0) {
         setMessage(Messages['user.login.require']);
-        setShowSnackbar(true);
+        setShowSnackbar(!showSnackbar);
       } else {
         try {
           dispatch(addToCart(item, user.token));
@@ -95,7 +96,7 @@ export const ActionButton = ({
   const toggleFavorite = () => {
     if (Object.keys(user).length === 0) {
       setMessage(Messages['user.login.require']);
-      setShowSnackbar(true);
+      setShowSnackbar(!showSnackbar);
     } else if (FavoriteProducts) {
       Alert.alert(
         'Bỏ yêu thích',
