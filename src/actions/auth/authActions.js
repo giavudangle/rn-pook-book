@@ -8,6 +8,7 @@ import { AUTH_SUCCESS, AUTH_FAILURE, AUTH_LOADING, LOGIN, LOGOUT, RESET_ERROR, R
 
 
 import AskingExpoToken from '../../components/Notification/AskingNotificationPermisson';
+import * as SecureStore from 'expo-secure-store';
 
 
 export const SignUp = (name, email, password) => {
@@ -48,25 +49,8 @@ export const SignUp = (name, email, password) => {
 
 
 
-
-export const AccessByFingerPrintOrFaceId = () => {
-  return async dispatch => {
-    const userInfo = await AsyncStorage.getItem('user')
-    const parsedUser = await JSON.parse(userInfo)
-
-    console.log('===============ACESS=====================');
-    console.log(parsedUser.password);
-    console.log('====================================');
-  }
-}
-
-
-
 //Login
 export const Login = (email, password) => {
-  console.log('====================================');
-  console.log(email,password);
-  console.log('====================================');
   return async (dispatch) => {
     dispatch({
       type: AUTH_LOADING,
@@ -90,15 +74,9 @@ export const Login = (email, password) => {
         dispatch({
           type: AUTH_FAILURE,
         });
-        throw new Error('Failed in authentication');
+        alert('Failed in authentication');
       }
-
-      
-      //Create dataStorage
-  
-
       const resData = response.data
-
       await AsyncStorage.setItem(
         'user',
         JSON.stringify({
@@ -106,7 +84,13 @@ export const Login = (email, password) => {
         }),
       );
     
-      dispatch(setLogoutTimer(60 * 60 * 1000));
+      /**
+      |--------------------------------------------------
+      | AUTO LOGOUT
+      |--------------------------------------------------
+      */
+      //dispatch(setLogoutTimer(15000)); // 15 seconds for testing
+      dispatch(setLogoutTimer(60 * 60 * 1000)); // 1h = 60m * 60s
       dispatch({
         type: LOGIN,
         user: resData,
@@ -273,8 +257,8 @@ export const ResetPassword = (password, url) => {
 //Logout
 export const Logout = () => {
   return (dispatch) => {
-    //clearLogoutTimer(); //clear setTimeout when logout
-    //AsyncStorage.removeItem('user');
+    clearLogoutTimer(); //clear setTimeout when logout
+    AsyncStorage.removeItem('user'); //  Lưu thông tin này vô Store có bảo mật 
     dispatch({
       type: LOGOUT,
       user: {},
@@ -289,7 +273,7 @@ const clearLogoutTimer = () => {
     clearTimeout(timer);
   }
 };
-const setLogoutTimer = (expirationTime) => {
+export const setLogoutTimer = (expirationTime) => {
   return (dispatch) => {
     timer = setTimeout(async () => {
       await dispatch(Logout());

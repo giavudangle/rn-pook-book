@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { navigationRef } from './RootNavigation';
 import { DrawerNavigator, IntroStackScreen } from './PookNavigator';
 import { useDispatch } from 'react-redux';
-import { Logout } from '../actions/auth/authActions';
+import { Login, Logout } from '../actions/auth/authActions';
 //Modalize
 import { Host } from 'react-native-portalize';
 //Deep Link
@@ -21,7 +21,6 @@ export const AppNavigator = () => {
   const dispatch = useDispatch();
     // Get Value connection is first time from store
   const isFirstOpen = useSelector((state) => state.auth.isFirstTime);
-  const USER = 'user'
 
 
   /**
@@ -56,54 +55,52 @@ export const AppNavigator = () => {
   | CHECK IS FIRST TIME OPEN APP & AUTO LOGOUT
   |--------------------------------------------------
   */
+  const isUserHaveYet = async () => {
+    const user = await AsyncStorage.getItem('user');
+    if(user !== null ) {
+      const parsedUser = JSON.parse(user);
+      const {email,rawPassword,expireTime} = parsedUser.resData;
+      if (expireTime - Date.now() < 0) {
+        dispatch(Logout());
+      } else {
+        dispatch(Login(email,rawPassword))
+      }
+    }
+    if(!unmounted.current) return null;
+  }  
   
+  const isFirstTime = async () => {
+    //await AsyncStorage.clear(); // use this for testing
+    const firstOpen = await AsyncStorage.getItem(IS_FIRST_TIME);
+    //if(!unmounted.current) return null;
+    setValue(firstOpen);
+    if(!unmounted.current) return null;
 
+  };
 
   useEffect(() => {
-    
-    const isFirstTime = async () => {
-      //await AsyncStorage.clear(); // use this for testing
-      const firstOpen = await AsyncStorage.getItem(IS_FIRST_TIME);
-      if(!unmounted.current) return null;
-      setValue(firstOpen);
-    };
     isFirstTime();
-    const autoLogout = async () => {
-      const getUser = await AsyncStorage.getItem(USER);
-      if (getUser) {
-        const user = await JSON.parse(getUser);
-        if (user.data.expireTime - Date.now() < 0) {
-          dispatch(Logout());
-        }
-      }
-    };
-    autoLogout();
+    // autoLogout()
+    isUserHaveYet()
     return () => unmounted.current = false
-  }, []);
+
+  },[])
+
 
   /**
   |--------------------------------------------------
   | AUTO LOGOUT SUBSCRIPTION
   |--------------------------------------------------
   */
-  useEffect(() => {
-    const autoLogout = async () => {
-      const getUser = await AsyncStorage.getItem(USER);
-      if (getUser) {
-        const user = await JSON.parse(getUser);
-        if (user.data.expireTime - Date.now() < 0) {
-          dispatch(Logout());
-        }
-      }
-    };
-    autoLogout();
-  }, []);
 
   return (
     <NavigationContainer ref={navigationRef}>
       <Host>  
-        {(isFirstOpen || value !== null) && <DrawerNavigator />}
-        {(!isFirstOpen && value === null) && <IntroStackScreen />}
+        {
+          (!isFirstOpen && value === null) 
+          ? <IntroStackScreen />
+          : <DrawerNavigator/>
+        }
       </Host>
     </NavigationContainer>
   );
