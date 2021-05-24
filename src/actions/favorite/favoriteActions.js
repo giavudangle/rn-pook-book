@@ -18,7 +18,7 @@ export const fetchFavorite = () => {
       });
       try {
         const response = await predictTimeoutPromise(
-          axios.get(`${API_URL}/favorites`, {
+          axios.get(`http://127.0.0.1:8080/api/v1/favorites`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -58,24 +58,43 @@ export const addFavorite = (item) => {
     });
     const user = getState().auth.user;
     try {
+      let a = '60a0f1843056778f0858c463';
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/favorites`, {
+      // //   fetch(`${API_URL}/favorites`, {
+      // //     headers: {
+      // //       Accept: "application/json",
+      // //       "Content-Type": "application/json",
+      // //       "auth-token": user.token,
+      // //     },
+      // //     method: "POST",
+      // //     body: JSON.stringify({
+      // //       userId: user.userid,
+      // //       items: [
+      // //         {
+      // //           item: item._id,
+      // //         },
+      // //       ],
+      // //     }),
+      // //   })
+      // // );
+        fetch(`http://192.168.1.77:8080/api/v1/favorites`, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
-            "auth-token": user.token,
+            // "auth-token": user.token,
           },
           method: "POST",
           body: JSON.stringify({
             userId: user.userid,
             items: [
               {
-                item: item._id,
+                item: a,
               },
             ],
           }),
         })
       );
+      console.log(user.userid)
       if (!response.ok) {
         dispatch({
           type: FAVORITE_FAILURE,
@@ -99,7 +118,7 @@ export const removeFavorite = (id) => {
     const user = getState().auth.user;
     try {
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/favorites/${user.userid}`, {
+        fetch(`http://192.168.1.77:8080/api/v1/favorites/${user.userid}`, {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",

@@ -18,7 +18,7 @@ import { useDispatch, useSelector } from 'react-redux';
 //Action
 
 import { addToCart } from '../../../../actions/cart';
-import { addFavorite } from '../../../../actions/favorite';
+import { addFavorite, removeFavorite } from '../../../../actions/favorite';
 
 
 
@@ -61,10 +61,29 @@ export const ActionButton = ({
     }
   };
   const toggleFavorite = () => {
-    if (Object.keys(user).length === 0) {
-      setMessage(Messages['user.login.require']);
-      setShowSnackbar(true);
-    } else if (FavoriteProducts) {
+    // if (Object.keys(user).length === 0) {
+    //   setMessage(Messages['user.login.require']);
+    //   setShowSnackbar(true);
+    // } else if (FavoriteProducts) {
+    //   Alert.alert(
+    //     'Bỏ yêu thích',
+    //     'Bạn có muốn bỏ sản phẩm ra khỏi mục yêu thích?',
+    //     [
+    //       {
+    //         text: 'Hủy',
+    //         style: 'cancel',
+    //       },
+    //       {
+    //         text: 'Đồng ý',
+    //         onPress: () => dispatch(removeFavorite(item._id)),
+    //       },
+    //     ],
+    //   );
+    // } else {
+    //   dispatch(addFavorite(item));
+    // }
+
+    if (FavoriteProducts === true) {
       Alert.alert(
         'Bỏ yêu thích',
         'Bạn có muốn bỏ sản phẩm ra khỏi mục yêu thích?',
@@ -92,6 +111,7 @@ export const ActionButton = ({
       <View style={styles.action}>
         <TouchableOpacity
           onPress={toggleFavorite}
+          // onPress={() => console.log(FavoriteProducts)}
           style={[styles.favorite, { borderColor: color }]}
         >
           {FavoriteProducts ? (

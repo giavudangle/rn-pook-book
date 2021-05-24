@@ -39,7 +39,49 @@ const products =
       "url": "https://res.cloudinary.com/codingwithvudang/image/upload/v1619108762/ugvvlnf1gin7lq4yjiom.jpg",
       "thumb": "https://res.cloudinary.com/codingwithvudang/image/upload/v1619108763/mfnfxyleu9z6pk3gzj32.jpg",
       "stocks": 900,
-      "_id": "6081a39c13f3e21db7724b38",
+      "_id": "6081a39c13f3e21db7724b31",
+      "filename": "imageUrl-1619108760206.jpg",
+      "title": "Đừng Làm Việc Chăm Chỉ Hãy Làm Việc Thông Minh",
+      "price": 106700,
+      "description": "Thành công là học cách làm việc THÔNG MINH hơn chứ không phải CHĂM CHỈ hơn! Những người thành công thường chỉ tập trung thời gian của họ vào một vài ưu tiên và luôn nghĩ làm thế nào để mọi việc diễn ra suôn sẻ.\n\nMỗi người đều có 96 khối năng lượng mỗi ngày để làm những gì chúng ta muốn. Bạn luôn cần đảm bảo mình đang sử dụng mỗi khối năng lượng một cách khôn ngoan để đạt được tiến bộ nhanh nhất trên các mục tiêu quan trọng của bản thân. Đừng Làm Việc Chăm Chỉ Hãy Làm Việc Thông Minh để luôn duy trì nguồn năng lượng tích cực là cuốn sách Bizbooks xin trân trọng gửi đến quý độc giả.\n\nNhững kiến thức trong cuốn sách đưa ra những nghiên cứu về bộ não để giúp chúng ta quản trị trí não, cảm xúc và thói quen với những bước hành động hết sức giản đơn nhờ đó thiết lập những kế hoạch phù hợp với nhịp độ sinh học của bản thân. Ví dụ như:\n\nNếu bạn đợi đến phút cuối mới bắt đầu làm việc, thì việc đó sẽ chỉ mất một vài phút để hoàn thành. Đó chính là định luật Parkinson mà chúng ta đều từng trải qua. Chúng ta đều vật lộn trong suốt một tháng để thực hiện một dự án, và rồi thật kỳ diệu, chúng ta hoàn tất dự án đó chỉ trong tuần cuối cùng.\n\nĐịnh luật này cung cấp một đòn bẩy tuyệt vời để làm việc năng suất hơn: Áp dụng những deadlines ngắn hơn cho một công việc nào đó, hay sắp xếp một cuộc gặp mặt sớm hơn. Tìm khoảng thời gian mà bạn năng suất nhất để làm những việc đó thay vì dàn trải trong ngày dài.\n\nChìa khoá để đạt được kết quả tốt không phải là làm việc siêng năng hơn. Hầu hết chúng ta đã làm việc nhiều giờ ở công ty. Chúng ta đem công việc về nhà, luôn luôn sẵn sàng cho công việc, giải quyết tất cả mọi thứ mà chúng ta được giao. Chúng ta làm việc đó một cách tốt nhất trong khả năng của mình. Dường như cho dù chúng ta có làm việc rất nhiều giờ đi chăng nữa; hiệu suất của chúng ta dường như không cải thiện.\n\nTrong khi chúng ta luôn nghĩ rằng những người thành công là bởi vì họ tài năng hơn chúng ta. Tuy nhiên, càng nhìn xung quanh, tôi càng thấy không phải vậy. Một trong những lý do chúng ta nghĩ rằng họ thành công nhờ tài năng là bởi nó giúp chúng ta bỏ qua lý do thực sự. Chúng tôi không tài năng như những người siêu thành công này nên tất nhiên chúng tôi không được như họ. Giải thích như vậy là sai. Tài năng rất quan trọng, điều đó là tất nhiên, nhưng nó không quan trọng nhiều như bạn nghĩ.",
+      "author": {
+        "_id": "60819feb13f3e21db7724b2c",
+        "name": "Tony Schwartz",
+        "createdAt": "2021-04-22T16:10:19.310Z",
+        "updatedAt": "2021-04-22T16:10:19.310Z",
+        "__v": 0
+      },
+      "category": {
+        "code": "KNS",
+        "_id": "6081a33b13f3e21db7724b37",
+        "name": "Sách kỹ năng sống",
+        "createdAt": "2021-04-22T16:24:27.466Z",
+        "updatedAt": "2021-04-22T16:24:27.466Z",
+        "__v": 0
+      },
+      "provider": {
+        "_id": "60819f3913f3e21db7724b2a",
+        "name": "BIZBOOKS",
+        "createdAt": "2021-04-22T16:07:21.692Z",
+        "updatedAt": "2021-04-22T16:07:21.692Z",
+        "__v": 0
+      },
+      "publisher": {
+        "_id": "60819fab13f3e21db7724b2b",
+        "name": "Nhà Xuất Bản Hồng Đức",
+        "createdAt": "2021-04-22T16:09:15.277Z",
+        "updatedAt": "2021-04-22T16:09:15.277Z",
+        "__v": 0
+      },
+      "createdAt": "2021-04-22T16:26:04.275Z",
+      "updatedAt": "2021-04-22T17:13:03.726Z",
+      "__v": 0
+    },
+    {
+      "url": "https://res.cloudinary.com/codingwithvudang/image/upload/v1619108762/ugvvlnf1gin7lq4yjiom.jpg",
+      "thumb": "https://res.cloudinary.com/codingwithvudang/image/upload/v1619108763/mfnfxyleu9z6pk3gzj32.jpg",
+      "stocks": 900,
+      "_id": "6081a39c13f3e21db7724b32",
       "filename": "imageUrl-1619108760206.jpg",
       "title": "Đừng Làm Việc Chăm Chỉ Hãy Làm Việc Thông Minh",
       "price": 106700,
@@ -123,49 +165,7 @@ const products =
       "url": "https://res.cloudinary.com/codingwithvudang/image/upload/v1619108762/ugvvlnf1gin7lq4yjiom.jpg",
       "thumb": "https://res.cloudinary.com/codingwithvudang/image/upload/v1619108763/mfnfxyleu9z6pk3gzj32.jpg",
       "stocks": 900,
-      "_id": "6081a39c13f3e21db7724b38",
-      "filename": "imageUrl-1619108760206.jpg",
-      "title": "Đừng Làm Việc Chăm Chỉ Hãy Làm Việc Thông Minh",
-      "price": 106700,
-      "description": "Thành công là học cách làm việc THÔNG MINH hơn chứ không phải CHĂM CHỈ hơn! Những người thành công thường chỉ tập trung thời gian của họ vào một vài ưu tiên và luôn nghĩ làm thế nào để mọi việc diễn ra suôn sẻ.\n\nMỗi người đều có 96 khối năng lượng mỗi ngày để làm những gì chúng ta muốn. Bạn luôn cần đảm bảo mình đang sử dụng mỗi khối năng lượng một cách khôn ngoan để đạt được tiến bộ nhanh nhất trên các mục tiêu quan trọng của bản thân. Đừng Làm Việc Chăm Chỉ Hãy Làm Việc Thông Minh để luôn duy trì nguồn năng lượng tích cực là cuốn sách Bizbooks xin trân trọng gửi đến quý độc giả.\n\nNhững kiến thức trong cuốn sách đưa ra những nghiên cứu về bộ não để giúp chúng ta quản trị trí não, cảm xúc và thói quen với những bước hành động hết sức giản đơn nhờ đó thiết lập những kế hoạch phù hợp với nhịp độ sinh học của bản thân. Ví dụ như:\n\nNếu bạn đợi đến phút cuối mới bắt đầu làm việc, thì việc đó sẽ chỉ mất một vài phút để hoàn thành. Đó chính là định luật Parkinson mà chúng ta đều từng trải qua. Chúng ta đều vật lộn trong suốt một tháng để thực hiện một dự án, và rồi thật kỳ diệu, chúng ta hoàn tất dự án đó chỉ trong tuần cuối cùng.\n\nĐịnh luật này cung cấp một đòn bẩy tuyệt vời để làm việc năng suất hơn: Áp dụng những deadlines ngắn hơn cho một công việc nào đó, hay sắp xếp một cuộc gặp mặt sớm hơn. Tìm khoảng thời gian mà bạn năng suất nhất để làm những việc đó thay vì dàn trải trong ngày dài.\n\nChìa khoá để đạt được kết quả tốt không phải là làm việc siêng năng hơn. Hầu hết chúng ta đã làm việc nhiều giờ ở công ty. Chúng ta đem công việc về nhà, luôn luôn sẵn sàng cho công việc, giải quyết tất cả mọi thứ mà chúng ta được giao. Chúng ta làm việc đó một cách tốt nhất trong khả năng của mình. Dường như cho dù chúng ta có làm việc rất nhiều giờ đi chăng nữa; hiệu suất của chúng ta dường như không cải thiện.\n\nTrong khi chúng ta luôn nghĩ rằng những người thành công là bởi vì họ tài năng hơn chúng ta. Tuy nhiên, càng nhìn xung quanh, tôi càng thấy không phải vậy. Một trong những lý do chúng ta nghĩ rằng họ thành công nhờ tài năng là bởi nó giúp chúng ta bỏ qua lý do thực sự. Chúng tôi không tài năng như những người siêu thành công này nên tất nhiên chúng tôi không được như họ. Giải thích như vậy là sai. Tài năng rất quan trọng, điều đó là tất nhiên, nhưng nó không quan trọng nhiều như bạn nghĩ.",
-      "author": {
-        "_id": "60819feb13f3e21db7724b2c",
-        "name": "Tony Schwartz",
-        "createdAt": "2021-04-22T16:10:19.310Z",
-        "updatedAt": "2021-04-22T16:10:19.310Z",
-        "__v": 0
-      },
-      "category": {
-        "code": "KNS",
-        "_id": "6081a33b13f3e21db7724b37",
-        "name": "Sách kỹ năng sống",
-        "createdAt": "2021-04-22T16:24:27.466Z",
-        "updatedAt": "2021-04-22T16:24:27.466Z",
-        "__v": 0
-      },
-      "provider": {
-        "_id": "60819f3913f3e21db7724b2a",
-        "name": "BIZBOOKS",
-        "createdAt": "2021-04-22T16:07:21.692Z",
-        "updatedAt": "2021-04-22T16:07:21.692Z",
-        "__v": 0
-      },
-      "publisher": {
-        "_id": "60819fab13f3e21db7724b2b",
-        "name": "Nhà Xuất Bản Hồng Đức",
-        "createdAt": "2021-04-22T16:09:15.277Z",
-        "updatedAt": "2021-04-22T16:09:15.277Z",
-        "__v": 0
-      },
-      "createdAt": "2021-04-22T16:26:04.275Z",
-      "updatedAt": "2021-04-22T17:13:03.726Z",
-      "__v": 0
-    },
-    {
-      "url": "https://res.cloudinary.com/codingwithvudang/image/upload/v1619108762/ugvvlnf1gin7lq4yjiom.jpg",
-      "thumb": "https://res.cloudinary.com/codingwithvudang/image/upload/v1619108763/mfnfxyleu9z6pk3gzj32.jpg",
-      "stocks": 900,
-      "_id": "6081a39c13f3e21db7724b38",
+      "_id": "6081a39c13f3e21db7724b33",
       "filename": "imageUrl-1619108760206.jpg",
       "title": "Đừng Làm Việc Chăm Chỉ Hãy Làm Việc Thông Minh",
       "price": 106700,
@@ -207,7 +207,7 @@ const products =
       "url": "https://res.cloudinary.com/codingwithvudang/image/upload/v1619109029/nkpmh215lksoqomjgnwd.jpg",
       "thumb": "https://res.cloudinary.com/codingwithvudang/image/upload/v1619109031/st9cbmlrf2kewhrftwdx.jpg",
       "stocks": 8820,
-      "_id": "6081a4a713f3e21db7724b39",
+      "_id": "6081a4a713f3e21db7724b34",
       "filename": "imageUrl-1619109027793.jpg",
       "title": "Payback Time - Ngày Đòi Nợ",
       "price": 299000,
