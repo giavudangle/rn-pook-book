@@ -37,8 +37,8 @@ import { IntroScreen } from '../screens/IntroScreen';
 import { SignUpScreen } from '../screens/SignupScreen';
 import { LoginScreen } from '../screens/LoginScreen';
 import { TouchIdScreen } from '../screens/TouchIdScreen';
-import {ForgetPasswordScreen} from '../screens/ForgetPasswordScreen'
-import {FinishResetPasswordScreen} from '../screens/FinishResetPasswordScreen'
+import { ForgetPasswordScreen } from '../screens/ForgetPasswordScreen'
+import { FinishResetPasswordScreen } from '../screens/FinishResetPasswordScreen'
 // Home Screens
 import { HomeScreen } from '../screens/HomeScreen';
 import { ContactScreen } from '../screens/ContactScreen';
@@ -286,12 +286,7 @@ export const DrawerNavigator = () => {
       label: 'Trang Chủ',
       icon: 'home-outline',
     },
-    {
-      name: 'Order',
-      screen: OrderScreen,
-      label: 'Đơn Hàng',
-      icon: 'receipt',
-    },
+
     {
       name: 'Contact',
       screen: ContactScreen,
@@ -337,8 +332,8 @@ export const DrawerNavigator = () => {
         />
       ))}
 
-      
-      {Object.keys(user).length === 0 ? ( 
+
+      {Object.keys(user).length === 0 ? (
         // Use this for check current user has been logged in ?
         // if has not user => display login screen tab
         // else => display touchid & profile screen
@@ -369,6 +364,31 @@ export const DrawerNavigator = () => {
         />
       ) : (
         <>
+          <Drawer.Screen
+            name='Order'
+            component={OrderScreen}
+            options={() => ({
+              title: ({ focused }) => (
+                <CustomText
+                  style={{
+                    fontSize: 14,
+                    fontWeight: '500',
+                    color: focused ? Colors.lighter_green : Colors.grey,
+                    fontFamily: 'Roboto-Medium',
+                  }}
+                >
+                  Đơn hàng
+                </CustomText>
+              ),
+              drawerIcon: ({ focused }) => (
+                <MaterialCommunityIcons
+                  name='receipt'
+                  size={25}
+                  color={focused ? Colors.lighter_green : Colors.grey}
+                />
+              ),
+            })}
+          />
           <Drawer.Screen
             name='TouchId'
             component={TouchIdScreen}

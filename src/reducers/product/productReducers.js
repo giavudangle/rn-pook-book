@@ -3,7 +3,6 @@ import {
   PRODUCT_LOADING,
   PRODUCT_FAILURE,
 } from "../../@types/productActionTypes";
-import { FIRST_OPEN } from "../../@types/firstTimeOpenActionTypes";
 
 
 
@@ -12,7 +11,6 @@ import { FIRST_OPEN } from "../../@types/firstTimeOpenActionTypes";
 
 const initialState = {
   products: [],
-  isFirstOpen: false,
   isLoading: false,
 };
 
@@ -39,12 +37,7 @@ export const productReducer = (state = initialState, action) => {
         products: [...action.products],
         isLoading: false,
       };
-    case FIRST_OPEN: {
-      return {
-        ...state,
-        isFirstOpen: true,
-      };
-    }
+
     default:
       return state;
   }

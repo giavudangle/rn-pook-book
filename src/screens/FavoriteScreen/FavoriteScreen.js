@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from "react";
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet,TouchableOpacity } from "react-native";
 //Redux
 import { useSelector, useDispatch } from "react-redux";
 //Action
@@ -9,11 +9,13 @@ import { Header, FavoriteBody } from "./components";
 // Utils
 import Colors from "../../utils/Colors";
 //Loader
-import SkeletonLoadingCart from "../../components/Loaders/SkeletonLoadingCart";
+
 import SkeletonLoadingFavorite from "../../components/Loaders/SkeletonLoadingFavorite";
 
 
 
+import CustomText from "../../components/UI/CustomText";
+import Messages from '../../messages/user'
 
 export const FavoriteScreen = ({ navigation }) => {
   /**
@@ -66,17 +68,27 @@ export const FavoriteScreen = ({ navigation }) => {
   */
   return (
     <View style={styles.container}>
-      <Header navigation={navigation} />
-      {loading
-        ? (<SkeletonLoadingFavorite />)
-        : (<FavoriteBody
-          user={user}
-          FavoriteProducts={FavoriteProducts}
-          navigation={navigation}
-          loadFavoriteProducts={loadFavoriteProducts}
-          isRefreshing={isRefreshing}
-        />)
-      }
+      <Header navigation={navigation} />  
+         {Object.keys(user).length === 0 
+         ? (
+          <View style={styles.center}>
+            <CustomText>{Messages["user.login.require"]}</CustomText>
+            <View style={styles.nextButton}>
+              <TouchableOpacity onPress={() => navigation.navigate("SignUp")}>
+                <CustomText style={{ color: "#fff" }}>Tiếp tục</CustomText>
+              </TouchableOpacity>
+            </View>
+          </View>
+        ) : loading
+          ? <SkeletonLoadingFavorite />
+          : (<FavoriteBody
+              user={user}
+              FavoriteProducts={FavoriteProducts}
+              navigation={navigation}
+              loadFavoriteProducts={loadFavoriteProducts}
+              isRefreshing={isRefreshing}/>
+            )
+        }
     </View>
   );
 };
@@ -84,5 +96,20 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: Colors.white,
+  },
+  nextButton: {
+    borderWidth: 1,
+    paddingHorizontal: 15,
+    paddingVertical: 10,
+    backgroundColor: Colors.lighter_green,
+    borderRadius: 5,
+    borderColor: Colors.lighter_green,
+    marginTop: 10,
+  },
+  center: {
+    height: "100%",
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });

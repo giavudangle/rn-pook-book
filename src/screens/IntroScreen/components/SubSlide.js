@@ -1,5 +1,6 @@
 import React from 'react'
 import { View, Text, StyleSheet, Dimensions, TouchableOpacity, Animated } from 'react-native'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 const {width, height} = Dimensions.get('screen')
 
@@ -10,7 +11,7 @@ export default function SubSlide({title, content, last, nextSlide, scrollX,submi
 
     const backgroundColor = scrollX.interpolate({
         inputRange: [0, width, width * 2],
-        outputRange: ["#7EFFB1", "#5BFF9C", "#4DFF94"],
+        outputRange: ["#A1E4FC", "#76D8FB", "#5DC1EA"],
         extrapolate: 'clamp' 
       })
     return (
@@ -20,7 +21,7 @@ export default function SubSlide({title, content, last, nextSlide, scrollX,submi
 
             <TouchableOpacity onPress={onSubmitApp}>
                 <Animated.View style={[styles.scrollButton,{backgroundColor: backgroundColor}]}>
-                    <Text style={{color:'#00806C',fontSize:18,fontWeight:'bold'}}>
+                    <Text style={{color:Colors.white,fontSize:18,fontWeight:'bold'}}>
                         {last ? "Bắt đầu" : "Tiếp theo"}
                     </Text>
                 </Animated.View>

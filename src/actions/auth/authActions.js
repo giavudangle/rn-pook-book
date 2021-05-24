@@ -1,23 +1,15 @@
-import { AsyncStorage } from '@react-native-async-storage/async-storage';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { API_URL } from '../../utils/Config';
 import { predictTimeoutPromise } from '../../utils/Tools';
 
+import axios from 'axios'
 
-
-import {AUTH_SUCCESS,AUTH_FAILURE,AUTH_LOADING,LOGIN,LOGOUT,RESET_ERROR,RESET_PASSWORD,UPLOAD_PROFILEPIC} from '../../@types/authActionTypes'
+import { AUTH_SUCCESS, AUTH_FAILURE, AUTH_LOADING, LOGIN, LOGOUT, RESET_ERROR, RESET_PASSWORD, UPLOAD_PROFILEPIC } from '../../@types/authActionTypes'
 
 
 import AskingExpoToken from '../../components/Notification/AskingNotificationPermisson';
+import * as SecureStore from 'expo-secure-store';
 
-//Create dataStorage
-const saveDataToStorage = (name, data) => {
-  AsyncStorage.setItem(
-    name,
-    JSON.stringify({
-      data,
-    }),
-  );
-};
 
 export const SignUp = (name, email, password) => {
   return async (dispatch) => {
@@ -55,6 +47,8 @@ export const SignUp = (name, email, password) => {
   };
 };
 
+
+
 //Login
 export const Login = (email, password) => {
   return async (dispatch) => {
@@ -64,29 +58,39 @@ export const Login = (email, password) => {
     const pushToken = await AskingExpoToken();
     try {
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/user/login`, {
-          headers: {
+        axios.post(`${API_URL}/users/login`, {
+          email,
+          password,
+          pushTokens: [pushToken],
+        },{
+          headers:{
+            "Access-Control-Allow-Origin": "*",
             Accept: 'application/json',
             'Content-Type': 'application/json',
-          },
-          method: 'POST',
-          body: JSON.stringify({
-            email,
-            password,
-            pushTokens: [pushToken],
-          }),
+          }
         }),
       );
-      if (!response.ok) {
-        const errorResData = await response.json();
+      if (response.status !== 200) {
         dispatch({
           type: AUTH_FAILURE,
         });
-        throw new Error(errorResData.err);
+        alert('Failed in authentication');
       }
-      const resData = await response.json();
-      saveDataToStorage('user', resData);
-      dispatch(setLogoutTimer(60 * 60 * 1000));
+      const resData = response.data
+      await AsyncStorage.setItem(
+        'user',
+        JSON.stringify({
+          resData
+        }),
+      );
+    
+      /**
+      |--------------------------------------------------
+      | AUTO LOGOUT
+      |--------------------------------------------------
+      */
+      //dispatch(setLogoutTimer(15000)); // 15 seconds for testing
+      dispatch(setLogoutTimer(60 * 60 * 1000)); // 1h = 60m * 60s
       dispatch({
         type: LOGIN,
         user: resData,
@@ -254,7 +258,7 @@ export const ResetPassword = (password, url) => {
 export const Logout = () => {
   return (dispatch) => {
     clearLogoutTimer(); //clear setTimeout when logout
-    AsyncStorage.removeItem('user');
+    AsyncStorage.removeItem('user'); //  Lưu thông tin này vô Store có bảo mật 
     dispatch({
       type: LOGOUT,
       user: {},
@@ -269,7 +273,7 @@ const clearLogoutTimer = () => {
     clearTimeout(timer);
   }
 };
-const setLogoutTimer = (expirationTime) => {
+export const setLogoutTimer = (expirationTime) => {
   return (dispatch) => {
     timer = setTimeout(async () => {
       await dispatch(Logout());
