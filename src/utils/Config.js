@@ -1,7 +1,7 @@
 // API URL
 //export const API_URL = "codingwithvudang-bookserver.herokuapp.com/api/v1";
 //export const API_URL = "http://127.0.0.1:8080/api/v1"
-export const API_URL = "http://fc04f938776f.ngrok.io/api/v1"
+export const API_URL = "http://47a045d7af8a.ngrok.io/api/v1"
 
 
 export const secretKey = "VUDANG_SECRET_TOKEN"; // Secure Store Key

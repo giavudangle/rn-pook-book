@@ -112,7 +112,7 @@ export const FavoriteItem = ({ navigation, item }) => {
       <View style={{ width: 170, flexDirection: "row" }}>
         {renderRightAction(
           "Thêm vào giỏ",
-          "#ffab00",
+          Colors.emerald,
           _handleAddToCart,
           140,
           progress
@@ -230,10 +230,10 @@ const styles = StyleSheet.create({
     height: 100,
     flexDirection: "row",
     backgroundColor: Colors.light_grey,
-    marginTop: 5,
+    marginTop: 0,
     borderRadius: 0,
     alignItems: "center",
-    marginVertical:4
+    marginBottom:2
   },
   info: {
     height: "100%",
@@ -286,9 +286,8 @@ const styles = StyleSheet.create({
   rightAction: {
     alignItems: "center",
     justifyContent: "center",
-    marginVertical: 6,
     flexDirection: "row",
-    height: 90,
+    height: 100,
   },
   actionText: {
     color: "white",
