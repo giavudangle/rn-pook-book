@@ -67,6 +67,7 @@ export const DetailScreen = (props) => {
       </Animated.ScrollView>
 
       <ActionButton
+      showSnackbar={showSnackbar}
         item={item}
         FavoriteProducts={FavoriteProducts}
         setShowSnackbar={setShowSnackbar}

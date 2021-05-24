@@ -116,6 +116,7 @@ const styles = StyleSheet.create({
         fontSize: 40,
         fontWeight: 'bold',
         marginBottom: 24,
+        marginTop:30
     },
     btn: {
         width: "90%",
@@ -124,7 +125,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
         borderRadius: 5,
         flexDirection: "row",
-        backgroundColor: '#00806C',
+        backgroundColor: Colors.primary,
         marginTop: 20,
         alignSelf: 'center',
     }

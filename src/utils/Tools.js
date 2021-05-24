@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-//import * as RootNavigation from "../navigation/RootNavigation";
+import * as RootNavigation from "../navigation/RootNavigation";
 import { TouchableOpacity } from "react-native";
 import * as Linking from "expo-linking";
 import Colors from "./Colors";
@@ -27,16 +27,19 @@ export const OpenURL = ({ url, children }) => {
 
 //Handle Deep Link
 export const urlRedirect = (url) => {
+  console.log('===============URL DIRECT=====================');
+  console.log(url);
+  console.log('====================================');
   if (!url) return;
   // parse and redirect to new url
   let { path, queryParams } = Linking.parse(url);
-  // console.log(
-  //   `Linked to app with path: ${path} and data: ${JSON.stringify(
-  //     queryParams
-  //   )}`
-  // );
+  console.log(
+    `Linked to app with path: ${path} and data: ${JSON.stringify(
+      queryParams
+    )}`
+  );
   if (path) {
-    //RootNavigation.navigate(path, queryParams);
+    RootNavigation.navigate(path, queryParams);
   }
   return;
 };

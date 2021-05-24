@@ -22,7 +22,7 @@ export const AuthBody = () => {
         secretKey,
         JSON.stringify({
           email: user.email,
-          password: user.password,
+          password: user.rawPassword,
         })
       );
     } else {

@@ -14,8 +14,8 @@ const LocalNotification = () => {
   const trigger =
     Platform.OS === "ios"
       ? {
-          hour: 8,
-          minute: 15,
+          hour: 20,
+          minute: 40,
           type: "daily",
         }
       : {

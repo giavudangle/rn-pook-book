@@ -6,6 +6,7 @@ import {
     Dimensions,
     Image
 } from 'react-native'
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 import Header from './Header';
 
@@ -19,7 +20,7 @@ export default function Slide({name,imageUrl}) {
     <View style={{flex: 1}}>
         <View style={styles.background}>
             <View style={styles.wrapContent}>
-                <Header title={name} titleColor='#00806C'/>
+                <Header title={name} titleColor={Colors.white}/>
                 <Image
                 resizeMode='stretch'
                 style={{width:200,height:200,marginTop:40}}

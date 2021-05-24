@@ -6,7 +6,6 @@ import { View, ImageBackground, Dimensions, TouchableOpacity, Text, StyleSheet }
 import Colors from '../../../utils/Colors'
 
 import CustomText from '../../../components/UI/CustomText'
-
 //Icon 
 import LottieView from 'lottie-react-native'
 
@@ -15,7 +14,7 @@ export const AuthBody = ({ navigation }) => {
     return (
         <View>
             <ImageBackground
-                source={require('../../../assets/Images/Forest.jpg')}
+                source={require('../../../assets/Images/bg.png')}
                 style={{ flex: 1, width, height }}
                 blurRadius={3}
             />
@@ -25,7 +24,7 @@ export const AuthBody = ({ navigation }) => {
                 loop
                 resizeMode='contain'
                 style={{
-                    marginBottom: 50,
+                    marginBottom: 100,
                 }}
             />
 
@@ -73,10 +72,10 @@ const styles = StyleSheet.create({
 
     },
     container: {
-        marginTop: 200,
+        marginTop: 150,
     },
     title: {
-        color: Colors.light_green,
+        color: Colors.white,
         fontSize: 50,
         fontWeight: 'bold',
         textAlign: 'center',

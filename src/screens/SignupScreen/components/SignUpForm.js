@@ -58,7 +58,7 @@ const validate = (values) => {
 
 const Signup = (props) => {
     const { handleSubmit, reset } = props;
-    const dispacth = useDispatch();
+    const dispatch = useDispatch();
     const loading = useSelector((state) => state.auth.isLoading)
     const [hidePass, setHidePass] = useState(true);
     const [hideConfirm, setHideConfirm] = useState(true);
@@ -72,18 +72,17 @@ const Signup = (props) => {
     const state = useSelector(state => state)
     const submit = async (values) => {
         try {
-            await dispacth(SignUpAct(values.username, values.email, values.password));
+            await dispatch(SignUpAct(values.username, values.email, values.password));
             reset();
-            if (!unmounted.current) {
-                Alert.alert("Signup Successfully", "You can login now", [
-                    {
-                        text: 'OK',
-                        onPress: () => {
-                            props.navigation.goBack();
-                        }
+            Alert.alert("Signup Successfully", "You can login now", [
+                {
+                    text: 'OK',
+                    onPress: () => {
+                        props.navigation.goBack();
                     }
-                ])
-            }
+                }
+            ])
+         
         } catch (err) {
             alert(err);
         }
@@ -173,12 +172,12 @@ Signup.propTypes = {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 150,
+        marginTop: 80,
         paddingHorizontal: 20,
         zIndex: 1,
     },
     title: {
-        color: '#00806C',
+        color: Colors.primary,
         fontSize: 48,
         fontWeight: 'bold',
         marginBottom: 30,
