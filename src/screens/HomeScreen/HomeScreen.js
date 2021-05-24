@@ -37,7 +37,9 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 import banners from "../../db/Banners";
 
 import { fetchCategories } from '../../actions/category/categoryAction';
-
+import * as SecureStore from 'expo-secure-store'
+import { secretKey } from '../../utils/Config';
+import Loader from '../../components/Loaders/Loader';
 
 export const HomeScreen = ({ navigation }) => {
   let scrollY = new Animated.Value(0);
@@ -50,7 +52,6 @@ export const HomeScreen = ({ navigation }) => {
 
   const categories = useSelector(state => state.category.categories)
 
-  const mappedCategories = categories.map((cate) => cate.code)
 
 
 
@@ -59,7 +60,6 @@ export const HomeScreen = ({ navigation }) => {
   },[])
 
   useEffect(() => {
-    // AsyncStorage.removeItem("isFirstTime");
     const fetching = async () => {
       try {
         dispatch(fetchProducts());
@@ -74,9 +74,11 @@ export const HomeScreen = ({ navigation }) => {
     <Provider>
       {
         isLoading
-          ? (<SkeletonLoading />)
+          ? (< SkeletonLoading/>)
           : (
             <SafeAreaView style={styles.container}>
+
+             
 
               <Header      
                 products={products}
@@ -127,7 +129,8 @@ export const HomeScreen = ({ navigation }) => {
                   }
                 />
               )}
-
+ 
+            
 
             </SafeAreaView>
           )}

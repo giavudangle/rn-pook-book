@@ -58,25 +58,19 @@ const Login = (props) => {
   const unmounted = useRef(false);
 
   const scanFingerprintOrFaceId = async () => {
-    //const resData = await SecureStore.getItemAsync(secretKey);
-    //const resData = 'hehe' // Set seckey when user allow open app by finger print in user account management
+    const resData = await SecureStore.getItemAsync(secretKey); 
 
-
-    const resData = await AsyncStorage.getItem('user');
- 
     if (resData === null) {
-      return alert("You have to enable LOGIN by touch/face ID");
+      return Alert.alert("Unauthorized","You must enable TouchID/FaceID in Settings");
     } 
     const result = await LocalAuthentication.authenticateAsync({
       promptMessage: "Authenticating",
     });
     if (result.success) {
       const data = await JSON.parse(resData);
-      const {email,rawPassword} = data.resData;
-      console.log('====================================');
-      console.log(resData);
-      console.log('====================================');
-      dispatch(LoginAction(email, rawPassword));
+      const {email,password} = data
+    
+      await dispatch(LoginAction(email, password));
     }
   };
 
@@ -108,7 +102,6 @@ const Login = (props) => {
   const submit = async (values) => {
     try {
       await dispatch(LoginAction(values.email, values.password));
-      props.navigation.navigate("Home");
     } catch (err) {
       alert(err);
     }

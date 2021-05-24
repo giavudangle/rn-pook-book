@@ -45,23 +45,23 @@ const initialState = {
 
 export const authReducer = (state = initialState, action) => {
   //set user if token doesn't expire yet
-  const userInformation = async () => {
-    const getUser = await AsyncStorage.getItem("user");
-    if (!getUser) {
-      return initialState;
-    }
-    const parsedUser = await JSON.parse(getUser);
+  // const userInformation = async () => {
+  //   const getUser = await AsyncStorage.getItem("user");
+  //   if (!getUser) {
+  //     return initialState;
+  //   }
+  //   const parsedUser = await JSON.parse(getUser);
   
-    return (initialState.user = parsedUser.resData);
-  };
-  userInformation();
+  //   return (initialState.user = parsedUser.resData);
+  // };
+  // userInformation();
 
   switch (action.type) {
     case AUTH_LOADING: {
       return {
         ...state,
         isLoading: true, // modified
-        // error: false,
+        error: false,
       };
     }
     case LOGIN:
@@ -69,6 +69,7 @@ export const authReducer = (state = initialState, action) => {
         user: action.user,
         notification: UserMessages["user.login.success"],
         isLoading: false,
+        isFirstTime:true
       };
     case SIGN_UP: {
       return {
