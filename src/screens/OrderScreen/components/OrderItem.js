@@ -115,7 +115,9 @@ export const OrderItem = ({ order }) => {
               <CustomText style={styles.text}>
                 Tình trạng thanh toán :{" "}
               </CustomText>
+
               <CustomText style={styles.detail,{color:'red'}}>
+
                 {order.paymentMethod === 'CC' || status() ===4  ? 'Đã thanh toán ' : 'Chưa thanh toán '}
               </CustomText>
             </View>
