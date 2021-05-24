@@ -50,6 +50,7 @@ export const FavoriteBody = ({
         </View>
       ) : (
         <FlatList
+          style={{backgroundColor:Colors.primary}}
           data={FavoriteProducts}
           onRefresh={loadFavoriteProducts}
           refreshing={isRefreshing}

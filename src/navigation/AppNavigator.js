@@ -6,14 +6,17 @@ import { navigationRef } from './RootNavigation';
 import { DrawerNavigator, IntroStackScreen } from './PookNavigator';
 import { useDispatch } from 'react-redux';
 import { Login, Logout } from '../actions/auth/authActions';
+import * as SecureStore from 'expo-secure-store'
 //Modalize
 import { Host } from 'react-native-portalize';
 //Deep Link
 import { urlRedirect } from '../utils/Tools';
 import * as Linking from 'expo-linking';
 
+
 //Types
 import {IS_FIRST_TIME} from '../@types/firstTimeOpenActionTypes'
+import { secretKey } from '../utils/Config';
 
 
 export const AppNavigator = () => {
@@ -55,6 +58,13 @@ export const AppNavigator = () => {
   | CHECK IS FIRST TIME OPEN APP & AUTO LOGOUT
   |--------------------------------------------------
   */
+
+  const clearStorageDataForTesting = async () => {
+    await AsyncStorage.clear(); // use this for testing
+    await SecureStore.deleteItemAsync(secretKey)
+  }
+
+
   const isUserHaveYet = async () => {
     const user = await AsyncStorage.getItem('user');
     if(user !== null ) {
@@ -70,17 +80,15 @@ export const AppNavigator = () => {
   }  
   
   const isFirstTime = async () => {
-    //await AsyncStorage.clear(); // use this for testing
     const firstOpen = await AsyncStorage.getItem(IS_FIRST_TIME);
-    //if(!unmounted.current) return null;
     setValue(firstOpen);
     if(!unmounted.current) return null;
 
   };
 
   useEffect(() => {
+    //clearStorageDataForTesting();
     isFirstTime();
-    // autoLogout()
     isUserHaveYet()
     return () => unmounted.current = false
 

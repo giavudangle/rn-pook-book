@@ -17,7 +17,7 @@ import CustomText from "../../../../components/UI/CustomText";
 //Color
 import Colors from "../../../../utils/Colors";
 
-const { height } = Dimensions.get("window");
+const { height,width } = Dimensions.get("window");
 
 const HEADER_MAX_HEIGHT = 320;
 const HEADER_MIN_HEIGHT =
@@ -56,7 +56,7 @@ export const Header = ({ navigation, scrollY, item }) => {
         </TouchableOpacity>
         <Animated.View style={{ opacity: headerOpacity,width:200 }}>
           <CustomText
-            style={{ fontSize: 16, color: "#fff", fontWeight: "500" }}
+            style={{ fontSize: 16, color: "#fff", fontWeight: "500" ,width:width / 1.6}}
           >
             {item.title}
           </CustomText>
