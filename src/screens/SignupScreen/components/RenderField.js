@@ -88,8 +88,9 @@ export default renderField = ({
 
 const Styles=StyleSheet.create({
   textError:{
-    color:'red',
-    paddingHorizontal:30,
+    color:Colors.straw,
+    marginLeft:20,
+    marginBottom:2
   },
   body:{
     marginBottom: 20,
