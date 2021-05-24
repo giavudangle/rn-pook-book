@@ -58,7 +58,7 @@ import { ProfileScreen } from '../screens/ProfileScreen';
 import { EditProfileScreen } from '../screens/ProfileScreen';
 // redux
 import { useSelector } from 'react-redux';
-import { ResetPasswordScreen } from '../screens/ResetPasswordScreen/ResetPasswordScreen';
+import { ResetPasswordScreen } from '../screens/ResetPasswordScreen';
 
 /**
 |--------------------------------------------------

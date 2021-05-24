@@ -4,11 +4,11 @@ import { predictTimeoutPromise } from '../../utils/Tools';
 
 import axios from 'axios'
 
-import { AUTH_SUCCESS, AUTH_FAILURE, AUTH_LOADING, LOGIN, LOGOUT, RESET_ERROR, RESET_PASSWORD, UPLOAD_PROFILEPIC } from '../../@types/authActionTypes'
+import {FORGET_PASSWORD, SIGN_UP,AUTH_SUCCESS, AUTH_FAILURE, AUTH_LOADING, LOGIN, LOGOUT, RESET_ERROR, RESET_PASSWORD, UPLOAD_PROFILEPIC } from '../../@types/authActionTypes'
 
 
 import AskingExpoToken from '../../components/Notification/AskingNotificationPermisson';
-import * as SecureStore from 'expo-secure-store';
+import { Alert } from 'react-native';
 
 
 export const SignUp = (name, email, password) => {
@@ -18,7 +18,7 @@ export const SignUp = (name, email, password) => {
     });
     try {
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/user/register`, {
+        fetch(`${API_URL}/users/register`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -36,13 +36,13 @@ export const SignUp = (name, email, password) => {
         dispatch({
           type: AUTH_FAILURE,
         });
-        throw new Error(errorResData.err);
+        alert('Email đã tồn tại trên hệ thống')
       }
       dispatch({
         type: SIGN_UP,
       });
     } catch (err) {
-      throw err;
+      Alert.alert('Thất Bại','Email đã tồn tại trên hệ thống')
     }
   };
 };
@@ -74,7 +74,7 @@ export const Login = (email, password) => {
         dispatch({
           type: AUTH_FAILURE,
         });
-        alert('Failed in authentication');
+        Alert.alert('Thất Bại','Sai email hoặc mật khẩu')
       }
       const resData = response.data
       await AsyncStorage.setItem(
@@ -96,7 +96,11 @@ export const Login = (email, password) => {
         user: resData,
       });
     } catch (err) {
-      throw err;
+      dispatch({
+        type:AUTH_FAILURE
+      })
+      Alert.alert('Thất Bại','Sai email hoặc mật khẩu')
+
     }
   };
 };
@@ -109,7 +113,7 @@ export const EditInfo = (phone, address) => {
     });
     try {
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/user/${user.userid}`, {
+        fetch(`${API_URL}/users/${user.userid}`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -156,7 +160,7 @@ export const UploadProfilePic = (imageUri, filename, type) => {
     });
     try {
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/user/photo/${user.userid}`, {
+        fetch(`${API_URL}/users/photo/${user.userid}`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'multipart/form-data',
@@ -191,7 +195,7 @@ export const ForgetPassword = (email) => {
     });
     try {
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/user/reset_pw`, {
+        fetch(`${API_URL}/users/reset_password`, {
           headers: {
             Accept: 'application/json',
             'Content-Type': 'application/json',
@@ -225,7 +229,7 @@ export const ResetPassword = (password, url) => {
     try {
       const response = await predictTimeoutPromise(
         fetch(
-          `${API_URL}/user/receive_new_password/${url.userid}/${url.token}`,
+          `${API_URL}/users/receive_new_password/${url.userid}/${url.token}`,
           {
             headers: {
               Accept: 'application/json',

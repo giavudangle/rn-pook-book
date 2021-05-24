@@ -52,17 +52,11 @@ const LoadAssets = async () => {
     require("./src/assets/Images/banner4.jpg"),
     require("./src/assets/Images/banner5.jpg"),
     require("./src/assets/Images/banner6.jpg"),
-    require("./src/assets/Images/bg1.jpg"),
-    require("./src/assets/Images/bg2.jpg"),
-    require("./src/assets/Images/bg3.jpg"),
-    require("./src/assets/Images/defaultprofile.jpg"),
-    require("./src/assets/Images/flower3.jpg"),
+    
+    require("./src/assets/Images/defaultprofile.png"),
     require("./src/assets/Images/logoNoText.png"),
     require("./src/assets/Images/logo1.png"),
     require("./src/assets/Images/logoTextWhite.png"),
-    require("./src/assets/Images/slide1.png"),
-    require("./src/assets/Images/slide2.png"),
-    require("./src/assets/Images/slide3.png"),
     require("./src/assets/Images/social1.png"),
     require("./src/assets/Images/social2.png"),
     require("./src/assets/Images/social3.png"),
@@ -130,7 +124,7 @@ export default function App() {
 //   }
 //   return (
 //     <Provider store={store}>
-//       <HomeScreen/>
+//       <ResetPasswordScreen/>
 //     </Provider>
 
 //   )
