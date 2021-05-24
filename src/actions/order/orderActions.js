@@ -1,6 +1,6 @@
 import { API_URL } from '../../utils/Config'
 import { predictTimeoutPromise } from '../../utils/Tools'
-import { ORDER_FAILURE, ORDER_LOADING, FETCH_ORDER, ADD_ORDER } from '../../@types/orderActionTypes'
+import { ORDER_FAILURE, ORDER_LOADING, FETCH_ORDER, ADD_ORDER,CANCEL_ORDER_SUCCESSFUL } from '../../@types/orderActionTypes'
 import axios from 'axios';
 /**
 |--------------------------------------------------
@@ -18,23 +18,24 @@ export const fetchOrder = () => {
     }
     try {
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/orders`, {
-          headers: {
+        axios.get(`${API_URL}/orders`,{
+          headers:{
             Accept: "application/json",
             "Content-Type": "application/json",
             "auth-token": user.token,
-          },
-          method: "GET",
+          }
         })
-      );
-      if (!response.ok) {
+      )
+
+      if (response.status!==200) {
         dispatch({
           type: ORDER_FAILURE,
         });
         throw new Error("Something went wrong! Can't get your order");
       }
-      const resData = await response.json();
-      const filterUserOrder = resData.content.filter(
+   
+      const resData = response.data.data
+      const filterUserOrder = resData.filter(
         (userOrder) => userOrder.userId._id === user.userid
       );
       dispatch({
@@ -66,10 +67,6 @@ export const createOrder = (
       type: ORDER_LOADING,
     });
     const user = getState().auth.user;
-
-    console.log('====================================');
-    console.log(chargeToken,paymentMethod,name);
-    console.log('====================================');
     try {
       const response = await predictTimeoutPromise(
         axios.post(`${API_URL}/orders`, {
@@ -91,22 +88,53 @@ export const createOrder = (
           }
         })
       )
-      console.log('====================================');
-      console.log(response);
-      console.log('====================================');
       if (response.status !== 200) {
         dispatch({
           type: ORDER_FAILURE,
         });
         throw new Error("Something went wrong when create new order!");
       }
-      const responseData = await response.data.data
       dispatch({
-        type: ADD_ORDER,
-        orderItem: responseData,
+        type: CANCEL_ORDER_SUCCESSFUL,
       });
     } catch (err) {
       throw err;
     }
   };
 };
+
+
+export const cancelOrder = (
+ orderId
+) => {
+  return async (dispatch, getState) => {
+    dispatch({
+      type: ORDER_LOADING,
+    });
+    const user = getState().auth.user;
+    try {
+      const response = await predictTimeoutPromise(
+        axios.delete(`${API_URL}/orders/${orderId}`, {  
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+            "auth-token": user.token,
+          }
+        })
+      )
+      if (response.status !== 200) {
+        dispatch({
+          type: ORDER_FAILURE,
+        });
+        throw new Error("Something went wrong when cancel order!");
+      }
+      dispatch({
+        type: CANCEL_ORDER_SUCCESSFUL,
+        payload: orderId,
+      });
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+

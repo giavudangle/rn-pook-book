@@ -1,32 +1,32 @@
 import { API_URL } from "../../utils/Config";
 import { predictTimeoutPromise } from "../../utils/Tools";
 
-import {PRODUCT_FAILURE,PRODUCT_LOADING,FETCH_PRODUCTS} from '../../@types/productActionTypes'
+import {CATEGORY_FAILURE,CATEGORY_LOADING,FETCH_CATEGORIES} from '../../@types/categoryActionTypes'
 import { Alert } from "react-native";
 
-export const fetchProducts = () => {
+export const fetchCategories = () => {
   return async (dispatch) => {
     dispatch({
-      type: PRODUCT_LOADING,
+      type: CATEGORY_LOADING,
     });
     try {
       const response = await predictTimeoutPromise(
-        fetch(`${API_URL}/products`, {
+        fetch(`${API_URL}/categories`, {
           method: "GET",
         })
       );
 
       if (!response.ok) {
         dispatch({
-          type: PRODUCT_FAILURE,
+          type: CATEGORY_FAILURE,
         });
         Alert.alert("Something went wrong!, Please check your internet connection")
-        //throw new Error("Something went wrong!, can't get the products");
+       
       }
       const resData = await response.json();
       dispatch({
-        type: FETCH_PRODUCTS,
-        products: resData.data,
+        type: FETCH_CATEGORIES,
+        payload: resData.data,
       });
     } catch (err) {
       throw err;

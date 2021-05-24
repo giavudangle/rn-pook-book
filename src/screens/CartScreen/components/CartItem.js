@@ -121,7 +121,9 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.white,
     paddingHorizontal: 10,
     borderRadius: 5,
-    //bottom:20,
+    bottom:10,
+    marginVertical:10
+    
   },
   left: {
     width: "35%",

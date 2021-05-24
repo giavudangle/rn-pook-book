@@ -115,8 +115,8 @@ const styles = StyleSheet.create({
     color: Colors.leave_green,
     textAlign: "center",
     fontWeight: "300",
-    fontSize:13,
-    width:100
+    fontSize:15,
+    width:'80%',
   },
   info: {
     flexDirection: "row",

@@ -25,6 +25,7 @@ import NumberFormat from "react-number-format";
 import CustomText from "../../../../components/UI/CustomText";
 //PropTypes check
 import PropTypes from "prop-types";
+import CustomOvalText from "../../../../components/UI/CustomOvalText";
 
 
 /**
@@ -73,9 +74,6 @@ export const FavoriteItem = ({ navigation, item }) => {
  */
   const dispatch = useDispatch();
   const _handleAddToCart = async () => {
-    console.log('==============UNMOUNTED======================');
-    console.log(unmounted);
-    console.log('====================================');
     try {
       await dispatch(addToCart(item));
       if (unmounted.current) {
@@ -199,7 +197,6 @@ export const FavoriteItem = ({ navigation, item }) => {
           </TouchableOpacity>
           <View style={styles.info}>
             <CustomText style={styles.title}>{item.title}</CustomText>
-
             <View style={styles.rateContainer}>
               <NumberFormat
                 value={item.price}
@@ -215,6 +212,7 @@ export const FavoriteItem = ({ navigation, item }) => {
                 )}
               />
             </View>
+            <CustomOvalText style={{color:Colors.white}}>{item.category.name}</CustomOvalText>
           </View>
         </View>
       </Swipeable>
@@ -229,12 +227,13 @@ FavoriteItem.propTypes = {
 
 const styles = StyleSheet.create({
   itemContainer: {
-    height: 90,
+    height: 100,
     flexDirection: "row",
     backgroundColor: Colors.light_grey,
     marginTop: 5,
     borderRadius: 0,
     alignItems: "center",
+    marginVertical:4
   },
   info: {
     height: "100%",
@@ -242,6 +241,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingVertical: 10,
     width: "75%",
+    marginLeft:16
 
   },
   title: {
@@ -257,6 +257,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     width: "70%",
+    marginVertical:4
+
   },
   rate: {
     flexDirection: "row",

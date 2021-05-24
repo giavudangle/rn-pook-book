@@ -42,7 +42,7 @@ export const CartBody = ({
   };
  
   return (
-    <View style={styles.footer}>
+    <View style={styles.container}>
       {Object.keys(user).length === 0 ? (
         <View style={styles.center}>
           <CustomText>{Messages["user.login.require"]}</CustomText>
@@ -94,7 +94,7 @@ CartBody.propTypes = {
   navigation: PropTypes.object.isRequired,
 };
 const styles = StyleSheet.create({
-  footer: {
+  container: {
     flex: 1,
   },
   nextButton: {

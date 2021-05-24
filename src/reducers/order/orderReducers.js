@@ -1,5 +1,5 @@
 import React from 'react'; 
-import {ORDER_FAILURE,ORDER_LOADING,ADD_ORDER,FETCH_ORDER} from '../../@types/orderActionTypes'
+import {ORDER_FAILURE,ORDER_LOADING,ADD_ORDER,FETCH_ORDER,CANCEL_ORDER_SUCCESSFUL} from '../../@types/orderActionTypes'
 
 
 const initialState = {
@@ -32,6 +32,13 @@ export const orderReducer = (state = initialState, action) => {
         orders: state.orders.concat(newOrder),
         isLoading: false,
       };
+    case CANCEL_ORDER_SUCCESSFUL:
+      return {
+        ...state,
+        isLoading:false,
+        orders : state.orders.filter(item => item._id !== action.payload)
+      }
+    default:
+      return state;
   }
-  return state;
 };

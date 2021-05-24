@@ -4,6 +4,11 @@ const banners = [
     imageUrl: require("../assets/Images/banner1.jpg"),
   },
   {
+    id: "218716523",
+    imageUrl: require("../assets/Images/banner4.jpg"),
+  },
+
+  {
     id: "5656210978",
     imageUrl: require("../assets/Images/banner6.jpg"),
   },
@@ -15,22 +20,10 @@ const banners = [
     id: "218716591",
     imageUrl: require("../assets/Images/banner5.jpg"),
   },
-  {
-    id: "218716523",
-    imageUrl: require("../assets/Images/banner4.jpg"),
-  },
-  {
-    id: "218716523",
-    imageUrl: require("../assets/Images/banner4.jpg"),
-  },
-  {
-    id: "218716523",
-    imageUrl: require("../assets/Images/banner4.jpg"),
-  },
-  {
-    id: "9471645183",
-    imageUrl: require("../assets/Images/banner1.jpg"),
-  },
+
+
+
+
 ];
 
 export default banners;

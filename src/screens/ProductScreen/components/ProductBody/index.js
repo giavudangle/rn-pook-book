@@ -16,6 +16,7 @@ import CustomText from '../../../../components/UI/CustomText';
 import { Header } from '../Header';
 //PropTypes check
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
 //ITEM_HEIGHT = 100;
 
@@ -26,17 +27,22 @@ export const ProductBody = ({
   productsFilter,
   searchFilterFunction,
 }) => {
+  const categories = useSelector(state => state.category.categories)
+   
+  const autoMapper = () => {
+    const DATA = [];
+    categories.map(category => {
+      const productsMapped = productsFilter.filter(product => product.category.code === category.code)
+      const data = {
+        title: category.name,
+        data: productsMapped
+      }
+      DATA.push(data)
+    })
+    return DATA
+  }
 
-
-  const DATA = [];
-
-  const literals = productsFilter.filter((item) => item.category.code ==='VH')
-  const lifeSkills = productsFilter.filter((item) => item.category.code === 'KNS');
-  const economics = productsFilter.filter((item) => item.category.code === 'KT');
-  
-  DATA.push({ title: 'Sách Kinh Tế', data: economics });
-  DATA.push({ title: 'Sách Kỹ Năng Sống', data: lifeSkills });
-  DATA.push({ title: 'Sách Văn Học', data: literals });
+  const DATA = autoMapper();
   const scrollY = new Value(0);
   const sectionListRef = useRef(null);
 
@@ -59,14 +65,21 @@ export const ProductBody = ({
           sections={DATA} // REQUIRED: SECTIONLIST DATA
           keyExtractor={(item) => item._id}
           ref={sectionListRef}
-          renderSectionHeader={({ section: { title } }) => (
-            <View style={styles.header}>
-              <CustomText style={styles.title}>{title}</CustomText>
-            </View>
-          )}
-          renderItem={({ item }) => (
-            <HorizontalItem item={item} navigation={navigation} />
-          )}
+          renderSectionHeader={({ section: { title, data } }) =>
+            data.length > 0
+              ? (
+                <View style={styles.header}>
+                  <CustomText style={styles.title}>{title}</CustomText>
+                </View>
+              ) : <></>}
+          renderItem={item =>
+            item.section.data.length > 0
+              ?
+              (
+                <HorizontalItem item={item.item} navigation={navigation} />
+              ) : <></>
+          }
+
           stickySectionHeadersEnabled={false}
           scrollEventThrottle={1}
           onScroll={Animated.event(
@@ -101,7 +114,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     justifyContent: 'center',
     backgroundColor: Colors.white,
-    
+
   },
   title: {
     fontSize: 20,
