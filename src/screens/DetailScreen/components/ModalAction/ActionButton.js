@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect,useState } from 'react';
 import {
   View,
   StyleSheet,
@@ -18,7 +18,12 @@ import { useDispatch, useSelector } from 'react-redux';
 //Action
 
 import { addToCart } from '../../../../actions/cart';
+<<<<<<< HEAD
 import { addFavorite, removeFavorite } from '../../../../actions/favorite';
+=======
+import { addFavorite,removeFavorite } from '../../../../actions/favorite';
+
+>>>>>>> d3e7e57925646b3936aa3e586e9870a3cae474de
 
 
 
@@ -37,8 +42,20 @@ export const ActionButton = ({
   setModalVisible,
   setMessage,
 }) => {
-  const dispatch = useDispatch();
+
+  /**
+  |--------------------------------------------------
+  | Global State 
+  |--------------------------------------------------
+  */
   const cartLoading = useSelector((state) => state.cart.isLoading);
+
+
+  /**
+  |--------------------------------------------------
+  | Local State 
+  |--------------------------------------------------
+  */
   const unmounted = useRef(false);
   useEffect(() => {
     return () => {
@@ -46,20 +63,39 @@ export const ActionButton = ({
     };
   }, []);
 
-  //Set Colors
+
+  /**
+  |--------------------------------------------------
+  | Action Handlers
+  |--------------------------------------------------
+  */
+  const dispatch = useDispatch();
+
+  const validateAddToCart = () => {
+    return +item.stocks > 0;
+  }
+  const _handleRemoveItem = async () => {
+    await dispatch(removeFavorite(item._id))
+  }
+
   const addToCartAct = async () => {
-    if (Object.keys(user).length === 0) {
-      setMessage(Messages['user.login.require']);
-      setShowSnackbar(true);
-    } else {
-      try {
-        dispatch(addToCart(item, user.token));
-        setModalVisible(true);
-      } catch (err) {
-        throw err;
+    if(validateAddToCart()){
+      if (Object.keys(user).length === 0) {
+        setMessage(Messages['user.login.require']);
+        setShowSnackbar(true);
+      } else {
+        try {
+          dispatch(addToCart(item, user.token));
+          setModalVisible(true);
+        } catch (err) {
+          throw err;
+        }
       }
+    } else {
+      Alert.alert('HẾT HÀNG','PookBook sẽ liên hệ cho bạn khi có hàng')
     }
   };
+ 
   const toggleFavorite = () => {
     // if (Object.keys(user).length === 0) {
     //   setMessage(Messages['user.login.require']);
@@ -94,7 +130,7 @@ export const ActionButton = ({
           },
           {
             text: 'Đồng ý',
-            onPress: () => dispatch(removeFavorite(item._id)),
+            onPress: () => _handleRemoveItem(),
           },
         ],
       );
@@ -102,6 +138,7 @@ export const ActionButton = ({
       dispatch(addFavorite(item));
     }
   };
+
   return (
     <Animatable.View
       delay={1500}

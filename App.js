@@ -50,6 +50,7 @@ import { HomeScreen } from "./src/screens/HomeScreen";
 import { DetailScreen } from "./src/screens/DetailScreen";
 
 import {FinishResetPasswordScreen} from './src/screens/FinishResetPasswordScreen'
+import { categoryReducer } from "./src/reducers/category/categoryReducer";
 
 
 const rootReducer = combineReducers({
@@ -58,6 +59,7 @@ const rootReducer = combineReducers({
   order: orderReducer,
   auth: authReducer,
   fav: favoriteReducer,
+  category: categoryReducer,
   form: formReducer,
 });
 

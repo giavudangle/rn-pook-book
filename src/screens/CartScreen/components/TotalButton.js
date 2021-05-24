@@ -12,8 +12,7 @@ import PropTypes from 'prop-types';
 
 
 
-export const TotalButton = ({ navigation, cartItems, cartId }) => {
-  const total = 350000;
+export const TotalButton = ({ navigation, cartItems, cartId ,user,total}) => {
 
   return (
     <View style={styles.total}>
@@ -37,6 +36,7 @@ export const TotalButton = ({ navigation, cartItems, cartId }) => {
             cartItems,
             total,
             cartId,
+            user
           });
         }}
       >
@@ -53,20 +53,20 @@ export const TotalButton = ({ navigation, cartItems, cartId }) => {
 
 
 TotalButton.propTypes = {
-  // total: PropTypes.number.isRequired,
+  total: PropTypes.number.isRequired,
   navigation: PropTypes.object.isRequired,
-  // cartItems: PropTypes.array.isRequired,
-  // cartId: PropTypes.string,
+  cartItems: PropTypes.array.isRequired,
+  cartId: PropTypes.string,
 };
 
 const styles = StyleSheet.create({
   total: {
     width: '100%',
     position: 'absolute',
-    bottom: 20,
+    bottom: 0,
     left: 0,
     paddingHorizontal: 10,
-    paddingVertical: 5,
+    paddingVertical: 0,
   },
   btn: {
     width: '100%',

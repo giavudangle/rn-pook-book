@@ -10,7 +10,6 @@ import {
     Alert,
     ActivityIndicator,
 } from 'react-native';
-import { TextInput } from 'react-native-paper';
 //Colors
 import Colors from '../../../utils/Colors';
 import { Ionicons } from '@expo/vector-icons';
@@ -21,10 +20,11 @@ import RenderField from './RenderField';
 import { useDispatch, useSelector } from 'react-redux';
 
 //Aciton
-import { SignUp as SignUpAct } from '../../../reducers';
+import { SignUp as SignUpAct } from '../../../actions/auth';
 import { Field, reduxForm } from 'redux-form';
 
-import {PropTypes} from 'prop-types';
+//PropTypes check
+import PropTypes from 'prop-types';
 const { width, height } = Dimensions.get('screen')
 
 //Validation
@@ -68,6 +68,8 @@ const Signup = (props) => {
             unmounted.current = true;
         };
     })
+
+    const state = useSelector(state => state)
     const submit = async (values) => {
         try {
             await dispacth(SignUpAct(values.username, values.email, values.password));
@@ -94,7 +96,7 @@ const Signup = (props) => {
                     left: 15,
                     top: 30,
                 }}
-                onPress={() => navigation.goBack()}
+                onPress={() => props.navigation.goBack()}
             >
                 <Ionicons name='ios-arrow-back' size={50} color={Colors.light_green} />
             </TouchableOpacity>
@@ -114,46 +116,38 @@ const Signup = (props) => {
                             <Field
                                 name='username'
                                 component={RenderField}
-                                label='Your email'
-                                iconLeft='id-card'
-                            />
-                            <Field
-                                name='username'
-                                component={RenderField}
                                 label='Your name'
-                                iconLeft='email'
+                                icon='id-card'
                             />
                             <Field
-                                name='username'
+                                name='email'
+                                component={RenderField}
+                                label='Your email'
+                                icon='email'
+                                keyBoardType='email-address'
+                            />
+                            <Field
+                                name='password'
                                 component={RenderField}
                                 label='Your password'
-                                iconLeft='lock'
-                                right={<TextInput.Icon
-                                    name={hidePass ? 'eye-off' : 'eye'}
-                                    size={24}
-                                    color={Colors.lighter_green}
-                                    style={{ paddingLeft: 10 }}
-                                    onPress={() => setHidePass(!hidePass)}
-
-                                />}
-                                hide={hidePass}
+                                icon='lock'
+                                passIcon='pass'
+                                secureTextEntry={hidePass ? true : false}
+                                showPass={hidePass}
+                                setShowPass={setHidePass}
                             />
                             <Field
-                                name='username'
+                                name='confirmpassword'
                                 component={RenderField}
                                 label='Confirm password'
-                                iconLeft='lock'
-                                right={<TextInput.Icon
-                                    name={hideConfirm ? 'eye-off' : 'eye'}
-                                    size={24}
-                                    color={Colors.lighter_green}
-                                    style={{ paddingLeft: 10 }}
-                                    onPress={() => setHideConfirm(!hideConfirm)}
-                                />}
-                                hide={hideConfirm}
+                                icon='lock'
+                                passIcon='confirm'
+                                secureTextEntry={hideConfirm ? true : false}
+                                showConfirmPass={hideConfirm}
+                                setShowConfirmPass={setHideConfirm}
                             />
                         </View>
-                        <TouchableOpacity onPress={(handleSubmit(submit))}>
+                        <TouchableOpacity onPress={handleSubmit(submit)}>
                             <View style={styles.signIn}>
                                 {loading ? (
                                     <ActivityIndicator size='small' color='#fff' />
@@ -170,14 +164,12 @@ const Signup = (props) => {
         </View>
     )
 }
-Signup.propTypes={
-    handleSubmit:PropTypes.func.isRequired,
-    reset:PropTypes.func.isRequired,
+
+Signup.propTypes = {
+    handleSubmit: PropTypes.func.isRequired,
+    reset: PropTypes.func.isRequired,
 }
-export const SignUpForm = reduxForm({
-    form: 'signup', //a unique identifier for this form
-    validate, // <--- validation function given to redux-form
-})(Signup)
+
 
 const styles = StyleSheet.create({
     container: {
@@ -188,10 +180,10 @@ const styles = StyleSheet.create({
     title: {
         color: '#00806C',
         fontSize: 48,
-        letterSpacing: 10,
         fontWeight: 'bold',
         marginBottom: 30,
         textAlign: 'center',
+        letterSpacing: 5
     },
     signIn: {
         width: 150,
@@ -206,3 +198,8 @@ const styles = StyleSheet.create({
 
     }
 })
+
+export const SignUpForm = reduxForm({
+    form: 'signup', //a unique identifier for this form
+    validate, // <--- validation function given to redux-form
+})(Signup)

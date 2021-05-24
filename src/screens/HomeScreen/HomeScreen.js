@@ -5,11 +5,12 @@ import {
   Dimensions,
   Platform,
   FlatList,
-  SafeAreaView
+  SafeAreaView,
+  Button
 } from 'react-native';
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
-import { fetchProducts } from '../../reducers';
+import { fetchProducts } from '../../actions/product';
 //Colors
 import Colors from '../../utils/Colors';
 //Animation
@@ -33,6 +34,7 @@ import { FloatButton } from './components/Contact'
 const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 
 
+<<<<<<< HEAD
 const products =
   [
     {
@@ -373,18 +375,43 @@ const products =
     },
     
   ]
+=======
+import banners from "../../db/Banners";
+>>>>>>> d3e7e57925646b3936aa3e586e9870a3cae474de
 
-
-import { categories } from './components/Categories/CategoriesMockData'
+import { fetchCategories } from '../../actions/category/categoryAction';
 
 
 export const HomeScreen = ({ navigation }) => {
+  let scrollY = new Animated.Value(0);
 
   const isLoading = useSelector(state => state.store.isLoading)
   const notification = useSelector((state) => state.auth.notification);
   const user = useSelector((state) => state.auth.user);
+  const products = useSelector((state) => state.store.products);
+  const dispatch = useDispatch();
 
-  let scrollY = new Animated.Value(0);
+  const categories = useSelector(state => state.category.categories)
+
+  const mappedCategories = categories.map((cate) => cate.code)
+
+
+
+  useEffect(() => {
+    dispatch(fetchCategories())
+  },[])
+
+  useEffect(() => {
+    // AsyncStorage.removeItem("isFirstTime");
+    const fetching = async () => {
+      try {
+        dispatch(fetchProducts());
+      } catch (err) {
+        alert(err);
+      }
+    };
+    fetching();
+  }, [user.userid]);
 
   return (
     <Provider>
@@ -393,7 +420,8 @@ export const HomeScreen = ({ navigation }) => {
           ? (<SkeletonLoading />)
           : (
             <SafeAreaView style={styles.container}>
-              <Header
+
+              <Header      
                 products={products}
                 navigation={navigation}
               />
@@ -407,9 +435,9 @@ export const HomeScreen = ({ navigation }) => {
                 showsVerticalScrollIndicator={false}
                 ListHeaderComponent={() => (
                   <View style={styles.banner}>
-                    <Carousel />
+                    <Carousel banners={banners} />
                   </View>
-                )}
+                )}                  
                 scrollEventThrottle={1}
                 onScroll={Animated.event(
                   [
@@ -420,11 +448,12 @@ export const HomeScreen = ({ navigation }) => {
                   { useNativeDriver: true },
                 )}
                 data={categories}
-                keyExtractor={(item) => item.name}
+                keyExtractor={(item) => item._id}             
                 renderItem={({ item }) => (
                   <CategorySection
+                    category={item}
                     name={item.name}
-                    data={products}
+                    listProducts={products}
                     navigation={navigation}
                   />
                 )}
@@ -460,4 +489,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingBottom: 20,
   },
+  banner:{
+    marginBottom:50
+  }
 });

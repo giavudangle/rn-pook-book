@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, StyleSheet, Text } from 'react-native';
 import { Field, reduxForm } from 'redux-form';
 import renderField from './RenderField';
@@ -9,7 +9,7 @@ import CustomText from '../../../components/UI/CustomText';
 import PropTypes from 'prop-types';
 
 //Validation
-const validateCustom = (values) => {
+const validate = (values) => {
   const errors = {};
   if (!values.name) {
     errors.name = 'Họ tên không được bỏ trống';
@@ -38,13 +38,9 @@ const validateCustom = (values) => {
 
 
 
-const User = ({ getReceiver, checkValidation }) => {
-  const [receiverName, setReceiverName] = useState('');
-  const [phone, setPhone] = useState('');
-  const [address, setAddress] = useState('');
 
 
-
+const User = ({setDelivery, checkValidation }) => {
   return (
     <View>
       <View style={styles.container}>
@@ -56,7 +52,7 @@ const User = ({ getReceiver, checkValidation }) => {
             label='Họ tên'
             keyboardType='default'
             component={renderField}
-            onChangeText={(value) => setReceiverName(value)}
+            onChangeText={(value) => setDelivery('name',value)}
             checkValidation={checkValidation}
           />
           <Field
@@ -64,7 +60,7 @@ const User = ({ getReceiver, checkValidation }) => {
             maxLength={10}
             label='Số Điện Thoại'
             component={renderField}
-            onChangeText={(value) => setPhone(value)}
+            onChangeText={(value) => setDelivery('phone',value)}
             keyboardType='numeric'
             returnKeyType='done'
             checkValidation={checkValidation}
@@ -75,7 +71,7 @@ const User = ({ getReceiver, checkValidation }) => {
             maxLength={35}
             label='Địa Chỉ'
             component={renderField}
-            onChangeText={(value) => setAddress(value)}
+            onChangeText={(value) => setDelivery('address',value)}
             keyboardType='default'
             checkValidation={checkValidation}
           />
@@ -86,7 +82,7 @@ const User = ({ getReceiver, checkValidation }) => {
 }
 
 User.propTypes = {
-  getReceiver: PropTypes.func.isRequired,
+  setDelivery: PropTypes.func.isRequired,
   checkValidation: PropTypes.func.isRequired,
 }
 
@@ -106,7 +102,11 @@ const styles = StyleSheet.create({
 });
 
 
-export const UserForm = reduxForm({
-  form: 'user',
-  validate: validateCustom
+
+let UserForm = reduxForm({
+  form:'user',
+  enableReinitialize:true,
+  validate
 })(User)
+
+export {UserForm}

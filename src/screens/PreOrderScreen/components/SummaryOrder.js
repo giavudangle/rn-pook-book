@@ -2,6 +2,7 @@ import React from "react";
 import { View, StyleSheet } from "react-native";
 //Number
 import NumberFormat from "../../../components/UI/NumberFormat";
+
 //PreOrderItem
 import PreOrderItem from "./PreOrderItem";
 //Text
@@ -11,135 +12,16 @@ import Colors from "../../../utils/Colors";
 import PropTypes from "prop-types";
 
 
-const cartItems = [
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142502/dvjh8mwvnf5atgpqqzon.jpg",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "5800",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  },
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142502/dvjh8mwvnf5atgpqqzon.jpg",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "999999",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  },
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "999999",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  },
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "999999",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  },
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "999999",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  },
-  {
-    item: {
-      url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-      thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png",
-      _id: "605449051d6e5b1185c9d2db",
-      filename: "imageUrl-1616136453234.jpg",
-      price: "999999",
-      color: "red",
-      origin: "USA",
-      standard: "VIP",
-      description: "A Best Book",
-      type: "Sex",
-      title: "Sex of Blow",
-      createdAt: "2021-03-19T06:47:33.251Z",
-      updatedAt: "2021-03-19T06:47:33.251Z",
-      __v: 0
-  },
-  quantity: "10"
-  }
-]
 
 
-const total = 9999999;
 
-export class SummaryOrder extends React.PureComponent {
-  render() {
-    
-    return (
-      <View style={styles.container}>
+export const SummaryOrder = ({cartItems,total}) => {
+  return (
+    <View style={styles.container}>
         <CustomText style={{ ...styles.title, marginVertical: 5 }}>
           Tóm tắt đơn hàng
         </CustomText>
-        <View style={{ backgroundColor: "#fff", paddingHorizontal: 10 }}>
+        <View style={{ backgroundColor: "#fff", paddingHorizontal: 10,marginBottom:-10 }}>
           {cartItems.map((item) => {
             return (
               <View key={item.item.createdAt}>
@@ -151,10 +33,9 @@ export class SummaryOrder extends React.PureComponent {
         <View style={styles.total}>
           <CustomText
             style={{
-              fontSize: 15,
+              fontSize: 18,
               color: Colors.text,
               fontWeight: "500",
-              top:-10
             }}
           >
             Thành tiền
@@ -162,9 +43,12 @@ export class SummaryOrder extends React.PureComponent {
           <NumberFormat price={total.toString()} />
         </View>
       </View>
-    );
-  }
+  )
 }
+
+
+
+
 
 SummaryOrder.propTypes = {
   cartItems: PropTypes.array.isRequired,
@@ -173,16 +57,17 @@ SummaryOrder.propTypes = {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: -10,
+    marginTop:20
   },
+
   total: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 65,
-    marginTop: 10,
+    marginTop: 20,
     paddingHorizontal: 10,
-  },
-  title: {
+    marginHorizontal:4
+  },  title: {
     fontSize: 16,
     color: Colors.text,
     fontWeight: "500",

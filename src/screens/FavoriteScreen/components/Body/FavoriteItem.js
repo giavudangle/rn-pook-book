@@ -13,7 +13,10 @@ import Swipeable from "react-native-gesture-handler/Swipeable";
 //Redux
 import { useDispatch } from "react-redux";
 // Action
-import { addToCart, removeFavorite } from "../../../../actions/favorite";
+import { fetchFavorite, removeFavorite } from "../../../../actions/favorite";
+import { addToCart } from '../../../../actions/cart'
+
+
 //Color
 import Colors from "../../../../utils/Colors";
 //number format
@@ -22,7 +25,14 @@ import NumberFormat from "react-number-format";
 import CustomText from "../../../../components/UI/CustomText";
 //PropTypes check
 import PropTypes from "prop-types";
+import CustomOvalText from "../../../../components/UI/CustomOvalText";
 
+
+/**
+|--------------------------------------------------
+| Render Utils
+|--------------------------------------------------
+*/
 export const renderRightAction = (text, color, action, x, progress) => {
   const trans = progress.interpolate({
     inputRange: [0, 1],
@@ -40,20 +50,33 @@ export const renderRightAction = (text, color, action, x, progress) => {
   );
 };
 
+/**
+|--------------------------------------------------
+| Main Component
+|--------------------------------------------------
+*/
+
 export const FavoriteItem = ({ navigation, item }) => {
 
+  /**
+  |--------------------------------------------------
+  | Local State
+  |--------------------------------------------------
+  */
   const [isLoading, setIsLoading] = useState(true);
   const unmounted = useRef(false);
-  useEffect(() => {
-    return () => {
-      unmounted.current = true;
-    };
-  }, []);
+
+
+  /**
+ |--------------------------------------------------
+ | Action Handlers
+ |--------------------------------------------------
+ */
   const dispatch = useDispatch();
-  const addToCartAct = async () => {
+  const _handleAddToCart = async () => {
     try {
       await dispatch(addToCart(item));
-      if (!unmounted.current) {
+      if (unmounted.current) {
         Alert.alert("Thêm thành công", "Sản phẩm đã được thêm vào giỏ hàng", [
           {
             text: "OK",
@@ -64,7 +87,9 @@ export const FavoriteItem = ({ navigation, item }) => {
       throw err;
     }
   };
-  const removeFavoriteAct = () => {
+
+
+  const _handleRemoveFavorite = () => {
     Alert.alert(
       "Bỏ yêu thích",
       "Bạn có muốn bỏ sản phẩm ra khỏi mục yêu thích?",
@@ -76,24 +101,26 @@ export const FavoriteItem = ({ navigation, item }) => {
         {
           text: "Đồng ý",
           onPress: () => dispatch(removeFavorite(item._id)),
+
         },
       ]
     );
   };
+
   const RightActions = (progress) => {
     return (
       <View style={{ width: 170, flexDirection: "row" }}>
         {renderRightAction(
           "Thêm vào giỏ",
           "#ffab00",
-          addToCartAct,
+          _handleAddToCart,
           140,
           progress
         )}
         {renderRightAction(
           "Bỏ thích",
           Colors.red,
-          removeFavoriteAct,
+          _handleRemoveFavorite,
           30,
           progress
         )}
@@ -101,7 +128,26 @@ export const FavoriteItem = ({ navigation, item }) => {
     );
   };
 
-  console.log(item);
+  /**
+  |--------------------------------------------------
+  | Side Effects
+  |--------------------------------------------------
+  */
+  useEffect(() => {
+    return () => {
+      unmounted.current = true;
+    };
+  }, []);
+
+
+
+  /**
+  |--------------------------------------------------
+  | Render JSX
+  |--------------------------------------------------
+  */
+
+
 
   return (
     <View>
@@ -151,7 +197,6 @@ export const FavoriteItem = ({ navigation, item }) => {
           </TouchableOpacity>
           <View style={styles.info}>
             <CustomText style={styles.title}>{item.title}</CustomText>
-
             <View style={styles.rateContainer}>
               <NumberFormat
                 value={item.price}
@@ -167,6 +212,7 @@ export const FavoriteItem = ({ navigation, item }) => {
                 )}
               />
             </View>
+            <CustomOvalText style={{color:Colors.white}}>{item.category.name}</CustomOvalText>
           </View>
         </View>
       </Swipeable>
@@ -181,12 +227,13 @@ FavoriteItem.propTypes = {
 
 const styles = StyleSheet.create({
   itemContainer: {
-    height: 90,
+    height: 100,
     flexDirection: "row",
     backgroundColor: Colors.light_grey,
     marginTop: 5,
     borderRadius: 0,
     alignItems: "center",
+    marginVertical:4
   },
   info: {
     height: "100%",
@@ -194,21 +241,24 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     paddingVertical: 10,
     width: "75%",
-    
+    marginLeft:16
+
   },
   title: {
     fontSize: 16,
-    width:200
+    width: 200
   },
   subText: {
     fontSize: 13,
-    paddingVertical:2,
+    paddingVertical: 2,
     color: Colors.grey,
   },
   rateContainer: {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "70%",
+    marginVertical:4
+
   },
   rate: {
     flexDirection: "row",

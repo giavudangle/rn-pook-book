@@ -6,22 +6,39 @@ import { useSelector, useDispatch } from "react-redux";
 import { fetchFavorite } from "../../actions/favorite";
 //Component
 import { Header, FavoriteBody } from "./components";
+// Utils
 import Colors from "../../utils/Colors";
 //Loader
 import SkeletonLoadingCart from "../../components/Loaders/SkeletonLoadingCart";
+import SkeletonLoadingFavorite from "../../components/Loaders/SkeletonLoadingFavorite";
 
 
 
 
 export const FavoriteScreen = ({ navigation }) => {
+  /**
+  |--------------------------------------------------
+  | Local State
+  |--------------------------------------------------
+  */
   const [isRefreshing, setIsRefreshing] = useState(false);
+  /**
+  |--------------------------------------------------
+  | Global State 
+  |--------------------------------------------------
+  */
   const user = useSelector((state) => state.auth.user);
   const loading = useSelector((state) => state.fav.isLoading);
   const FavoriteProducts = useSelector((state) => state.fav.favoriteList);
   const dispatch = useDispatch();
 
 
-  const loadFavoriteProducts = useCallback(() => {
+  /**
+  |--------------------------------------------------
+  | Action Handler
+  |--------------------------------------------------
+  */
+  const loadFavoriteProducts = useCallback(async () => {
     setIsRefreshing(true);
     try {
       dispatch(fetchFavorite());
@@ -30,24 +47,36 @@ export const FavoriteScreen = ({ navigation }) => {
     }
     setIsRefreshing(false);
   }, [dispatch, setIsRefreshing]);
+
+
+
+  /**
+  |--------------------------------------------------
+  | Side Effects
+  |--------------------------------------------------
+  */
   useEffect(() => {
     loadFavoriteProducts();
   }, [user.userid]);
 
+  /**
+  |--------------------------------------------------
+  | Render JSX
+  |--------------------------------------------------
+  */
   return (
     <View style={styles.container}>
       <Header navigation={navigation} />
-      {loading ? (
-        <SkeletonLoadingCart />
-      ) : (
-        <FavoriteBody
+      {loading
+        ? (<SkeletonLoadingFavorite />)
+        : (<FavoriteBody
           user={user}
           FavoriteProducts={FavoriteProducts}
           navigation={navigation}
           loadFavoriteProducts={loadFavoriteProducts}
           isRefreshing={isRefreshing}
-        />
-      )}
+        />)
+      }
     </View>
   );
 };
