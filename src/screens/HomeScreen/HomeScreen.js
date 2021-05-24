@@ -41,6 +41,8 @@ import * as SecureStore from 'expo-secure-store'
 import { secretKey } from '../../utils/Config';
 import Loader from '../../components/Loaders/Loader';
 
+
+
 export const HomeScreen = ({ navigation }) => {
   let scrollY = new Animated.Value(0);
 
@@ -51,9 +53,6 @@ export const HomeScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   const categories = useSelector(state => state.category.categories)
-
-
-
 
   useEffect(() => {
     dispatch(fetchCategories())

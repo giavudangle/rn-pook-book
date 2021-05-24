@@ -9,7 +9,10 @@ import { Header, FavoriteBody } from "./components";
 // Utils
 import Colors from "../../utils/Colors";
 //Loader
+
 import SkeletonLoadingFavorite from "../../components/Loaders/SkeletonLoadingFavorite";
+
+
 
 import CustomText from "../../components/UI/CustomText";
 import Messages from '../../messages/user'
@@ -86,11 +89,7 @@ export const FavoriteScreen = ({ navigation }) => {
               isRefreshing={isRefreshing}/>
             )
         }
-         
-        
-       
     </View>
-
   );
 };
 const styles = StyleSheet.create({
