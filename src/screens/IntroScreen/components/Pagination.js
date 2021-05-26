@@ -5,6 +5,7 @@ import {
     Animated,
     Dimensions
 } from 'react-native'
+import Colors from '../../../utils/Colors'
 
 const {width, height} = Dimensions.get('screen')
 
@@ -22,7 +23,7 @@ export default function Pagination({slides, scrollX}) {
                     position: 'absolute',
                     borderWidth: 2,
                     borderRadius: 10,
-                    borderColor: '#5BFF9C',
+                    borderColor: Colors.primary,
                     top: 1,
                     transform: [{translateX}]
                 }}
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center'
     },
     dot: {
-        backgroundColor: '#5BFF9C',
+        backgroundColor: Colors.primary,
         width: 10,
         height: 10,
         borderRadius: 100,

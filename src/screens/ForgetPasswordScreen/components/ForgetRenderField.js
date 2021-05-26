@@ -1,35 +1,46 @@
-import React from 'react';
-import { View} from 'react-native';
-import {TextInput} from 'react-native-paper';
+import React from "react";
+import { View } from "react-native";
+import { TextInput } from "react-native-paper";
+import CustomText from "../../../components/UI/CustomText";
 //Colors
-import Colors from '../../../utils/Colors';
-export default function ForgetRenderField({
-        label,
-        iconLeft,
-        iconRight,
-        secureTextEntry
-    }) {
-    return (
-        <View> 
-            <TextInput
-                style={{backgroundColor:'#fff'}}
-                mode='flat'
-                placeholder={label}
-                left={<TextInput.Icon 
-                    name={iconLeft}
-                    size={24}
-                    color={Colors.light_green}
-                    style={{paddingLeft:10}}
-                />}
-                theme={{colors:{primary:Colors.leave_green}}}
-                right={<TextInput.Icon 
-                    name={iconRight}
-                    size={24}
-                    color={Colors.light_green}
-                    style={{paddingLeft:10}}
-                />}
-                secureTextEntry={secureTextEntry}
-            />
-        </View>
-    )
-}
+import Colors from "../../../utils/Colors";
+
+export default renderField = ({
+  keyboardType,
+  icon,
+  label,
+  meta: { touched, error, warning },
+  input: { onChange, ...restInput },
+}) => {
+  return (
+    <View style={{ marginTop: 30 }}>
+      <TextInput
+        placeholder={label}
+        autoCapitalize='none'
+        clearButtonMode='always'
+        mode='outlined'
+        selectionColor={Colors.primary}
+        theme={{ colors: { primary: Colors.primary } }}
+        left={
+          <TextInput.Icon
+            name={icon}
+            size={24}
+            color={Colors.lighter_green}
+            style={{ paddingRight: 10 }}
+          />
+        }
+        style={{ fontSize: 14 }}
+        keyboardType={keyboardType}
+        onChangeText={onChange}
+        {...restInput}
+      />
+      {touched &&
+        ((error && (
+          <CustomText style={{ color: Colors.red ,marginTop:10}}>{error}</CustomText>
+        )) ||
+          (warning && (
+            <CustomText style={{ color: Colors.carrot }}>{warning}</CustomText>
+          )))}
+    </View>
+  );
+};

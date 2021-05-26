@@ -1,39 +1,30 @@
 export const comments = [
   {
     id: 1,
-    username: "Lionel Nguyen",
-    content: "Sản phẩm đẹp, giao hàng nhanh",
+    username: "Gia Vũ",
+    content: "Cuốn sách tâm đắc nhất tôi từng đọc ♥️",
   },
   {
     id: 2,
-    username: "Kim Tinh",
+    username: "Tuấn Anh",
     content:
-      "Mình mua vòng này mang được hơn 1 tháng, vòng rất sáng chất lượng tốt. Cảm ơn Shop nhiều",
+      "Cảm ơn PookBook nhiều 😍",
   },
   {
     id: 3,
-    username: "Nam Thọ",
+    username: "Hy Khang",
     content:
-      "Vòng đẹp, màu sắc như hình, chất lượng thì để mang một thời gian nữa rồi vào đánh giá tiếp ^^",
+      "Sách quá tuyệt vời ^^",
   },
   {
     id: 4,
-    username: "Nguyên Hưng",
-    content: "Cho 5 sao, hàng đẹp xịn xò",
+    username: "Minh Trường",
+    content: "Quá tuyệt vời ♥🍡",
   },
   {
     id: 5,
-    username: "Hà Bò",
-    content: "Vừa đặt ở đây, chủ shop thân thiện, sản phẩm đẹp",
+    username: "Quang Tường ",
+    content: "Vừa đặt ở đây, chủ shop thân thiện, sản phẩm đẹp ♥️🍡🍇",
   },
-  {
-    id: 6,
-    username: "Khiêm",
-    content: "Vòng đẹp, chất lượng đúng như quảng cảo",
-  },
-  {
-    id: 7,
-    username: "Khiêm Khang",
-    content: "Vòng đẹp, chất lượng đúng như quảng cảo",
-  },
+
 ];

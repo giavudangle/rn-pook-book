@@ -1,90 +1,113 @@
-import React from 'react'
+import React,{useEffect,useState,useCallback} from 'react'
 import { View, Text,StyleSheet,Dimensions } from 'react-native'
 import {Header,CartBody,TotalButton} from './components'
 import Colors from '../../utils/Colors';
 
+//Redux
+import { useSelector, useDispatch } from 'react-redux';
+
+// Action 
+import {fetchCart} from '../../actions/cart'
+
+//Loader
+import Loader from '../../components/Loaders/Loader';
+
+import SkeletonLoadingCart from '../../components/Loaders/SkeletonLoadingCart'
 
 const { height } = Dimensions.get('window');
 
-const carts = {
-  items :[
-    {
-      item: {
-        url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-        thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
-        _id: "605449051d6e5b1185c9d2db",
-        filename: "imageUrl-1616136453234.jpg",
-        price: "5800",
-        color: "red",
-        origin: "USA",
-        standard: "VIP",
-        description: "A Best Book",
-        type: "Sex",
-        title: "Sex of Blow",
-        createdAt: "2021-03-19T06:47:33.251Z",
-        updatedAt: "2021-03-19T06:47:33.251Z",
-        __v: 0
-    },
-    quantity: "10"
-    },
-    {
-      item: {
-        url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-        thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
-        _id: "605449051d6e5b1185c9d2db",
-        filename: "imageUrl-1616136453234.jpg",
-        price: "999999",
-        color: "red",
-        origin: "USA",
-        standard: "VIP",
-        description: "A Best Book",
-        type: "Sex",
-        title: "Sex of Blow",
-        createdAt: "2021-03-19T06:47:33.251Z",
-        updatedAt: "2021-03-19T06:47:33.251Z",
-        __v: 0
-    },
-    quantity: "10"
-    },
-    {
-      item: {
-        url: "https://res.cloudinary.com/daktfdww5/image/upload/v1616142500/cemcxfewk9opzneq36h9.png",
-        thumb: "https://res.cloudinary.com/daktfdww5/image/upload/v1616141969/h1zbcnxjmzb7rtuj2ws5.jpg",
-        _id: "605449051d6e5b1185c9d2db",
-        filename: "imageUrl-1616136453234.jpg",
-        price: "999999",
-        color: "red",
-        origin: "USA",
-        standard: "VIP",
-        description: "A Best Book",
-        type: "Sex",
-        title: "Sex of Blow",
-        createdAt: "2021-03-19T06:47:33.251Z",
-        updatedAt: "2021-03-19T06:47:33.251Z",
-        __v: 0
-    },
-    quantity: "10"
-    }
-  ],
-  _id:"heheheehehidne"
-}
+
 
 export const CartScreen = (props) => {
 
+  /**
+  |--------------------------------------------------
+  | Global State
+  |--------------------------------------------------
+  */
+  const user = useSelector((state) => state.auth.user);
+  const carts = useSelector((state) => state.cart.cartItems);
+  const loading = useSelector((state) => state.cart.isLoading);
+  
+
+  /**
+  |--------------------------------------------------
+  | Local State
+  |--------------------------------------------------
+  */
+  const [isRefreshing, setIsRefreshing] = useState(false);
+
+
+  /**
+   * Stuff
+   */
+  let total = 0; 
   const cartItems = carts.items;
   const cartId = carts._id;
+  carts.items.map((item) => (total+= +item.item.price * +item.quantity));
+
+
+  /**
+  |--------------------------------------------------
+  | Action Handlers
+  |--------------------------------------------------
+  */
+  const dispatch = useDispatch();
+  const loadCarts = useCallback(async () => {
+    setIsRefreshing(true);
+    try {
+      await dispatch(fetchCart())
+    } catch (err){
+      alert(err)
+    }
+    setIsRefreshing(false);
+  },[dispatch,setIsRefreshing])
+
+  /**
+  |--------------------------------------------------
+  | Side Effect
+  |--------------------------------------------------
+  */
+
+  useEffect(() => {
+    loadCarts()
+  },[user.userid])
+  
 
   return (
     <View style={styles.container}>
-      <Header navigation={props.navigation}/>
-      <CartBody/>
-      <TotalButton
-        navigation={props.navigation}
-        cartItems={cartItems}
-        cartId={cartId}
-      />
+      <Header user={user} carts={carts} navigation={props.navigation}/>
+      {
+        loading  
+        ? (<SkeletonLoadingCart/>)
+        : (     
+          <CartBody
+          user={user}
+          carts={carts}
+          loadCarts={loadCarts}
+          isRefreshing={isRefreshing}
+          navigation={props.navigation}
+          />           
+        )
+      }
+      {
+        Object.keys(user).length === 0 
+        ? (<></>)
+        : carts.items.length === 0 
+          ? (<></>)
+          : (
+            <TotalButton
+            user={user}
+            total={total}
+            cartItems={cartItems}
+            cartId={cartId}
+            navigation={props.navigation}
+            />
+          )
+      }
     </View>
   )
+
 }
 
 

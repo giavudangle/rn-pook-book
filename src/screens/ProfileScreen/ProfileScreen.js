@@ -10,29 +10,19 @@ import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 //Loader
 import Loader from "../../components/Loaders/Loader";
 
+import Colors from '../../utils/Colors'
+
 import AntIcon from '@expo/vector-icons/AntDesign'
 
 const { width, height } = Dimensions.get("window");
 
 export const ProfileScreen = (props) => {
-  // const user = useSelector(state => state.auth.user);
-  // const loading = useSelector(state => state.auth.isLoading);
-  console.log('====================================');
-  console.log(props);
-  console.log('====================================');
-  const loading = false;
-  const user = {
-    name:"Vudang",
-    phone:"0967781273",
-    email:"vudangdev@gmail.com",
-    address:"67 Huynh Thien Loc",
-    profilePicture:"https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png"
-  };
-  const [imageUri, setImageUri] = useState("https://res.cloudinary.com/daktfdww5/image/upload/v1616141968/pyb0k0hvlcgeq3qqwdsd.png");
+  const user = useSelector((state) => state.auth.user);
+  const loading = useSelector((state) => state.auth.isLoading);
+  const [imageUri, setImageUri] = useState("");
   const [filename, setFilename] = useState("");
   const [type, setType] = useState("");
   const [uploadButton, setUploadButton] = useState(true);
-
 
   return (
     <ActionSheetProvider>
@@ -80,7 +70,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     height: 0.15 * height,
     justifyContent: "center",
-    backgroundColor:'#00806C'
+    backgroundColor:Colors.primary
   },
   profileContainer: {
     width,

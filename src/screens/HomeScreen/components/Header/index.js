@@ -124,14 +124,6 @@ const __header_config_opacity = Animated.interpolate(__diff_clamp_scroll_y, {
   extrapolate: 'clamp',
 });
 
-
-
-
-// fix receive props in animation
-// products . scrollValue
-
-
-
 export const Header = ({ style,navigation,products }) => {
 
   // Local state
@@ -322,6 +314,7 @@ const styles = StyleSheet.create({
     zIndex: 1000,
     backgroundColor: Colors.white,
     paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0,
+    top: Platform.OS === 'ios' ? -20 : -10
   },
   header: {
     position: 'absolute',

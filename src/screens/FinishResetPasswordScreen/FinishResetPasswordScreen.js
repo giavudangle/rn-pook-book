@@ -7,7 +7,8 @@ import Colors from '../../utils/Colors';
 
 const { width, height } = Dimensions.get('screen');
 
-export const FinishResetPasswordScreen = ({ navigation }) => {
+export const FinishResetPasswordScreen = ({ navigation,route }) => {
+  console.log(route);
   return (
     <View style={styles.container}>
 
@@ -28,7 +29,7 @@ export const FinishResetPasswordScreen = ({ navigation }) => {
                 textDecorationLine: 'underline'
               }}
             >
-              tuananh.61779@gmail.com
+              {route.params.value.email}
           </CustomText>
           </TouchableOpacity>
 

@@ -1,19 +1,32 @@
 import React from "react";
-import { View, Animated, StyleSheet, Dimensions } from "react-native";
+import { View, Animated, StyleSheet, Dimensions,Button } from "react-native";
 import Colors from "../../../../utils/Colors";
 //PropTypes check
 import PropTypes from "prop-types";
+import { useEffect } from "react";
+import { FlatList } from "react-native-gesture-handler";
 
 const { height, width } = Dimensions.get("window");
 
-const DOT_SIZE = 20;
+const DOT_SIZE = 26;
+
+
 
 const Pagination = ({ scrollX, slides }) => {
+ 
+  /**
+  |--------------------------------------------------
+  | Interpolate dot pagination
+  |--------------------------------------------------
+  */
   const inputRange = [0, width, width * 2, width * 3, width * 4];
   const translateX = scrollX.interpolate({
     inputRange,
     outputRange: [-DOT_SIZE * 2, -DOT_SIZE, 0, DOT_SIZE, DOT_SIZE * 2],
   });
+
+
+
   return (
     <View style={[styles.pagination]}>
       <View
@@ -41,6 +54,7 @@ const Pagination = ({ scrollX, slides }) => {
           );
         })}
       </View>
+      
     </View>
   );
 };
@@ -75,7 +89,7 @@ const styles = StyleSheet.create({
     height: DOT_SIZE * 0.5,
     zIndex: 101,
     borderRadius: DOT_SIZE * 0.25,
-    backgroundColor: Colors.lighter_green,
+    backgroundColor: Colors.primary,
   },
 });
 

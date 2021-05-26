@@ -1,40 +1,80 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { TextInput } from 'react-native-paper';
-
+import React from "react";
+import { View } from "react-native";
+import { TextInput } from "react-native-paper";
 //Colors
-import Colors from '../../../utils/Colors'
-//icons
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-export default function RenderField({ label, icon, right, hide }) {
-    return (
-        <View>
-            <TextInput
-                placeholder={label}
-                mode='flat'
-                secureTextEntry={hide}
-                style={{
-                    overflow: 'hidden',
-                    alignSelf:'center',
-                    width:320,
-                    height:60,
-                    justifyContent:'center',
-                    backgroundColor:'#fff',
-                    marginBottom:20,
-                    borderTopRightRadius:15,
-                    borderTopLeftRadius:15,
-                    borderBottomRightRadius:15,
-                    borderBottomLeftRadius:15,
-                }}
-                theme={{ colors: { primary: Colors.leave_green } }}
-                left={<TextInput.Icon
-                    size={24}
-                    color={Colors.light_green}
-                    name={icon}
-                    style={{ paddingRight: 10 }}
-                />}
-                right={right}
+import Colors from "../../../utils/Colors";
+import CustomText from "../../../components/UI/CustomText";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+export default renderField = ({
+  label,
+  keyboardType,
+  secureTextEntry,
+  icon,
+  showPass,
+  passIcon,
+  setShowPass,
+  meta: { touched, error, warning },
+  input: { onChange, ...restInput },
+}) => {
+  return (
+    <View>
+      <View>
+        <TextInput
+          placeholder={label}
+          autoCapitalize='none'
+          placeholderTextColor={Colors.white}
+          mode='outlined'
+          clearButtonMode={passIcon ? "never" : "always"}
+          selectionColor={Colors.white}
+          theme={{ colors: { primary: Colors.white,underLineColor:'transparent' ,text:Colors.white} }}
+          
+          left={
+            <TextInput.Icon
+              name={icon}
+              size={24}
+              color={Colors.white}
+              style={{ paddingRight: 10 }}
             />
-        </View>
-    )
-}
+          }
+          style={{
+            fontSize: 14,
+            backgroundColor: "transparent",
+            marginVertical: 5,
+            color:Colors.white
+            // paddingHorizontal: 5,
+          }}
+          keyboardType={keyboardType}
+          onChangeText={onChange}
+          secureTextEntry={secureTextEntry}
+          {...restInput}
+        />
+        {passIcon ? (
+          <MaterialCommunityIcons
+            name={showPass ? "eye" : "eye-off"}
+            size={24}
+            color={Colors.white}
+            onPress={() => {
+              setShowPass((prev) => !prev);
+            }}
+            style={{
+              position: "absolute",
+              top: "40%",
+              right: 10,
+              zIndex: 100,
+            }}
+          />
+        ) : (
+          <></>
+        )}
+      </View>
+      {touched && error && (
+        <CustomText
+          style={{ color: "red", marginHorizontal: 15, marginTop: 5 }}
+        >
+          {error}
+        </CustomText>
+      )}
+    </View>
+  );
+};

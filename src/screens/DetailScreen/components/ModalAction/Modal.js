@@ -24,6 +24,7 @@ const { width, height } = Dimensions.get("window");
 export const ModalComponent = ({ item, color, modalVisible, setModalVisible, navigation }) => {
 
 
+
   const moveToCart = () => {
     setModalVisible(false)
     navigation.navigate('Cart')
@@ -79,10 +80,10 @@ export const ModalComponent = ({ item, color, modalVisible, setModalVisible, nav
           <View style={styles.quantity}>
             <View>
               <CustomText style={{ ...styles.title, fontSize: 15 }}>
-                {item.filename}
+                {item.title}
               </CustomText>
               <CustomText style={{ fontSize: 12, color: Colors.grey }}>
-                Cung cấp bởi Cát Tường
+                Cung cấp bởi {item.provider.name}
               </CustomText>
             </View>
             <CustomText

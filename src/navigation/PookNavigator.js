@@ -1,5 +1,4 @@
 import React from 'react';
-
 /**
  * Navigation Core
  * 1. Stack
@@ -30,7 +29,6 @@ import Colors from '../utils/Colors';
 import CustomDrawer from './CustomDrawer'
 
 import CustomText from '../components/UI/CustomText'
-// Do it later
 
 //  Auth Screens
 
@@ -39,8 +37,8 @@ import { IntroScreen } from '../screens/IntroScreen';
 import { SignUpScreen } from '../screens/SignupScreen';
 import { LoginScreen } from '../screens/LoginScreen';
 import { TouchIdScreen } from '../screens/TouchIdScreen';
-import {ForgetPasswordScreen} from '../screens/ForgetPasswordScreen'
-import {FinishResetPasswordScreen} from '../screens/FinishResetPasswordScreen'
+import { ForgetPasswordScreen } from '../screens/ForgetPasswordScreen'
+import { FinishResetPasswordScreen } from '../screens/FinishResetPasswordScreen'
 // Home Screens
 import { HomeScreen } from '../screens/HomeScreen';
 import { ContactScreen } from '../screens/ContactScreen';
@@ -60,11 +58,11 @@ import { ProfileScreen } from '../screens/ProfileScreen';
 import { EditProfileScreen } from '../screens/ProfileScreen';
 // redux
 import { useSelector } from 'react-redux';
-import { ResetPasswordScreen } from '../screens/ResetPasswordScreen/ResetPasswordScreen';
+import { ResetPasswordScreen } from '../screens/ResetPasswordScreen';
 
 /**
 |--------------------------------------------------
-| App Navigator
+| App Stack Navigator
 |--------------------------------------------------
 */
 
@@ -213,9 +211,12 @@ export const HomeStackScreen = () => (
   </HomeStack.Navigator>
 );
 
-// MaterialBottomTab
+/**
+|--------------------------------------------------
+| Material Bottom Tab
+|--------------------------------------------------
+*/
 const Tab = createMaterialBottomTabNavigator();
-
 export const TabScreen = () => {
   const carts = useSelector((state) => state.cart.cartItems);
   return (
@@ -268,7 +269,13 @@ export const TabScreen = () => {
   );
 };
 
-//Drawer Navigator
+/**
+|--------------------------------------------------
+| Drawer Navigator
+|--------------------------------------------------
+*/
+
+
 const Drawer = createDrawerNavigator();
 export const DrawerNavigator = () => {
   const user = useSelector((state) => state.auth.user);
@@ -279,12 +286,7 @@ export const DrawerNavigator = () => {
       label: 'Trang Chủ',
       icon: 'home-outline',
     },
-    {
-      name: 'Order',
-      screen: OrderScreen,
-      label: 'Đơn Hàng',
-      icon: 'receipt',
-    },
+
     {
       name: 'Contact',
       screen: ContactScreen,
@@ -330,8 +332,9 @@ export const DrawerNavigator = () => {
         />
       ))}
 
-      
-      {Object.keys(user).length === 0 ? ( // Use this for check current user has been logged in ?
+
+      {Object.keys(user).length === 0 ? (
+        // Use this for check current user has been logged in ?
         // if has not user => display login screen tab
         // else => display touchid & profile screen
         <Drawer.Screen
@@ -361,6 +364,31 @@ export const DrawerNavigator = () => {
         />
       ) : (
         <>
+          <Drawer.Screen
+            name='Order'
+            component={OrderScreen}
+            options={() => ({
+              title: ({ focused }) => (
+                <CustomText
+                  style={{
+                    fontSize: 14,
+                    fontWeight: '500',
+                    color: focused ? Colors.lighter_green : Colors.grey,
+                    fontFamily: 'Roboto-Medium',
+                  }}
+                >
+                  Đơn hàng
+                </CustomText>
+              ),
+              drawerIcon: ({ focused }) => (
+                <MaterialCommunityIcons
+                  name='receipt'
+                  size={25}
+                  color={focused ? Colors.lighter_green : Colors.grey}
+                />
+              ),
+            })}
+          />
           <Drawer.Screen
             name='TouchId'
             component={TouchIdScreen}

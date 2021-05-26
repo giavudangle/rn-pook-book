@@ -22,7 +22,8 @@ import CustomText from "../components/UI/CustomText";
 //Icon
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 // Action
-import { Logout as LogoutAction } from "../reducers";
+import { Logout as LogoutAction } from "../actions/auth";
+
 //Link
 import { OpenURL } from "../utils/Tools";
 import { TouchableOpacity } from "react-native-gesture-handler";

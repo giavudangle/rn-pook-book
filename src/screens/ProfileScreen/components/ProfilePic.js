@@ -65,7 +65,7 @@ export const ProfilePic = ({
           source={
             imageUri.length === 0
               ? user.profilePicture.length === 0
-                ? require("../../../assets/Forest.jpg")
+                ? require("../../../assets/Images/bg.png")
                 : { uri: user.profilePicture }
               : { uri: imageUri }
           }
@@ -105,8 +105,8 @@ const styles = StyleSheet.create({
     borderRadius: 60,
     transform: [{ translateY: -70 }],
     borderWidth: 2,
-    borderColor: "#00806C",
-    backgroundColor:'#fff'
+    borderColor: Colors.primary,
+    backgroundColor:Colors.white
   },
   cameraContainer: {
     height: 30,

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, StyleSheet, TouchableOpacity, FlatList } from "react-native";
+import { View, StyleSheet, TouchableOpacity, FlatList, Alert } from "react-native";
 //Colors
 import Colors from "../../../utils/Colors";
 //Item
@@ -13,12 +13,14 @@ import "moment/min/locales";
 import PropTypes from "prop-types";
 import CustomText from "../../../components/UI/CustomText";
 import Steps from "../../../components/UI/Steps";
+import CustomBorderText from "../../../components/UI/CustomBorderText";
+import { useDispatch } from "react-redux";
+import { cancelOrder } from "../../../actions/order";
 
 moment.locale("vi");
 
 export const OrderItem = ({ order }) => {
   const [showDetails, setShowDetails] = useState(false);
-  console.log(order);
 
   const status = () => {
     switch (order.status) {
@@ -34,6 +36,34 @@ export const OrderItem = ({ order }) => {
         return 4;
     }
   };
+
+  const dispatch = useDispatch();
+
+
+  const _handleDispatchCancelOrder = async () => {
+    await dispatch(cancelOrder(order._id))
+    Alert.alert('Huỷ đơn hàng thành công','PookBook rất tiếc vì điều này :(')
+  }
+
+  const _handleCancelOrder = async () => {
+    Alert.alert(
+      "Huỷ đơn hàng",
+      "Bạn có chắc chắn muốn huỷ đơn hàng?",
+      [
+        {
+          text: "Hủy",
+          style: "cancel",
+        },
+        {
+          text: "Đồng ý",
+          onPress: _handleDispatchCancelOrder,
+
+        },
+      ]
+    );
+  }
+
+
   return (
     <View style={styles.container}>
       <View style={styles.summary}>
@@ -46,9 +76,9 @@ export const OrderItem = ({ order }) => {
         </View>
 
         <View style={styles.textContainer}>
-          <CustomText style={styles.text}>Ngày đặt: </CustomText>
+          <CustomText style={styles.text}>Thời gian đặt hàng: </CustomText>
           <CustomText style={styles.detail}>
-            {moment(order.createdAt).format(" hh:mm,Do MMMM YYYY")}
+            {moment(order.createdAt).format(" hh:mm, Do MMMM YYYY")}
           </CustomText>
         </View>
         <View style={styles.detailButtom}>
@@ -67,7 +97,7 @@ export const OrderItem = ({ order }) => {
 
             <View style={styles.textContainer}>
               <CustomText style={styles.text}>Địa chỉ: </CustomText>
-              <CustomText style={styles.detail}>{order.address}</CustomText>
+              <CustomText style={styles.detail,{width:'85%',color:Colors.primary}}>{order.address}</CustomText>
             </View>
             <View style={styles.textContainer}>
               <CustomText style={styles.text}>Số điện thoại: </CustomText>
@@ -78,7 +108,17 @@ export const OrderItem = ({ order }) => {
                 Phương thức thanh toán:{" "}
               </CustomText>
               <CustomText style={styles.detail}>
-                {order.paymentMethod}
+                {order.paymentMethod === 'CC' ? 'Credit Card ' : 'Cash On Delivery'}
+              </CustomText>
+            </View>
+            <View style={styles.textContainer}>
+              <CustomText style={styles.text}>
+                Tình trạng thanh toán :{" "}
+              </CustomText>
+
+              <CustomText style={styles.detail,{color:'red'}}>
+
+                {order.paymentMethod === 'CC' || status() ===4  ? 'Đã thanh toán ' : 'Chưa thanh toán '}
               </CustomText>
             </View>
             <View style={styles.steps}>
@@ -106,6 +146,18 @@ export const OrderItem = ({ order }) => {
                 style={{ fontSize: 15 }}
               />
             </View>
+            <TouchableOpacity 
+              onPress={_handleCancelOrder}
+              style={{display:order.status !== 'done' ? 'flex' : "none"}}>
+              <View style={{alignItems:'center'}}> 
+                <CustomBorderText
+                  style={{color:Colors.white}}
+                >
+                  Huỷ đơn hàng
+                </CustomBorderText>
+
+              </View>
+            </TouchableOpacity>
           </View>
         ) : (
           <View />
