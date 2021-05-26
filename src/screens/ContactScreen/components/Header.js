@@ -29,7 +29,7 @@ export const Header = ({ navigation }) => {
       </View>
       <Image
         style={styles.image}
-        source={require("../../../assets/icon.png")}
+        source={require("../../../assets/Images/icon.png")}
       />
     </View>
   );
@@ -48,13 +48,13 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: "center",
-    height: 200,
-    backgroundColor: Colors.lighter_green,
+    height: 300,
+    backgroundColor: Colors.primary,
     justifyContent: "center",
   },
   image: {
     marginTop: 15,
-    height: 100,
+    height: 230,
     resizeMode: "contain",
   },
 });

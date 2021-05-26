@@ -1,6 +1,7 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View, Text,Button } from 'react-native'
 import {AuthBody} from './components'
+
 export const AuthScreen = ({navigation}) => {
   return (
     <View>

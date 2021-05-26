@@ -2,12 +2,13 @@ import React from "react";
 import { View, StyleSheet,Text } from "react-native";
 //Text
 import CustomText from "../../../components/UI/CustomText";
+import Colors from "../../../utils/Colors";
 import { TextIcon } from "./TextIcon";
 
 export const ContactBody = () => {
   return (
     <View style={styles.footer}>
-      <CustomText style={styles.title}>contact us</CustomText>
+      <CustomText style={styles.title}>LIÊN HỆ VỚI POOKBOOK</CustomText>
       <View style={styles.info}>
         <TextIcon
           icon={require("../../../components/IconAnimation/location.json")}
@@ -15,17 +16,17 @@ export const ContactBody = () => {
           url='mailto: codingwithvudang@gmail.com'
         />
         <TextIcon
-          icon={require("../../../components/IconAnimation/email3.json")}
+          icon={require("../../../components/IconAnimation/email.json")}
           text='codingwithvudang@gmail.com'
           url='mailto: codingwithvudang@gmail.com'
         />
         <TextIcon
-          icon={require("../../../components/IconAnimation/phone2.json")}
+          icon={require("../../../components/IconAnimation/phone.json")}
           text='0967781273'
           url='tel:0967781273'
         />
       </View>
-      <Text>Them thong tin vo sau</Text>
+      <Text style={styles.bottomText}>Ứng dụng được phát triển bởi CWVDGroup™</Text>
     </View>
   );
 };
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontWeight: "500",
     textTransform: "uppercase",
+    color:Colors.primary
   },
   footer: {
     flex: 1,
@@ -49,4 +51,9 @@ const styles = StyleSheet.create({
   info: {
     marginTop: 20,
   },
+  bottomText:{
+    marginTop:20,
+    color:Colors.grey,
+    textAlign:'center'
+  }
 });

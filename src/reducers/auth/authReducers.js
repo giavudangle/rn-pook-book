@@ -23,7 +23,7 @@ const initialState = {
   isLoading: false,
   error: false,
   isFirstTime:false
-
+}
 
 
 

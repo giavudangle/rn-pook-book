@@ -3,6 +3,7 @@ import { View, StyleSheet, TouchableOpacity, Linking } from "react-native";
 //Text
 import CustomText from "../../../components/UI/CustomText";
 import LottieView from "lottie-react-native";
+import Colors from "../../../utils/Colors";
 
 export const TextIcon = ({ icon, text, url }) => {
   return (
@@ -12,7 +13,7 @@ export const TextIcon = ({ icon, text, url }) => {
         autoPlay
         loop
         resizeMode='contain'
-        style={{ height: 50, marginRight: 20 }}
+        style={{ height: 50, marginRight: 20,color:'red' }}
       />
       <TouchableOpacity
         onPress={() => {
@@ -32,7 +33,8 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   text: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "500",
+    color:Colors.primary
   },
 });
