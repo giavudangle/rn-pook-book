@@ -13,7 +13,6 @@ import * as Network from 'expo-network';
 
 
 
-import AskingExpoToken from '../../components/Notification/AskingNotificationPermisson';
 import * as SecureStore from 'expo-secure-store';
 
 
