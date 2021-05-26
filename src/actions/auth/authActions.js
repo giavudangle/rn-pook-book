@@ -12,6 +12,12 @@ import { Alert } from 'react-native';
 import * as Network from 'expo-network';
 
 
+
+import AskingExpoToken from '../../components/Notification/AskingNotificationPermisson';
+import * as SecureStore from 'expo-secure-store';
+
+
+
 export const SignUp = (name, email, password) => {
   return async (dispatch) => {
     dispatch({
