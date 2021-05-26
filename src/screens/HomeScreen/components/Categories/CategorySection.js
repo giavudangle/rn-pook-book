@@ -5,7 +5,8 @@ import {
   TouchableOpacity,
   FlatList,
   Image,
-  Dimensions
+  Dimensions,
+  Platform
 } from "react-native";
 import { ProductItem } from "../Product/ProductItem";
 import CustomText from "../../../../components/UI/CustomText";
@@ -74,7 +75,7 @@ CategorySection.propTypes = {
 
 const styles = StyleSheet.create({
   category: {
-    height: height/1.2,
+    height: Platform.OS === 'android' ? height/1.25 : height/1.2,
     marginHorizontal: 5,
     paddingVertical: 15,
     borderRadius: 5,
@@ -96,7 +97,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 20,
-    color: Colors.light_green,
+    color: Colors.primary,
     fontWeight: "500",
     fontFamily:'Roboto-Bold'
   },

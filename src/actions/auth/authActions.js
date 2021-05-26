@@ -9,6 +9,7 @@ import {FORGET_PASSWORD, SIGN_UP,AUTH_SUCCESS, AUTH_FAILURE, AUTH_LOADING, LOGIN
 
 import AskingExpoToken from '../../components/Notification/AskingNotificationPermisson';
 import { Alert } from 'react-native';
+import * as Network from 'expo-network';
 
 
 export const SignUp = (name, email, password) => {
@@ -89,7 +90,7 @@ export const Login = (email, password) => {
       | AUTO LOGOUT
       |--------------------------------------------------
       */
-      //dispatch(setLogoutTimer(15000)); // 15 seconds for testing
+      //dispatch(setLogoutTimer(3000)); // 15 seconds for testing
       dispatch(setLogoutTimer(60 * 60 * 1000)); // 1h = 60m * 60s
       dispatch({
         type: LOGIN,
@@ -193,7 +194,10 @@ export const ForgetPassword = (email) => {
     dispatch({
       type: AUTH_LOADING,
     });
+    
     try {
+      const client_ip = await Network.getIpAddressAsync()
+
       const response = await predictTimeoutPromise(
         fetch(`${API_URL}/users/reset_password`, {
           headers: {
@@ -203,6 +207,7 @@ export const ForgetPassword = (email) => {
           method: 'POST',
           body: JSON.stringify({
             email,
+            client_ip 
           }),
         }),
       );

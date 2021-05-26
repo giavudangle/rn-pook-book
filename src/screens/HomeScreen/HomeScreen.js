@@ -16,7 +16,7 @@ import Colors from '../../utils/Colors';
 //Animation
 import Animated from 'react-native-reanimated';
 //Components
-import {Header} from './components/Header'
+import { Header } from './components/Header'
 
 // Float Button
 import { Portal, Provider } from 'react-native-paper';
@@ -56,7 +56,7 @@ export const HomeScreen = ({ navigation }) => {
 
   useEffect(() => {
     dispatch(fetchCategories())
-  },[])
+  }, [])
 
   useEffect(() => {
     const fetching = async () => {
@@ -69,17 +69,16 @@ export const HomeScreen = ({ navigation }) => {
     fetching();
   }, [user.userid]);
 
+
+
   return (
     <Provider>
       {
         isLoading
-          ? (< SkeletonLoading/>)
+          ? (< SkeletonLoading />)
           : (
             <SafeAreaView style={styles.container}>
-
-             
-
-              <Header      
+              <Header
                 products={products}
                 navigation={navigation}
               />
@@ -95,7 +94,7 @@ export const HomeScreen = ({ navigation }) => {
                   <View style={styles.banner}>
                     <Carousel banners={banners} />
                   </View>
-                )}                  
+                )}
                 scrollEventThrottle={1}
                 onScroll={Animated.event(
                   [
@@ -106,7 +105,7 @@ export const HomeScreen = ({ navigation }) => {
                   { useNativeDriver: true },
                 )}
                 data={categories}
-                keyExtractor={(item) => item._id}             
+                keyExtractor={(item) => item._id}
                 renderItem={({ item }) => (
                   <CategorySection
                     category={item}
@@ -128,8 +127,8 @@ export const HomeScreen = ({ navigation }) => {
                   }
                 />
               )}
- 
-            
+
+
 
             </SafeAreaView>
           )}
@@ -148,7 +147,7 @@ const styles = StyleSheet.create({
     marginTop: 50,
     paddingBottom: 20,
   },
-  banner:{
-    marginBottom:50
+  banner: {
+    marginBottom: 50
   }
 });

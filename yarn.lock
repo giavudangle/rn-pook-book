@@ -3587,6 +3587,11 @@ expo-location@~8.2.1:
   dependencies:
     invariant "^2.2.4"
 
+expo-network@^3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/expo-network/-/expo-network-3.1.1.tgz#05a3c0e6cd598b7650e2fd02a8e201866e788be5"
+  integrity sha512-ryhq8PQIY8GbvmLXHPEXJ8WUGKdnwr4CfT8Y/BsGLZzyjoied+9tgaWmdV4pOCWd/hcBoTqr9q3hlUbZDCDLJw==
+
 expo-notifications@~0.3.3:
   version "0.3.3"
   resolved "https://registry.yarnpkg.com/expo-notifications/-/expo-notifications-0.3.3.tgz#3c7b7275516028853e02f5c796e3365d4fb572ad"
@@ -6421,6 +6426,11 @@ react-native-modalize@^2.0.6:
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/react-native-modalize/-/react-native-modalize-2.0.8.tgz#5dcb2c56d82e3dbd271582f832e7e02ae4cbb503"
   integrity sha512-OKdpFVExEe4YM2uFHL/aStS9p0JaC6gBupjaW1QVHkGq22T2ASYwkhDvTnMS8BLOLWPx2fC3xEBzOcn2rh7EYw==
+
+react-native-network-info@^5.2.1:
+  version "5.2.1"
+  resolved "https://registry.yarnpkg.com/react-native-network-info/-/react-native-network-info-5.2.1.tgz#b701f10d4ed1aeadcfe77b197328d1ae846f6d3a"
+  integrity sha512-iam74xXtrSqqZurCl1/bSjZ9jXcsJY84g7brx1/4uVGCY26c6m+4CArHNSHOsz5ATg2NQT+81sjNy0KlCPyK4g==
 
 react-native-paper@^4.2.0:
   version "4.7.2"

@@ -23,7 +23,7 @@ export default function Slide({name,imageUrl}) {
                 <Header title={name} titleColor={Colors.white}/>
                 <Image
                 resizeMode='stretch'
-                style={{width:200,height:200,marginTop:40}}
+                style={{width:250,height:220,marginTop:40,borderRadius:50}}
                 source={imageUrl}/>
            </View>
         </View>

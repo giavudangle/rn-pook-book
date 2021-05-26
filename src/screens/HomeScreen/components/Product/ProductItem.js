@@ -6,6 +6,7 @@ import {
   Image,
   TouchableOpacity,
   ActivityIndicator,
+  Platform,
 } from "react-native";
 //Icon
 import { AntDesign } from "@expo/vector-icons";
@@ -90,8 +91,7 @@ ProductItem.propTypes = {
 const styles = StyleSheet.create({
   container: {
     width: "100%",
-    height: 200,
-    // backgroundColor: "rgba(255, 255, 255, 0.9)",
+    height: Platform.OS === 'android' ?  220 : 200,
     marginBottom: 15,
     borderRadius: 8,
     marginTop:20,
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   image: {
     width: "100%",
     borderRadius: 8,
-    aspectRatio: 16 / 9,
+    aspectRatio: 16 / 9
   },
   center: {
     flex: 1,
@@ -145,10 +145,10 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     borderRadius: 5,
     borderWidth: 1,
-    borderColor: Colors.lighter_green,
+    borderColor: Colors.primary,
   },
   detailBtn: {
-    color: Colors.lighter_green,
+    color: Colors.primary,
     marginRight: 5,
   },
 });
