@@ -48,12 +48,11 @@ const store = createStore(
 );
 const LoadAssets = async () => {
   const imageAssets = Asset.loadAsync([
-    require("./src/assets/Images/banner1.jpg"),
-    require("./src/assets/Images/banner3.jpg"),
-    require("./src/assets/Images/banner4.jpg"),
-    require("./src/assets/Images/banner5.jpg"),
-    require("./src/assets/Images/banner6.jpg"),
-    
+    require("./src/assets/Images/banner1.png"),
+    require("./src/assets/Images/banner2.png"),
+    require("./src/assets/Images/banner3.png"),
+    require("./src/assets/Images/banner4.png"),
+    require("./src/assets/Images/banner5.png"),
     require("./src/assets/Images/defaultprofile.png"),
     require("./src/assets/Images/logo1.png"),
     require("./src/assets/Images/social1.png"),

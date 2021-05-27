@@ -93,7 +93,7 @@ const resetForm = (props) => {
         />
       </TouchableOpacity>
       <View style={styles.content}>
-        <CustomText style={styles.title}> Reset Password </CustomText>
+        <CustomText style={styles.title}> Đổi mật khẩu </CustomText>
         <Field
           name="currentpassword"
           keyboardType="default"

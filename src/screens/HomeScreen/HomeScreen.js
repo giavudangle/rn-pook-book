@@ -37,9 +37,7 @@ const AnimatedFlatList = Animated.createAnimatedComponent(FlatList)
 import banners from "../../db/Banners";
 
 import { fetchCategories } from '../../actions/category/categoryAction';
-import * as SecureStore from 'expo-secure-store'
-import { secretKey } from '../../utils/Config';
-import Loader from '../../components/Loaders/Loader';
+
 
 
 

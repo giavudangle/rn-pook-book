@@ -29,7 +29,7 @@ import { OpenURL } from "../utils/Tools";
 import { TouchableOpacity } from "react-native-gesture-handler";
 
 const fbURL = "https://www.facebook.com/codingwithvudang";
-const youtubeURL = "https://www.youtube.com/";
+const youtubeURL = "https://www.youtube.com/danglegiavu";
 
 //custom drawer content
 export default (props) => {
@@ -62,7 +62,7 @@ export default (props) => {
           <View style={{ alignItems: "center", marginVertical: 20 }}>
             <Image
               style={styles.logo}
-              source={require("../assets/Images/logo1.png")}
+              source={require("../assets/Images/icon.png")}
             />
           </View>
         ) : (
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   logo: {
     resizeMode: "contain",
     width: "80%",
-    height: 100,
+    height: 150,
   },
   logoutSection: {
     backgroundColor: Colors.lighter_green,

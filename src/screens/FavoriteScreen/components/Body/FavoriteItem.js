@@ -76,13 +76,12 @@ export const FavoriteItem = ({ navigation, item }) => {
   const _handleAddToCart = async () => {
     try {
       await dispatch(addToCart(item));
-      if (unmounted.current) {
         Alert.alert("Thêm thành công", "Sản phẩm đã được thêm vào giỏ hàng", [
           {
             text: "OK",
           },
         ]);
-      }
+  
     } catch (err) {
       throw err;
     }

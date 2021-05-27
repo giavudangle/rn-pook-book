@@ -194,7 +194,7 @@ export const Header = ({ style,navigation,products }) => {
             </TouchableOpacity>
             <View>
               <Image
-                source={require('../../../../assets/Images/logo1.png')}
+                source={require('../../../../assets/Images/icon.png')}
                 style={{
                   width: height < 668 ? 50 : 80, // set size icon
                   resizeMode: 'contain',
@@ -259,12 +259,12 @@ export const Header = ({ style,navigation,products }) => {
           {keyword === '' ? (
             <View style={styles.image_placeholder_container}>
               <Image
-                source={require('../../../../assets/Images/logo1.png')}
+                source={require('../../../../assets/Images/icon.png')}
                 style={styles.image_placeholder}
               />
               <Text style={styles.image_placeholder_text}>
                 Nhập vào từ khóa{'\n'}
-                để tìm kiếm :D
+                để tìm kiếm ^^
               </Text>
             </View>
           ) : (
@@ -398,7 +398,7 @@ const styles = StyleSheet.create({
     marginTop: 100,
   },
   image_placeholder: {
-    height: 80,
+    height: 180,
     resizeMode: 'contain',
     alignSelf: 'center',
   },
