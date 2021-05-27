@@ -65,7 +65,7 @@ export const ProfilePic = ({
           source={
             imageUri.length === 0
               ? user.profilePicture.length === 0
-                ? require("../../../assets/Images/bg.png")
+                ? require("../../../assets/Images/defaultprofile.png")
                 : { uri: user.profilePicture }
               : { uri: imageUri }
           }

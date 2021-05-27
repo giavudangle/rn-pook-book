@@ -54,8 +54,7 @@ import { PaymentScreen } from '../screens/PaymentScreen';
 import { AddCreditCardScreen } from '../screens/PaymentScreen';
 import { FinishOrderScreen } from '../screens/FinishOrderScreen';
 // Profile Screens
-import { ProfileScreen } from '../screens/ProfileScreen';
-import { EditProfileScreen } from '../screens/ProfileScreen';
+import {  EditPasswordScreen,EditProfileScreen,ProfileScreen } from '../screens/ProfileScreen';
 // redux
 import { useSelector } from 'react-redux';
 import { ResetPasswordScreen } from '../screens/ResetPasswordScreen';
@@ -186,6 +185,7 @@ export const ProfileStackScreen = () => (
   >
     <ProfileStack.Screen name='Profile' component={ProfileScreen} />
     <ProfileStack.Screen name='ProfileEdit' component={EditProfileScreen} />
+    <ProfileStack.Screen name='ProfilePassword' component={EditPasswordScreen}/>
   </ProfileStack.Navigator>
 );
 

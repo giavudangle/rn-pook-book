@@ -7,28 +7,31 @@ import Colors from "../../utils/Colors";
 //Redux
 import { useDispatch, useSelector } from "react-redux";
 //Action
-import { EditInfo } from "../../reducers";
+import { EditInfo } from "../../actions/auth";
 //Loader
 import Loader from "../../components/Loaders/Loader";
 
 export const EditProfileScreen = (props) => {
+
   const { user } = props.route.params;
   const loading = useSelector((state) => state.auth.isLoading);
   const [address, setAddress] = useState(user.address);
   const [phone, setPhone] = useState(user.phone);
+  const [name, setName] = useState(user.name);
+
   const [disableButton, setDisableBotton] = useState(true);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (user.phone !== phone || user.address !== address) {
+    if (user.phone !== phone || user.address !== address || user.name) {
       setDisableBotton(false);
     }
   }, [address, phone]);
 
   const updateInfoHandler = async () => {
-    if (phone.length === 10 && address.length >= 6) {
+    if (phone.length === 10 && address.length >= 6 && name.length !=='') {
       try {
-        await dispatch(EditInfo(phone, address));
+        await dispatch(EditInfo(phone, address,name));
         props.navigation.navigate("Profile");
       } catch (err) {
         alert(err);
@@ -51,7 +54,7 @@ export const EditProfileScreen = (props) => {
         </TouchableOpacity>
       </View>
       <View>
-        <View style={styles.infoContainer}>
+        <View style={styles.infoContainer}>      
           <TextInput
             label='Email'
             value={user.email}
@@ -61,6 +64,17 @@ export const EditProfileScreen = (props) => {
             selectionColor={Colors.leave_green}
             style={{ marginVertical: 10 }}
           />
+           <TextInput
+              label='Name'
+              value={name}
+              mode='outlined'
+              theme={{ colors: { primary: Colors.leave_green } }}
+              selectionColor={Colors.leave_green}
+              onChangeText={(text) => setName(text)}
+              style={{ marginVertical: 10 }}
+              keyboardType='default'
+              returnKeyType='done'
+            />
           <TextInput
             label='Phone'
             value={phone}
@@ -72,6 +86,7 @@ export const EditProfileScreen = (props) => {
             keyboardType='numeric'
             returnKeyType='done'
           />
+          
           <TextInput
             label='Address'
             value={address}

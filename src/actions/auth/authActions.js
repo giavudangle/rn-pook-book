@@ -4,21 +4,17 @@ import { predictTimeoutPromise } from '../../utils/Tools';
 
 import axios from 'axios'
 
-import {FORGET_PASSWORD, SIGN_UP,AUTH_SUCCESS, AUTH_FAILURE, AUTH_LOADING, LOGIN, LOGOUT, RESET_ERROR, RESET_PASSWORD, UPLOAD_PROFILEPIC } from '../../@types/authActionTypes'
+import {FORGET_PASSWORD,EDIT_INFO, SIGN_UP,AUTH_SUCCESS, AUTH_FAILURE, AUTH_LOADING, LOGIN, LOGOUT, RESET_ERROR, RESET_PASSWORD, UPLOAD_PROFILEPIC } from '../../@types/authActionTypes'
 
 
 import AskingExpoToken from '../../components/Notification/AskingNotificationPermisson';
 import { Alert } from 'react-native';
 
 
-
-import AskingExpoToken from '../../components/Notification/AskingNotificationPermisson';
-import { Alert } from 'react-native';
 import * as Network from 'expo-network';
 
 
 
-import * as SecureStore from 'expo-secure-store';
 
 
 
@@ -43,7 +39,6 @@ export const SignUp = (name, email, password) => {
         }),
       );
       if (!response.ok) {
-        const errorResData = await response.json();
         dispatch({
           type: AUTH_FAILURE,
         });
@@ -116,7 +111,47 @@ export const Login = (email, password) => {
   };
 };
 
-export const EditInfo = (phone, address) => {
+export const UpdatePassword = (newPassword) => {
+  return async (dispatch, getState) => {
+    const user = getState().auth.user;
+
+    dispatch({
+      type: AUTH_LOADING,
+    });
+    try {
+      const response = await predictTimeoutPromise(
+        fetch(`${API_URL}/users/update-password/${user.userid}`, {
+          headers: {
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+            'auth-token': user.token,
+          },
+          method: 'PATCH',
+          body: JSON.stringify({
+            newPassword
+          }),
+        }),
+      );
+      if (!response.ok) {
+        const errorResData = await response.json();
+        dispatch({
+          type: AUTH_FAILURE,
+        });
+        Error(errorResData.err);
+      }
+
+      dispatch({
+        type: LOGOUT,
+      });
+    } catch (err) {
+      throw err;
+    }
+  };
+};
+
+
+
+export const EditInfo = (phone, address,name) => {
   return async (dispatch, getState) => {
     const user = getState().auth.user;
     dispatch({
@@ -134,6 +169,7 @@ export const EditInfo = (phone, address) => {
           body: JSON.stringify({
             phone,
             address,
+            name
           }),
         }),
       );
@@ -149,6 +185,7 @@ export const EditInfo = (phone, address) => {
         type: EDIT_INFO,
         phone,
         address,
+        name
       });
     } catch (err) {
       throw err;
@@ -164,7 +201,7 @@ export const UploadProfilePic = (imageUri, filename, type) => {
     const user = getState().auth.user;
     let formData = new FormData();
     // Infer the type of the image
-    formData.append('profilePic', {
+    formData.append('profile', {
       uri: imageUri,
       name: filename,
       type,

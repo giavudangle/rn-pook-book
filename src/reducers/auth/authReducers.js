@@ -77,11 +77,13 @@ export const authReducer = (state = initialState, action) => {
     case EDIT_INFO:
       state.user.phone = action.phone;
       state.user.address = action.address;
+      state.user.name = action.name;
+      
       //Return ...state.user make the comp rerender
       return {
         ...state,
         user: {
-          ...state.user,
+          ...state.user
         },
         isLoading: false,
       };
