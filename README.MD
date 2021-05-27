@@ -3,8 +3,8 @@
 [![](https://img.shields.io/badge/Gmail-codingwithvudang@gmail.com-red)](mailto:codingwithvudang@gmail@gmail.com)
 
 <div >
-<img width="400px" height="400px" src="https://res.cloudinary.com/codingwithvudang/image/upload/v1618561426/SplashScreen_2x_s5hpib.png" >
-<img width="400px" height="400px" src="https://res.cloudinary.com/codingwithvudang/image/upload/v1620178049/151284066_207254161142817_5812038792384707893_n_ztp9r6.png" >
+<img width="400px" height="400px" src="https://res.cloudinary.com/codingwithvudang/image/upload/v1622117732/logo_hcbfie.png" >
+<img width="400px" height="400px" src="https://res.cloudinary.com/codingwithvudang/image/upload/v1622100868/sz4scfp9eit31cqy8xnf.jpg" >
 </div>
 
 ## 🚀 Contributors
