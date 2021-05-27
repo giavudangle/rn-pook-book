@@ -1,6 +1,7 @@
 
 import React from 'react'
 import { View, ImageBackground, Dimensions, TouchableOpacity, Text, StyleSheet } from 'react-native'
+import { LinearGradient } from 'expo-linear-gradient';
 
 //Colors
 import Colors from '../../../utils/Colors'
@@ -13,11 +14,9 @@ const { width, height } = Dimensions.get('screen')
 export const AuthBody = ({ navigation }) => {
     return (
         <View>
-            <ImageBackground
-                source={require('../../../assets/Images/bg.png')}
-                style={{ flex: 1, width, height }}
-                blurRadius={3}
-            />
+            <LinearGradient
+                colors={['rgba(116,185,255,0.9)','rgba(116,185,255,0.8)','rgba(116,185,255,0.6)','rgba(116,185,255,0.4)','rgba(116,185,255,0.2)', 'transparent',]}
+            >
             <LottieView
                 source={require('../../../../src/components/IconAnimation/book.json')}
                 autoPlay
@@ -55,6 +54,8 @@ export const AuthBody = ({ navigation }) => {
                     </TouchableOpacity>
                 </View>
             </View>
+            </LinearGradient>
+
         </View>
     )
 }

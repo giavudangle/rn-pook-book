@@ -1,24 +1,26 @@
 import React from 'react'
 import {
-    View, 
+    View,
     Text,
     StyleSheet,
     ImageBackground,
     Dimensions
 } from 'react-native'
 
-import {LoginForm} from './components';
+import { LoginForm } from './components';
+import { LinearGradient } from 'expo-linear-gradient';
 
-const {width,height}=Dimensions.get('screen');
-export const LoginScreen = ({navigation}) => {
+const { width, height } = Dimensions.get('screen');
+
+export const LoginScreen = ({ navigation }) => {
     return (
         <View style={styles.container}>
-            <ImageBackground
-                style={{flex:1,position:'absolute',height,width}}
-                source={require('../../assets/Images/bg.png')}
+            <LinearGradient
+                colors={['rgba(116,185,255,0.9)', 'rgba(116,185,255,0.8)', 'rgba(116,185,255,0.6)', 'rgba(116,185,255,0.4)', 'rgba(116,185,255,0.2)', 'transparent',]}
+                style={{ flex: 1, position: 'absolute', height, width }}
             >
-            </ImageBackground>
-            <LoginForm navigation={navigation}/>
+                <LoginForm navigation={navigation} />
+            </LinearGradient>
         </View>
     )
 }

@@ -97,7 +97,7 @@ const Signup = (props) => {
                 }}
                 onPress={() => props.navigation.goBack()}
             >
-                <Ionicons name='ios-arrow-back' size={50} color={Colors.light_green} />
+                <Ionicons name='ios-arrow-back' size={50} color={Colors.white} />
             </TouchableOpacity>
             <View style={styles.container}>
 
@@ -177,7 +177,7 @@ const styles = StyleSheet.create({
         zIndex: 1,
     },
     title: {
-        color: Colors.primary,
+        color: Colors.white,
         fontSize: 48,
         fontWeight: 'bold',
         marginBottom: 30,

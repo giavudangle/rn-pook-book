@@ -114,9 +114,9 @@ const Login = (props) => {
         onPress={() => {
           props.navigation.goBack();
         }}
-        style={{ position: "absolute", top: 50, left: 20 }}
+        style={{ position: "absolute", top: 50, left: 20,color:Colors.white }}
       >
-        <Ionicons name="ios-arrow-back" size={35} color={Colors.light_green} />
+        <Ionicons name="ios-arrow-back" size={35} color={Colors.white} />
       </TouchableOpacity>
 
       <View style={styles.header}>
@@ -224,7 +224,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
   },
   title: {
-    color: Colors.primary,
+    color: Colors.white,
     fontSize: 40,
     letterSpacing: 5,
     fontFamily: "Roboto-Bold",
@@ -253,12 +253,13 @@ const styles = StyleSheet.create({
   },
   center: {
     alignItems: "center",
+    marginTop:15
   },
   circleImage: {
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 2,
-    padding: 20,
+    padding:20,
     borderRadius: 55,
     borderStyle: "dashed",
     borderColor: Colors.grey,
