@@ -4,7 +4,7 @@ import { View, StyleSheet, Dimensions, Animated } from 'react-native';
 import Colors from '../../utils/Colors';
 import { colorCheck } from '../../utils/Tools';
 //Redux
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
 //Global Component
 import SnackBar from '../../components/Notification/SnackBar';
 // Local Component
@@ -13,6 +13,8 @@ import {DetailBody} from './components/Body'
 import { Comments } from './components/Comments';
 import {ActionButton, ModalComponent} from './components/ModalAction'
 
+import {comments} from '../../db/Comments'
+import { fetchReviews } from '../../actions/review';
 
 
 
@@ -44,6 +46,15 @@ export const DetailScreen = (props) => {
   const FavoriteProducts = useSelector((state) =>
   state.fav.favoriteList.some((product) => product.item._id === item._id),
   );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchReviews())
+  },[])
+
+  const reviews = useSelector((state) => state.review.reviews).filter(r => r.product._id === item._id)
+
+
 
   return (
     <View style={styles.container}>
@@ -63,11 +74,11 @@ export const DetailScreen = (props) => {
         )}
       >
         <DetailBody item={item} color={Colors.primary} />
-        <Comments />
+        <Comments currentItemId={item._id}  commentsData={reviews}/>
       </Animated.ScrollView>
 
       <ActionButton
-      showSnackbar={showSnackbar}
+        showSnackbar={showSnackbar}
         item={item}
         FavoriteProducts={FavoriteProducts}
         setShowSnackbar={setShowSnackbar}

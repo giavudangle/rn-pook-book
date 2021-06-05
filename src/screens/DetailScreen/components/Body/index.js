@@ -129,6 +129,7 @@ const styles = StyleSheet.create({
   detail: {
     fontSize: 15,
     lineHeight: 20,
+    fontWeight:'100'
   },
 
   price: {

@@ -1,19 +1,24 @@
 import React from "react";
 import { View, StyleSheet, Image, Platform } from "react-native";
+import { useSelector } from "react-redux";
 import CustomText from "../../../../components/UI/CustomText";
 import Colors from "../../../../utils/Colors";
 
 const UserComment = ({ comment }) => {
+
+  const user = useSelector(state => state.auth.user)
+
+
   return (
     <View style={styles.userCommentContainer}>
       <View style={styles.profileContainer}>
         <Image
           style={styles.profilePic}
-          source={require("../../../../assets/Images/logo1.png")}
+          source={comment.user.profilePicture.length > 0 ?  {uri:comment.user.profilePicture} : require("../../../../assets/Images/logo1.png")}
         />
       </View>
       <View style={{ justifyContent: "center", width: "80%" }}>
-        <CustomText style={styles.name}>{comment.username}</CustomText>
+        <CustomText style={styles.name}>{comment.user._id === user.userid ?'You':comment.user.name}</CustomText>
         <CustomText>{comment.content}</CustomText>
       </View>
     </View>

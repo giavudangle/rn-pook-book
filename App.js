@@ -30,6 +30,7 @@ console.disableYellowBox = true;
 
 
 import { categoryReducer } from "./src/reducers/category/categoryReducer";
+import { reviewReducer } from "./src/reducers/review";
 
 
 const rootReducer = combineReducers({
@@ -39,6 +40,7 @@ const rootReducer = combineReducers({
   auth: authReducer,
   fav: favoriteReducer,
   category: categoryReducer,
+  review : reviewReducer,
   form: formReducer,
 });
 

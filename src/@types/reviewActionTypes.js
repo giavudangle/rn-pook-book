@@ -1,0 +1,3 @@
+export const FETCH_REVIEW = "FETCH_REVIEW";
+export const REVIEW_LOADING = "REVIEW_LOADING";
+

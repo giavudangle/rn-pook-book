@@ -52,7 +52,7 @@ export const ProfileScreen = (props) => {
   return (
     <ActionSheetProvider>
       <View style={styles.container}>
-        <TouchableOpacity style={{ zIndex: 99 }} onPress={() => props.navigation.goBack()}>
+        <TouchableOpacity style={{ zIndex: 99 }} onPress={() => props.navigation.navigate('HomeTab')}>
           <AntIcon style={{ top: 40, right: 320, position: 'absolute' }} name='arrowleft' size={30} color='white' />
         </TouchableOpacity>
         <View style={styles.header}>
