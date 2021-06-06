@@ -11,6 +11,8 @@ import Loader from '../../components/Loaders/Loader';
 import { useSelector, useDispatch } from 'react-redux'
 import { createOrder } from '../../actions/order/orderActions'
 import { resetCart } from '../../actions/cart'
+import { PromotionHolder } from './promotions/PromotionHolder'
+
 
 export const PaymentScreen = ({ route, navigation }) => {
   /**
@@ -81,16 +83,14 @@ export const PaymentScreen = ({ route, navigation }) => {
   const _handleAddOrder = async () => {
     try {
       const paymentMethod = payByCard ? 'CC' : 'COD';
-      console.log('====================================');
-      console.log(paymentMethod);
-      console.log('====================================');
       let chargeToken = payByCard ? token : {};
+      let finalTotal = total - promotion.value * 1000
       dispatch(
         createOrder(
           chargeToken,
           summaryOrders,
           deliveryName,
-          total,
+          finalTotal,
           paymentMethod,
           fullAddress,
           deliveryPhone
@@ -102,14 +102,19 @@ export const PaymentScreen = ({ route, navigation }) => {
       alert(err);
     }
   };
-  
+
   /**
   |--------------------------------------------------
   | Render JSX
   |--------------------------------------------------
   */
 
+  const [promotion, setPromotion] = useState({})
 
+
+  const calculateTotal = () => {
+    return Object.keys(promotion).length > 0 ? total - promotion.value * 1000 : total
+  }
   return (
     <ScrollView>
       <Header navigation={navigation} />
@@ -124,11 +129,11 @@ export const PaymentScreen = ({ route, navigation }) => {
               setPayByCard={setPayByCard}
               token={token}
             />
-            <SummaryOrder cartItems={carts.items} total={total} />
+            <PromotionHolder promotion={promotion} setPromotion={setPromotion} navigation={navigation}/>
+            <SummaryOrder cartItems={carts.items} total={calculateTotal()} />
           </ScrollView>
           <View style={styles.total}>
             <TouchableOpacity onPress={_handleAddOrder}>
-
               <View style={styles.orderButton}>
                 <CustomText style={{ color: '#fff', fontSize: 16 }}>
                   Tiến hành đặt hàng

@@ -32,12 +32,15 @@ export const PaymentBody = ({ navigation, payByCard, setPayByCard, token }) => {
           <CustomText style={styles.optionText}>Thanh toán tiền mặt</CustomText>
         </View>
         <View style={styles.option}>
-          <Checkbox
-            status={payByCard ? "checked" : "unchecked"}
-            color={Colors.lighter_green}
-            onPress={() => navigation.navigate("AddCreditCardScreen")}
-            // containerStyle={{ padding: 5 }}
-          />
+          <View>
+
+            <Checkbox
+              status={payByCard ? "checked" : "unchecked"}
+              color={Colors.lighter_green}
+              onPress={() => navigation.navigate("AddCreditCardScreen")}
+            />
+          </View>
+
           <MaterialCommunityIcons
             name='credit-card-outline'
             size={35}
@@ -77,7 +80,7 @@ const styles = StyleSheet.create({
   container: {
     borderBottomWidth: 0.5,
     borderBottomColor: Colors.grey,
-    top:-10,
+    top: -10,
   },
   title: {
     fontSize: 15,
@@ -106,8 +109,8 @@ const styles = StyleSheet.create({
     flexDirection: "column",
     justifyContent: "flex-start",
     paddingHorizontal: 20,
-    paddingVertical:-30,
-    marginBottom:10
+    paddingVertical: -30,
+    marginBottom: 10
   },
   cardImage: {
     resizeMode: "contain",
