@@ -7,6 +7,11 @@
 <img width="400px" height="400px" src="https://res.cloudinary.com/codingwithvudang/image/upload/v1622100868/sz4scfp9eit31cqy8xnf.jpg" >
 </div>
 
+## 🚀 Figma Design 
+https://www.figma.com/community/file/974606891270365833
+## 🚀 Demo
+https://youtu.be/Iy3vKRbxSJU
+
 ## 🚀 Contributors
 - VuDang
 - AnhPhan
@@ -110,8 +115,6 @@ Change the API in config.js to the server that you're running.
 - Deep Link: Expo Linking.
 - Touch/Face ID: react native touch id, react native keychain, expo authentication 
 
-## 🚀 Figma Design with Prototype
-https://www.figma.com/community/file/974606891270365833
 
 
 
